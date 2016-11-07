@@ -96,5 +96,7 @@ public interface ChatTags {
      */
     public static final String MSG_TO = "MTO";
 
+    public static final String GET_FRIENDLIST = "GFL";
+
 
 }
