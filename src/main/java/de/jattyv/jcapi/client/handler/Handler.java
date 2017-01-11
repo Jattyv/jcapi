@@ -21,6 +21,7 @@ import de.jattyv.jcapi.client.network.JClient;
 import de.jattyv.jcapi.data.Container;
 import de.jattyv.jcapi.data.chatobjects.User;
 import de.jattyv.jcapi.util.ChatTags;
+import java.util.LinkedList;
 
 /**
  *
@@ -84,6 +85,10 @@ public class Handler implements ChatTags {
 
     public User getUser() {
         return user;
+    }
+
+    public LinkedList<String> getMessages(String uName) {
+        return msgHandler.getMessages(uName);
     }
 
 }
