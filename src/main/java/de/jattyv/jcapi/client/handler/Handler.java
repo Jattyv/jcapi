@@ -17,10 +17,10 @@
 package de.jattyv.jcapi.client.handler;
 
 import de.jattyv.jcapi.client.gui.JGui;
+import de.jattyv.jcapi.client.network.JClient;
 import de.jattyv.jcapi.data.Container;
 import de.jattyv.jcapi.data.chatobjects.User;
 import de.jattyv.jcapi.util.ChatTags;
-import de.jattyv.jcapi.client.network.JClient;
 
 /**
  *
@@ -32,13 +32,13 @@ public class Handler implements ChatTags {
     JGui window;
     User user;
 
-    FreqHandler freqHandler;
     MsgHandler msgHandler;
+    UserHandler userHandler;
 
     public Handler() {
         user = new User();
-        freqHandler = new FreqHandler(this);
         msgHandler = new MsgHandler(this);
+        userHandler = new UserHandler(this);
 
     }
 
@@ -49,20 +49,8 @@ public class Handler implements ChatTags {
                 msgHandler.handle(c);
                 break;
 
-            case NEW_FRIENDREQUEST:
-                freqHandler.handle(c);
-                break;
-
-            case ACCEPT_FRIENDREQUEST:
-                freqHandler.handle(c);
-                break;
-
-            case DECLINE_FRIENDREQUEST:
-                freqHandler.handle(c);
-                break;
-
-            case DELETE_FRIEND:
-
+            case SESSION_SETTINGS:
+                userHandler.handle(c);
                 break;
 
         }
@@ -88,6 +76,10 @@ public class Handler implements ChatTags {
 
     public void setWindow(JGui window) {
         this.window = window;
+    }
+
+    public JGui getWindow() {
+        return window;
     }
 
     public User getUser() {

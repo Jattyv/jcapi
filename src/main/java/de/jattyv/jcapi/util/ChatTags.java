@@ -27,11 +27,6 @@ public interface ChatTags {
      */
     public static final String SESSION_SETTINGS = "Settings";
     /**
-     * A tag, declaring his content as information about what to do.
-     */
-    public static final String WORK_TAG = "whatToDo";
-
-    /**
      * A tag, declaring his content as the user name.
      */
     public static final String U_NAME = "uName";
@@ -44,10 +39,6 @@ public interface ChatTags {
      */
     public static final String U_LOG_KEY = "uLogKey";
     /**
-     * A tag, declaring his content as new logkey that should be set.
-     */
-    public static final String U_SET_LOG_KEY = "NEWLKEY";
-    /**
      * A tag, declaring his content as a registration.
      */
     public static final String U_REGISTRATION = "REGU";
@@ -56,29 +47,9 @@ public interface ChatTags {
      */
     public static final String U_LOGIN = "LOGU";
     /**
-     * A tag, declaring his content as the reload information.
-     */
-    public static final String U_RELOAD = "RELU";
-    /**
      * A tag, declaring his content as message.
      */
     public static final String NEW_MESSAGE = "MSG";
-    /**
-     * A tag, declaring his content as a new friendrequest.
-     */
-    public static final String NEW_FRIENDREQUEST = "FRQ";
-    /**
-     * A tag, declaring his content refusing a friendrequest.
-     */
-    public static final String DECLINE_FRIENDREQUEST = "DFR";
-    /**
-     * A tag, declaring his content accepting a friendrequest.
-     */
-    public static final String ACCEPT_FRIENDREQUEST = "AFR";
-    /**
-     * A tag, declaring his content as deleting a friend.
-     */
-    public static final String DELETE_FRIEND = "DUF";
     /**
      * A tag, declaring his content as the name of the sender.
      */
@@ -95,8 +66,6 @@ public interface ChatTags {
      * A tag, declaring his content as the receiver.
      */
     public static final String MSG_TO = "MTO";
-
-    public static final String GET_FRIENDLIST = "GFL";
 
 
 }

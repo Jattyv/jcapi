@@ -17,6 +17,8 @@
 package de.jattyv.jcapi.client.handler;
 
 import de.jattyv.jcapi.data.Container;
+import static de.jattyv.jcapi.util.ChatTags.FROM_USER;
+import static de.jattyv.jcapi.util.ChatTags.MESSAGE;
 
 /**
  *
@@ -31,7 +33,10 @@ public class MsgHandler {
     }
 
     public void handle(Container c) {
+        String message = c.getDataByName(MESSAGE);
+        String fromUser = c.getDataByName(FROM_USER);
 
+        handler.getWindow().addMessage(fromUser + ": " + message);
     }
 
 }

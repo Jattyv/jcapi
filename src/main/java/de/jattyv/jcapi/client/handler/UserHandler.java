@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
+ * Copyright (C) 2017 Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,20 +17,22 @@
 package de.jattyv.jcapi.client.handler;
 
 import de.jattyv.jcapi.data.Container;
+import de.jattyv.jcapi.util.ChatTags;
 
 /**
  *
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
-public class FreqHandler {
+public class UserHandler implements ChatTags {
 
     private Handler handler;
 
-    public FreqHandler(Handler handler) {
+    public UserHandler(Handler handler) {
         this.handler = handler;
     }
 
     public void handle(Container c) {
+        handler.getUser().setLogKey(c.getDataByName(U_LOG_KEY));
 
     }
 

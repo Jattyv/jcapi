@@ -22,4 +22,6 @@ package de.jattyv.jcapi.client.gui;
  */
 public interface JGui {
 
+    public void addMessage(String message);
+
 }

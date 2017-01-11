@@ -24,27 +24,28 @@ import de.jattyv.jcapi.data.Container;
  */
 public class Packer implements ChatTags {
 
-    public static Container packNewMessage() {
-        return null;
+    public static Container packNewMessage(String userName, String toUser, String msg) {
+        Container c = new Container();
+        c.setSuperTag(NEW_MESSAGE);
+        c.addE(FROM_USER, userName);
+        c.addE(TO_USER, toUser);
+        c.addE(MESSAGE, msg);
+        return c;
     }
 
-    public static Container packLogin() {
-        return null;
+    public static Container packLogin(String userName, String userPassword) {
+        Container c = new Container();
+        c.setSuperTag(U_LOGIN);
+        c.addE(U_NAME, userName);
+        c.addE(U_PASSWORD, userPassword);
+        return c;
     }
 
     public static Container packRegistration(String userName, String userPassword) {
         Container c = new Container();
-        c.setSuperTag(ChatTags.U_REGISTRATION);
-        c.addE(ChatTags.U_NAME, userName);
-        c.addE(ChatTags.U_PASSWORD, userPassword);
-        return c;
-    }
-
-    public static Container packNewFriendrequest(String fromName, String toName) {
-        Container c = new Container();
-        c.setSuperTag(NEW_FRIENDREQUEST);
-        c.addE(FROM_USER, fromName);
-        c.addE(TO_USER, toName);
+        c.setSuperTag(U_REGISTRATION);
+        c.addE(U_NAME, userName);
+        c.addE(U_PASSWORD, userPassword);
         return c;
     }
 

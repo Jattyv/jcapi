@@ -24,6 +24,8 @@ public class User {
 
     private String name;
 
+    private String logKey;
+
     public String getName() {
         return name;
     }
@@ -32,5 +34,12 @@ public class User {
         this.name = name;
     }
 
+    public String getLogKey() {
+        return logKey;
+    }
+
+    public void setLogKey(String logkey) {
+        this.logKey = logkey;
+    }
 
 }
