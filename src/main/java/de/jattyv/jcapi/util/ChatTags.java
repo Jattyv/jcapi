@@ -59,13 +59,14 @@ public interface ChatTags {
      */
     public static final String TO_USER = "TOU";
     /**
-     * A tag, declaring his content as the message.
-     */
-    public static final String MESSAGE = "MESSAGE";
-    /**
      * A tag, declaring his content as the receiver.
      */
     public static final String MSG_TO = "MTO";
+    /**
+     * A tag, declaring his content as the message.
+     */
+    public static final String MESSAGE = "MESSAGE";
+
 
 
 }

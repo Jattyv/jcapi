@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
+ * Copyright (C) 2017 Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,25 +16,17 @@
  */
 package de.jattyv.jcapi.client.handler;
 
-import de.jattyv.jcapi.data.Container;
-import static de.jattyv.jcapi.util.ChatTags.FROM_USER;
-import static de.jattyv.jcapi.util.ChatTags.MESSAGE;
+import de.jattyv.jcapi.util.ChatTags;
 
 /**
  *
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
-public class MsgHandler extends JattyvHandler {
+public class JattyvHandler implements ChatTags {
 
-    public MsgHandler(Handler handler) {
-        super(handler);
+    protected Handler handler;
+
+    public JattyvHandler(Handler handler) {
+        this.handler = handler;
     }
-
-    public void handle(Container c) {
-        String message = c.getDataByName(MESSAGE);
-        String fromUser = c.getDataByName(FROM_USER);
-
-        handler.getWindow().addMessage(fromUser + ": " + message);
-    }
-
 }

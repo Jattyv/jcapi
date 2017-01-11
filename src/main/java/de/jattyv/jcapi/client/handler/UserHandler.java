@@ -17,18 +17,15 @@
 package de.jattyv.jcapi.client.handler;
 
 import de.jattyv.jcapi.data.Container;
-import de.jattyv.jcapi.util.ChatTags;
 
 /**
  *
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
-public class UserHandler implements ChatTags {
-
-    private Handler handler;
+public class UserHandler extends JattyvHandler {
 
     public UserHandler(Handler handler) {
-        this.handler = handler;
+        super(handler);
     }
 
     public void handle(Container c) {
