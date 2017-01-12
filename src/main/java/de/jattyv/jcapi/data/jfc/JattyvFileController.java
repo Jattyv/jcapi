@@ -16,7 +16,14 @@
  */
 package de.jattyv.jcapi.data.jfc;
 
+import de.jattyv.jcapi.data.jfc.data.Settings;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,9 +31,37 @@ import java.util.Properties;
  */
 public class JattyvFileController {
 
-    public static Properties readConfig(String config) {
-        Properties conf = new Properties();
+    public static Settings readSettings(InputStream propContent) {
+        try {
+            Properties prop = new Properties();
+            prop.load(propContent);
+            Settings config = new Settings();
+            config.setIp(prop.getProperty(Settings.IP_ADDRESS));
+            config.setPort(Integer.parseInt(prop.getProperty(Settings.PORT)));
+            return config;
+        } catch (IOException ex) {
+            Logger.getLogger(JattyvFileController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 
+    public static Settings readSettings(String propContent) {
+        Properties prop = readConfig(propContent);
+        Settings config = new Settings();
+        config.setIp(prop.getProperty(Settings.IP_ADDRESS));
+        config.setPort(Integer.parseInt(prop.getProperty(Settings.PORT)));
+        return config;
+    }
+
+    public static Properties readConfig(String propContent) {
+        try {
+            InputStream stream = new ByteArrayInputStream(propContent.getBytes(StandardCharsets.UTF_8));
+            Properties prop = new Properties();
+            prop.load(stream);
+            return prop;
+        } catch (IOException ex) {
+            Logger.getLogger(JattyvFileController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return null;
     }
 

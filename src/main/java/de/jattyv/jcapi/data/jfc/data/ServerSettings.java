@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
+ * Copyright (C) 2017 Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,43 +14,25 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.jattyv.jcapi.data.chatobjects;
+package de.jattyv.jcapi.data.jfc.data;
+
+import de.jattyv.jcapi.data.chatobjects.User;
+import java.util.LinkedList;
 
 /**
  *
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
-public class User {
+public class ServerSettings {
 
-    private String name;
+    private LinkedList<User> users;
 
-    private String logKey;
-
-    private String password;
-
-    public String getName() {
-        return name;
+    public LinkedList<User> getUsers() {
+        return users;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsers(LinkedList<User> users) {
+        this.users = users;
     }
-
-    public String getLogKey() {
-        return logKey;
-    }
-
-    public void setLogKey(String logkey) {
-        this.logKey = logkey;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
 
 }

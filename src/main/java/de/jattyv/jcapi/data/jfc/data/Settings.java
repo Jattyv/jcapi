@@ -22,4 +22,56 @@ package de.jattyv.jcapi.data.jfc.data;
  */
 public class Settings {
 
+    public static final String IP_ADDRESS = "ip";
+    public static final String PORT = "port";
+    public static final String AUTO_START_SERVER = "AutoStartServer";
+    public static final String U_NAME = "UserName";
+
+    private String ip;
+    private int port;
+    private boolean autoStartServer;
+    private String uName;
+    private ServerSettings serverSettings;
+
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
+    }
+
+    public boolean isAutoStartServer() {
+        return autoStartServer;
+    }
+
+    public void setAutoStartServer(boolean autoStartServer) {
+        this.autoStartServer = autoStartServer;
+    }
+
+    public String getuName() {
+        return uName;
+    }
+
+    public void setuName(String uName) {
+        this.uName = uName;
+    }
+
+    public ServerSettings getServerSettings() {
+        return serverSettings;
+    }
+
+    public void setServerSettings(ServerSettings serverSettings) {
+        this.serverSettings = serverSettings;
+    }
+
+
 }
