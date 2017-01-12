@@ -24,10 +24,10 @@ import de.jattyv.jcapi.data.jobject.Container;
  */
 public class Packer implements ChatTags {
 
-    public static Container packNewMessage(String userName, String toUser, String msg) {
+    public static Container packNewMessage(String userLkey, String toUser, String msg) {
         Container c = new Container();
         c.setSuperTag(NEW_MESSAGE);
-        c.addE(FROM_USER, userName);
+        c.addE(FROM_USER, userLkey);
         c.addE(TO_USER, toUser);
         c.addE(MESSAGE, msg);
         return c;

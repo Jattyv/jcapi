@@ -18,8 +18,8 @@ package de.jattyv.jcapi.client.handler;
 
 import de.jattyv.jcapi.client.gui.JGui;
 import de.jattyv.jcapi.client.network.JClient;
-import de.jattyv.jcapi.data.jobject.Container;
 import de.jattyv.jcapi.data.chatobjects.User;
+import de.jattyv.jcapi.data.jobject.Container;
 import de.jattyv.jcapi.util.ChatTags;
 import java.util.LinkedList;
 
@@ -36,12 +36,14 @@ public class Handler implements ChatTags {
     private MsgHandler msgHandler;
     private UserHandler userHandler;
     private ErrorHandler errHandler;
+    private OutputHandler outHandler;
 
     public Handler() {
         user = new User();
         msgHandler = new MsgHandler(this);
         userHandler = new UserHandler(this);
         errHandler = new ErrorHandler(this);
+        outHandler = new OutputHandler(this);
 
     }
 
@@ -64,8 +66,8 @@ public class Handler implements ChatTags {
 
     }
 
-    public void handle(String input) {
-
+    public OutputHandler getOutHandler() {
+        return outHandler;
     }
 
     public void send(Container c) {
