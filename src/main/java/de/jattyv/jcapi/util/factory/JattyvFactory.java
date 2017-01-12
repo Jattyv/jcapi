@@ -35,6 +35,13 @@ public class JattyvFactory implements ChatTags {
         return login;
     }
 
+    public static Container createLoginFailedContainer() {
+        Container fLogin = new Container();
+        fLogin.setSuperTag(JERROR);
+        fLogin.addE(new Element(ERR_KEY, LOG_FAIL));
+        return fLogin;
+    }
+
     public static Container createMessageContainer(String fromUser, String toUser, String message) {
         Container msg = new Container();
         msg.setSuperTag(NEW_MESSAGE);

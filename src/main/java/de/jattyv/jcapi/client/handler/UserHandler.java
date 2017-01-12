@@ -16,6 +16,7 @@
  */
 package de.jattyv.jcapi.client.handler;
 
+import de.jattyv.jcapi.client.gui.JGui;
 import de.jattyv.jcapi.data.Container;
 
 /**
@@ -30,7 +31,7 @@ public class UserHandler extends JattyvHandler {
 
     public void handle(Container c) {
         handler.getUser().setLogKey(c.getDataByName(U_LOG_KEY));
-
+        handler.getWindow().changeWindow(JGui.CHAT_WINDOW);
     }
 
 }

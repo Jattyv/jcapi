@@ -29,17 +29,19 @@ import java.util.LinkedList;
  */
 public class Handler implements ChatTags {
 
-    JClient cl;
-    JGui window;
-    User user;
+    private JClient cl;
+    private JGui window;
+    private User user;
 
-    MsgHandler msgHandler;
-    UserHandler userHandler;
+    private MsgHandler msgHandler;
+    private UserHandler userHandler;
+    private ErrorHandler errHandler;
 
     public Handler() {
         user = new User();
         msgHandler = new MsgHandler(this);
         userHandler = new UserHandler(this);
+        errHandler = new ErrorHandler(this);
 
     }
 
@@ -52,6 +54,10 @@ public class Handler implements ChatTags {
 
             case SESSION_SETTINGS:
                 userHandler.handle(c);
+                break;
+
+            case JERROR:
+                errHandler.handle(c);
                 break;
 
         }
@@ -86,6 +92,11 @@ public class Handler implements ChatTags {
     public User getUser() {
         return user;
     }
+
+    public JClient getCl() {
+        return cl;
+    }
+
 
     public LinkedList<String> getMessages(String uName) {
         return msgHandler.getMessages(uName);

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
+ * Copyright (C) 2017 Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,23 +14,31 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.jattyv.jcapi.client.gui;
+package de.jattyv.jcapi.client.handler;
+
+import de.jattyv.jcapi.data.Container;
 
 /**
  *
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
-public interface JGui {
+public class ErrorHandler extends JattyvHandler {
 
-    public static final String LOGIN_WINDOW = "wlogin";
-    public static final String REGISTRATION_WINDOW = "wregist";
-    public static final String CHAT_WINDOW = "cwindow";
+    public ErrorHandler(Handler handler) {
+        super(handler);
+    }
 
-    public void changeWindow(String window);
+    void handle(Container c) {
+        String errCode = c.getDataByName(ERR_KEY);
 
-    public void showError(String errKey);
+        switch (errCode) {
 
-    public void addMessage(String fName, String message);
+            case LOG_FAIL:
+                handler.getWindow().showError(errCode);
+                handler.getCl().close();
+                break;
 
+        }
+    }
 
 }

@@ -66,6 +66,18 @@ public interface ChatTags {
      * A tag, declaring his content as the message.
      */
     public static final String MESSAGE = "MESSAGE";
+    /**
+     * A tag, declaring his content as an error.
+     */
+    public static final String JERROR = "jerror";
+    /**
+     * A tag, declaring his content as the errorcode.
+     */
+    public static final String ERR_KEY = "jerrorkey";
+    /**
+     * A tag, declaring an error while log in.
+     */
+    public static final String LOG_FAIL = "LOGF";
 
 
 

@@ -49,7 +49,7 @@ public class MsgHandler extends JattyvHandler {
 
 
         messages.add(new Message(fromUser, toUser, to, message));
-        handler.window.addMessage(to, fromUser + ": " + message);
+        handler.getWindow().addMessage(to, fromUser + ": " + message);
     }
 
     public LinkedList<String> getMessages(String uName) {

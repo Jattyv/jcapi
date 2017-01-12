@@ -28,4 +28,6 @@ public interface JClient {
 
     public void write(Container c);
 
+    public void close();
+
 }
