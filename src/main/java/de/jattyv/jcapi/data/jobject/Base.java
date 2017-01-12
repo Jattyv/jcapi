@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.jattyv.jcapi.data;
+package de.jattyv.jcapi.data.jobject;
 
 import java.util.LinkedList;
 import java.util.List;

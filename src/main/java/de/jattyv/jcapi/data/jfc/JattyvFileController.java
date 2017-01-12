@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
+ * Copyright (C) 2017 Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,20 +14,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.jattyv.jcapi.client.network;
+package de.jattyv.jcapi.data.jfc;
 
-import de.jattyv.jcapi.data.jobject.Container;
+import java.util.Properties;
 
 /**
  *
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
-public interface JClient {
+public class JattyvFileController {
 
-    public void start(Container c);
+    public static Properties readConfig(String config) {
+        Properties conf = new Properties();
 
-    public void write(Container c);
-
-    public void close();
+        return null;
+    }
 
 }

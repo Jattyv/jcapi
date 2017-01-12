@@ -17,7 +17,7 @@
 package de.jattyv.jcapi.client.handler;
 
 import de.jattyv.jcapi.client.gui.JGui;
-import de.jattyv.jcapi.data.Container;
+import de.jattyv.jcapi.data.jobject.Container;
 
 /**
  *

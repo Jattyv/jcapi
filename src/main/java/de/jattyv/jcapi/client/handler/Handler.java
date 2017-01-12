@@ -18,7 +18,7 @@ package de.jattyv.jcapi.client.handler;
 
 import de.jattyv.jcapi.client.gui.JGui;
 import de.jattyv.jcapi.client.network.JClient;
-import de.jattyv.jcapi.data.Container;
+import de.jattyv.jcapi.data.jobject.Container;
 import de.jattyv.jcapi.data.chatobjects.User;
 import de.jattyv.jcapi.util.ChatTags;
 import java.util.LinkedList;

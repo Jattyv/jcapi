@@ -16,7 +16,7 @@
  */
 package de.jattyv.jcapi.client.handler;
 
-import de.jattyv.jcapi.data.Container;
+import de.jattyv.jcapi.data.jobject.Container;
 import de.jattyv.jcapi.data.chatobjects.Message;
 import static de.jattyv.jcapi.util.ChatTags.FROM_USER;
 import static de.jattyv.jcapi.util.ChatTags.MESSAGE;

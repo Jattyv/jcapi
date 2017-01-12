@@ -16,7 +16,7 @@
  */
 package de.jattyv.jcapi.util;
 
-import de.jattyv.jcapi.data.Container;
+import de.jattyv.jcapi.data.jobject.Container;
 
 /**
  *

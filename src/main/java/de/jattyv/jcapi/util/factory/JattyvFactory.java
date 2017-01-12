@@ -16,8 +16,8 @@
  */
 package de.jattyv.jcapi.util.factory;
 
-import de.jattyv.jcapi.data.Container;
-import de.jattyv.jcapi.data.Element;
+import de.jattyv.jcapi.data.jobject.Container;
+import de.jattyv.jcapi.data.jobject.Element;
 import de.jattyv.jcapi.util.ChatTags;
 import de.jattyv.jcapi.util.crypt.LKeyGenerator;
 
