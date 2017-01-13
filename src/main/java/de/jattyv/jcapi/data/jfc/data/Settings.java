@@ -26,6 +26,7 @@ public class Settings {
     public static final String PORT = "port";
     public static final String AUTO_START_SERVER = "AutoStartServer";
     public static final String U_NAME = "UserName";
+    public static final String SERVER_SETTINGS = "ServerSettingsPath";
 
     private String ip;
     private int port;

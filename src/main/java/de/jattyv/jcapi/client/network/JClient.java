@@ -16,18 +16,50 @@
  */
 package de.jattyv.jcapi.client.network;
 
+import com.google.gson.Gson;
+import de.jattyv.jcapi.client.handler.Handler;
+import de.jattyv.jcapi.data.jfc.data.Settings;
 import de.jattyv.jcapi.data.jobject.Container;
 
 /**
  *
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
-public interface JClient {
+public class JClient {
 
-    public void start(Container c);
+    protected int port;
+    protected String host;
+    protected Gson gson;
+    protected Handler handler;
 
-    public void write(Container c);
+    public JClient(String host, int port) {
+        this.port = port;
+        this.host = host;
+        gson = new Gson();
+    }
 
-    public void close();
+    public JClient(Settings settings) {
+        this(settings.getIp(), settings.getPort());
+    }
+
+    public void start(Container c) {
+
+    }
+
+    public void write(Container c) {
+
+    }
+
+    public void reload() {
+
+    }
+
+    public void setHandler(Handler handler) {
+        this.handler = handler;
+    }
+
+    public void close() {
+
+    }
 
 }

@@ -38,6 +38,15 @@ public class JattyvFileController {
             Settings config = new Settings();
             config.setIp(prop.getProperty(Settings.IP_ADDRESS));
             config.setPort(Integer.parseInt(prop.getProperty(Settings.PORT)));
+            if (prop.getProperty(Settings.AUTO_START_SERVER) != null) {
+                if (prop.getProperty(Settings.AUTO_START_SERVER).equals("1")) {
+                    config.setAutoStartServer(true);
+                } else {
+                    config.setAutoStartServer(false);
+                }
+            } else {
+                config.setAutoStartServer(false);
+            }
             return config;
         } catch (IOException ex) {
             Logger.getLogger(JattyvFileController.class.getName()).log(Level.SEVERE, null, ex);
