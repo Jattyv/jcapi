@@ -16,6 +16,7 @@
  */
 package de.jattyv.jcapi.client;
 
+import de.jattyv.jcapi.client.gui.JGui;
 import de.jattyv.jcapi.client.handler.Handler;
 import de.jattyv.jcapi.client.network.Client;
 import de.jattyv.jcapi.data.jfc.data.Settings;
@@ -45,6 +46,10 @@ public class Chat {
 
     public Handler getHandler() {
         return handler;
+    }
+
+    public void setGui(JGui gui) {
+        handler.setWindow(gui);
     }
 
 
