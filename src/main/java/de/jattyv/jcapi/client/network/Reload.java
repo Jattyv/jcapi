@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
+ * Copyright (C) 2016 Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,30 +14,36 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.jattyv.jcapi.client.handler;
+package de.jattyv.jcapi.client.network;
 
-import de.jattyv.jcapi.util.Packer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
-public class OutputHandler extends JattyvHandler {
+public class Reload extends Thread {
 
-    public OutputHandler(Handler handler) {
-        super(handler);
+    private Client cl;
+    private boolean connected;
+
+    public Reload(Client cl) {
+        this.cl = cl;
+        connected = true;
     }
 
-    public void sendNewMessage(String toName, String message) {
-        handler.send(Packer.packNewMessage(handler.getUser().getLogKey(), toName, message));
-    }
+    @Override
+    public void run() {
+        while (connected) {
+            try {
+                Thread.sleep(1000);
+                cl.reload();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Reload.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
 
-    public void sendLogin(String uname, String upassword) {
-        handler.start(Packer.packLogin(uname, upassword));
-    }
-
-    public void sendRegist(String uname, String upassword) {
-        handler.start(Packer.packRegistration(uname, upassword));
     }
 
 }

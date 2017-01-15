@@ -14,30 +14,38 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.jattyv.jcapi.client.handler;
+package de.jattyv.jcapi.client;
 
-import de.jattyv.jcapi.util.Packer;
+import de.jattyv.jcapi.client.handler.Handler;
+import de.jattyv.jcapi.client.network.Client;
+import de.jattyv.jcapi.data.jfc.data.Settings;
 
 /**
  *
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
-public class OutputHandler extends JattyvHandler {
+public class Chat {
 
-    public OutputHandler(Handler handler) {
-        super(handler);
+    Handler handler;
+    Client cl;
+
+    public Chat(Settings settings) {
+        handler = new Handler();
+        cl = new Client(settings);
+        cl.setHandler(handler);
+        handler.setClient(cl);
     }
 
-    public void sendNewMessage(String toName, String message) {
-        handler.send(Packer.packNewMessage(handler.getUser().getLogKey(), toName, message));
+    public Chat(String ip, int port) {
+        handler = new Handler();
+        cl = new Client(ip, port);
+        cl.setHandler(handler);
+        handler.setClient(cl);
     }
 
-    public void sendLogin(String uname, String upassword) {
-        handler.start(Packer.packLogin(uname, upassword));
+    public Handler getHandler() {
+        return handler;
     }
 
-    public void sendRegist(String uname, String upassword) {
-        handler.start(Packer.packRegistration(uname, upassword));
-    }
 
 }
