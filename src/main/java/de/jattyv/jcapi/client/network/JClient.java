@@ -39,7 +39,11 @@ public class JClient {
     }
 
     public JClient(Settings settings) {
-        this(settings.getIp(), settings.getPort());
+        if (settings.isIpAvailable() && settings.isPortAvailable()) {
+            this.host = settings.getIp();
+            this.port = settings.getPort();
+            gson = new Gson();
+        }
     }
 
     public void start(Container c) {

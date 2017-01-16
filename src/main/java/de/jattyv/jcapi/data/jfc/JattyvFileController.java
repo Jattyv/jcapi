@@ -16,11 +16,15 @@
  */
 package de.jattyv.jcapi.data.jfc;
 
+import com.google.gson.Gson;
+import de.jattyv.jcapi.data.jfc.data.ClientSettings;
+import de.jattyv.jcapi.data.jfc.data.ServerSettings;
 import de.jattyv.jcapi.data.jfc.data.Settings;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,22 +35,54 @@ import java.util.logging.Logger;
  */
 public class JattyvFileController {
 
-    public static Settings readSettings(InputStream propContent) {
+    public static Gson gson = new Gson();
+
+
+    public static Settings readSettings(InputStream propContent, JattyvFileHandler jfr) {
         try {
             Properties prop = new Properties();
             prop.load(propContent);
             Settings config = new Settings();
-            config.setIp(prop.getProperty(Settings.IP_ADDRESS));
-            config.setPort(Integer.parseInt(prop.getProperty(Settings.PORT)));
-            if (prop.getProperty(Settings.AUTO_START_SERVER) != null) {
-                if (prop.getProperty(Settings.AUTO_START_SERVER).equals("1")) {
-                    config.setAutoStartServer(true);
-                } else {
-                    config.setAutoStartServer(false);
-                }
-            } else {
-                config.setAutoStartServer(false);
+            if (prop.getProperty(Settings.IP_ADDRESS) != null) {
+                config.setIp(prop.getProperty(Settings.IP_ADDRESS));
+                config.setIpAvailable(true);
             }
+            if (prop.getProperty(Settings.PORT) != null) {
+                config.setPort(Integer.parseInt(prop.getProperty(Settings.PORT)));
+                config.setPortAvailable(true);
+            }
+
+            if (prop.getProperty(Settings.AUTO_START_SERVER) != null) {
+            if (prop.getProperty(Settings.AUTO_START_SERVER).equals("1")) {
+                    config.setAutoStartServer(true);
+                    config.setAutoStartServerAvailable(true);
+                }
+            }
+            if (prop.getProperty(Settings.U_NAME) != null) {
+                config.setuName(prop.getProperty(Settings.U_NAME));
+                config.setuNameAvailable(true);
+            }
+            if (prop.getProperty(Settings.CLIENT_SETTINGS) != null) {
+                config.setClientSettingsPath(prop.getProperty(Settings.CLIENT_SETTINGS));
+                String clientFile = jfr.readFile(prop.getProperty(Settings.CLIENT_SETTINGS));
+                if (!clientFile.equals("")) {
+                    config.setClientSettings(gson.fromJson(clientFile, ClientSettings.class));
+                    config.setClientSettingsAvailable(true);
+                }
+                config.setClientSettingsPathAvailable(true);
+
+            }
+
+            if (prop.getProperty(Settings.SERVER_SETTINGS) != null) {
+                config.setServerSettingsPath(prop.getProperty(Settings.SERVER_SETTINGS));
+                String serverFile = jfr.readFile(prop.getProperty(Settings.SERVER_SETTINGS));
+                if (!serverFile.equals("")) {
+                    config.setServerSettings(gson.fromJson(serverFile, ServerSettings.class));
+                    config.setServerSettingsAvailable(true);
+                }
+                config.setServerSettingsPathAvailable(true);
+            }
+
             return config;
         } catch (IOException ex) {
             Logger.getLogger(JattyvFileController.class.getName()).log(Level.SEVERE, null, ex);
@@ -54,24 +90,19 @@ public class JattyvFileController {
         return null;
     }
 
-    public static Settings readSettings(String propContent) {
-        Properties prop = readConfig(propContent);
-        Settings config = new Settings();
-        config.setIp(prop.getProperty(Settings.IP_ADDRESS));
-        config.setPort(Integer.parseInt(prop.getProperty(Settings.PORT)));
-        return config;
+    public static Settings readSettings(String propContent, JattyvFileHandler jfr) {
+        return readSettings(readConfig(propContent), jfr);
     }
 
-    public static Properties readConfig(String propContent) {
-        try {
-            InputStream stream = new ByteArrayInputStream(propContent.getBytes(StandardCharsets.UTF_8));
-            Properties prop = new Properties();
-            prop.load(stream);
-            return prop;
-        } catch (IOException ex) {
-            Logger.getLogger(JattyvFileController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+    public static InputStream readConfig(String propContent) {
+        InputStream stream = new ByteArrayInputStream(propContent.getBytes(StandardCharsets.UTF_8));
+            return stream;
+    }
+
+    public static String getFriendsAsJson(List<String> friends) {
+        ClientSettings cs = new ClientSettings();
+        cs.setFriends(friends);
+        return gson.toJson(cs);
     }
 
 }

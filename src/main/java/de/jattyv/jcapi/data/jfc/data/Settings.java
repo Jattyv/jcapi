@@ -27,12 +27,34 @@ public class Settings {
     public static final String AUTO_START_SERVER = "AutoStartServer";
     public static final String U_NAME = "UserName";
     public static final String SERVER_SETTINGS = "ServerSettingsPath";
+    public static final String CLIENT_SETTINGS = "ClienSettingsPath";
 
     private String ip;
     private int port;
     private boolean autoStartServer;
     private String uName;
     private ServerSettings serverSettings;
+    private ClientSettings clientSettings;
+    private String serverSettingsPath;
+    private String clientSettingsPath;
+
+    boolean ipAvailable;
+    boolean portAvailable;
+    boolean autoStartServerAvailable;
+    boolean uNameAvailable;
+    boolean serverSettingsAvailable;
+    boolean clientSettingsAvailable;
+    boolean serverSettingsPathAvailable;
+    boolean clientSettingsPathAvailable;
+
+    public Settings() {
+        ipAvailable = false;
+        portAvailable = false;
+        autoStartServerAvailable = false;
+        uNameAvailable = false;
+        serverSettingsAvailable = false;
+        clientSettingsAvailable = false;
+    }
 
     public String getIp() {
         return ip;
@@ -73,6 +95,96 @@ public class Settings {
     public void setServerSettings(ServerSettings serverSettings) {
         this.serverSettings = serverSettings;
     }
+
+    public ClientSettings getClientSettings() {
+        return clientSettings;
+    }
+
+    public void setClientSettings(ClientSettings clientSettings) {
+        this.clientSettings = clientSettings;
+    }
+
+    public boolean isIpAvailable() {
+        return ipAvailable;
+    }
+
+    public void setIpAvailable(boolean ipAvailable) {
+        this.ipAvailable = ipAvailable;
+    }
+
+    public boolean isPortAvailable() {
+        return portAvailable;
+    }
+
+    public void setPortAvailable(boolean portAvailable) {
+        this.portAvailable = portAvailable;
+    }
+
+    public boolean isAutoStartServerAvailable() {
+        return autoStartServerAvailable;
+    }
+
+    public void setAutoStartServerAvailable(boolean autoStartServerAvailable) {
+        this.autoStartServerAvailable = autoStartServerAvailable;
+    }
+
+    public boolean isuNameAvailable() {
+        return uNameAvailable;
+    }
+
+    public void setuNameAvailable(boolean uNameAvailable) {
+        this.uNameAvailable = uNameAvailable;
+    }
+
+    public boolean isServerSettingsAvailable() {
+        return serverSettingsAvailable;
+    }
+
+    public void setServerSettingsAvailable(boolean serverSettingsAvailable) {
+        this.serverSettingsAvailable = serverSettingsAvailable;
+    }
+
+    public boolean isClientSettingsAvailable() {
+        return clientSettingsAvailable;
+    }
+
+    public void setClientSettingsAvailable(boolean clientSettingsAvailable) {
+        this.clientSettingsAvailable = clientSettingsAvailable;
+    }
+
+    public String getServerSettingsPath() {
+        return serverSettingsPath;
+    }
+
+    public void setServerSettingsPath(String serverSettingsPath) {
+        this.serverSettingsPath = serverSettingsPath;
+    }
+
+    public String getClientSettingsPath() {
+        return clientSettingsPath;
+    }
+
+    public void setClientSettingsPath(String clientSettingsPath) {
+        this.clientSettingsPath = clientSettingsPath;
+    }
+
+    public boolean isServerSettingsPathAvailable() {
+        return serverSettingsPathAvailable;
+    }
+
+    public void setServerSettingsPathAvailable(boolean serverSettingsPathAvailable) {
+        this.serverSettingsPathAvailable = serverSettingsPathAvailable;
+    }
+
+    public boolean isClientSettingsPathAvailable() {
+        return clientSettingsPathAvailable;
+    }
+
+    public void setClientSettingsPathAvailable(boolean clientSettingsPathAvailable) {
+        this.clientSettingsPathAvailable = clientSettingsPathAvailable;
+    }
+
+
 
 
 }

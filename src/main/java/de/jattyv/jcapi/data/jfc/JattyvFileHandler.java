@@ -22,9 +22,11 @@ import de.jattyv.jcapi.data.jfc.data.Settings;
  *
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
-public interface JattyvFileReader {
+public interface JattyvFileHandler {
 
-    public Settings read(String path);
+    public Settings readSettings(String path);
+
+    public String readFile(String path);
 
     public void write(String dataname, String content);
 
