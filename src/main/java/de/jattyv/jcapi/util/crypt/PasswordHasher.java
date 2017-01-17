@@ -1,5 +1,5 @@
-/* 
- * Copyright (C) 2016 Dimitrios Diamantidis <Dimitri.dia@ledimi.com>
+/*
+ * Copyright (C) 2017 Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,6 @@ package de.jattyv.jcapi.util.crypt;
 import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.crypto.SecretKeyFactory;
@@ -29,7 +28,7 @@ import javax.crypto.spec.PBEKeySpec;
  *
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
-public class LKeyGenerator {
+public class PasswordHasher {
 
     /**
      * Rounds for the hashing.
@@ -49,21 +48,20 @@ public class LKeyGenerator {
      * @return The hashed logkey.
      */
     public static String generateLKey(String uName, String uPassword) {
-        Date dat = new Date();
         char[] passwordChars = uPassword.toCharArray();
-        byte[] saltBytes = dat.toString().getBytes();
-        byte[] lkey = null;
+        byte[] saltBytes = uName.getBytes();
+        byte[] hashedPassword = null;
         try {
-        PBEKeySpec spec = new PBEKeySpec(passwordChars, saltBytes, ITERATIONS, KEY_LENGTH);
+            PBEKeySpec spec = new PBEKeySpec(passwordChars, saltBytes, ITERATIONS, KEY_LENGTH);
             SecretKeyFactory key = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
-            lkey = key.generateSecret(spec).getEncoded();
+            hashedPassword = key.generateSecret(spec).getEncoded();
         } catch (InvalidKeySpecException ex) {
             Logger.getLogger(LKeyGenerator.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(LKeyGenerator.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return String.format("%x", new BigInteger(lkey));
+        return String.format("%x", new BigInteger(hashedPassword));
     }
 
 }
