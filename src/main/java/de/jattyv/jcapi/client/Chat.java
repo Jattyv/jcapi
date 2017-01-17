@@ -27,8 +27,8 @@ import de.jattyv.jcapi.data.jfc.data.Settings;
  */
 public class Chat {
 
-    Handler handler;
-    Client cl;
+    private Handler handler;
+    private Client cl;
 
     public Chat(Settings settings) {
         handler = new Handler();

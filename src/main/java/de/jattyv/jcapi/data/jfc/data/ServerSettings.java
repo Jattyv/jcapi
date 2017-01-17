@@ -17,7 +17,7 @@
 package de.jattyv.jcapi.data.jfc.data;
 
 import de.jattyv.jcapi.data.chatobjects.User;
-import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
@@ -25,13 +25,13 @@ import java.util.LinkedList;
  */
 public class ServerSettings {
 
-    private LinkedList<User> users;
+    private List<User> users;
 
-    public LinkedList<User> getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 
-    public void setUsers(LinkedList<User> users) {
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 

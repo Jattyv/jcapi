@@ -35,7 +35,7 @@ public class JClient {
     public JClient(String host, int port) {
         this.port = port;
         this.host = host;
-        gson = new Gson();
+        this.gson = new Gson();
     }
 
     public JClient(Settings settings) {

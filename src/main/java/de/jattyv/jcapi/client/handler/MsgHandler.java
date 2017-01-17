@@ -16,8 +16,8 @@
  */
 package de.jattyv.jcapi.client.handler;
 
-import de.jattyv.jcapi.data.jobject.Container;
 import de.jattyv.jcapi.data.chatobjects.Message;
+import de.jattyv.jcapi.data.jobject.Container;
 import static de.jattyv.jcapi.util.ChatTags.FROM_USER;
 import static de.jattyv.jcapi.util.ChatTags.MESSAGE;
 import java.util.LinkedList;
@@ -28,7 +28,7 @@ import java.util.LinkedList;
  */
 public class MsgHandler extends JattyvHandler {
 
-    LinkedList<Message> messages;
+    private LinkedList<Message> messages;
 
     public MsgHandler(Handler handler) {
         super(handler);

@@ -22,10 +22,10 @@ package de.jattyv.jcapi.data.chatobjects;
  */
 public class Message {
 
-    public String fromUser;
-    public String toUser;
-    public String message;
-    public String to;
+    private String fromUser;
+    private String toUser;
+    private String message;
+    private String to;
 
     public Message(String fromUser, String toUser, String to, String message) {
         this.fromUser = fromUser;

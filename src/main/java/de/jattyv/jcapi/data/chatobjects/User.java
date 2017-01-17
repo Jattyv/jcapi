@@ -23,9 +23,7 @@ package de.jattyv.jcapi.data.chatobjects;
 public class User {
 
     private String name;
-
     private String logKey;
-
     private String password;
 
     public String getName() {

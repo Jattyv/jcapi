@@ -38,14 +38,14 @@ public class Settings {
     private String serverSettingsPath;
     private String clientSettingsPath;
 
-    boolean ipAvailable;
-    boolean portAvailable;
-    boolean autoStartServerAvailable;
-    boolean uNameAvailable;
-    boolean serverSettingsAvailable;
-    boolean clientSettingsAvailable;
-    boolean serverSettingsPathAvailable;
-    boolean clientSettingsPathAvailable;
+    private boolean ipAvailable;
+    private boolean portAvailable;
+    private boolean autoStartServerAvailable;
+    private boolean uNameAvailable;
+    private boolean serverSettingsAvailable;
+    private boolean clientSettingsAvailable;
+    private boolean serverSettingsPathAvailable;
+    private boolean clientSettingsPathAvailable;
 
     public Settings() {
         ipAvailable = false;
