@@ -23,6 +23,8 @@ import de.jattyv.jcapi.data.jfc.data.Settings;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Properties;
@@ -90,9 +92,11 @@ public class JattyvFileController {
             prop.put(Settings.IP_ADDRESS, settings.getIp());
         }
         if (settings.isPortAvailable()) {
-            prop.put(Settings.PORT, settings.getPort());
+            prop.put(Settings.PORT, "" + settings.getPort());
         }
-        return prop.toString();
+        StringWriter writer = new StringWriter();
+        prop.list(new PrintWriter(writer));
+        return writer.getBuffer().toString();
     }
 
     public static Settings readSettings(String propContent, JattyvFileHandler jfr) {
