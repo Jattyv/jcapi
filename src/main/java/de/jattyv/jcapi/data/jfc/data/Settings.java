@@ -62,6 +62,7 @@ public class Settings {
 
     public void setIp(String ip) {
         this.ip = ip;
+        ipAvailable = true;
     }
 
     public int getPort() {
@@ -70,6 +71,7 @@ public class Settings {
 
     public void setPort(int port) {
         this.port = port;
+        portAvailable = true;
     }
 
     public boolean isAutoStartServer() {
@@ -78,6 +80,7 @@ public class Settings {
 
     public void setAutoStartServer(boolean autoStartServer) {
         this.autoStartServer = autoStartServer;
+        autoStartServerAvailable = true;
     }
 
     public String getuName() {
@@ -86,6 +89,7 @@ public class Settings {
 
     public void setuName(String uName) {
         this.uName = uName;
+        uNameAvailable = true;
     }
 
     public ServerSettings getServerSettings() {
@@ -94,6 +98,7 @@ public class Settings {
 
     public void setServerSettings(ServerSettings serverSettings) {
         this.serverSettings = serverSettings;
+        serverSettingsAvailable = true;
     }
 
     public ClientSettings getClientSettings() {
@@ -102,6 +107,7 @@ public class Settings {
 
     public void setClientSettings(ClientSettings clientSettings) {
         this.clientSettings = clientSettings;
+        clientSettingsAvailable = true;
     }
 
     public boolean isIpAvailable() {
@@ -158,6 +164,7 @@ public class Settings {
 
     public void setServerSettingsPath(String serverSettingsPath) {
         this.serverSettingsPath = serverSettingsPath;
+        serverSettingsPathAvailable = true;
     }
 
     public String getClientSettingsPath() {
@@ -166,6 +173,7 @@ public class Settings {
 
     public void setClientSettingsPath(String clientSettingsPath) {
         this.clientSettingsPath = clientSettingsPath;
+        clientSettingsPathAvailable = true;
     }
 
     public boolean isServerSettingsPathAvailable() {

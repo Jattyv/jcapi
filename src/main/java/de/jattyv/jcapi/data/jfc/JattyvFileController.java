@@ -45,31 +45,25 @@ public class JattyvFileController {
             Settings config = new Settings();
             if (prop.getProperty(Settings.IP_ADDRESS) != null) {
                 config.setIp(prop.getProperty(Settings.IP_ADDRESS));
-                config.setIpAvailable(true);
             }
             if (prop.getProperty(Settings.PORT) != null) {
                 config.setPort(Integer.parseInt(prop.getProperty(Settings.PORT)));
-                config.setPortAvailable(true);
             }
 
             if (prop.getProperty(Settings.AUTO_START_SERVER) != null) {
             if (prop.getProperty(Settings.AUTO_START_SERVER).equals("1")) {
                     config.setAutoStartServer(true);
-                    config.setAutoStartServerAvailable(true);
                 }
             }
             if (prop.getProperty(Settings.U_NAME) != null) {
                 config.setuName(prop.getProperty(Settings.U_NAME));
-                config.setuNameAvailable(true);
             }
             if (prop.getProperty(Settings.CLIENT_SETTINGS) != null) {
                 config.setClientSettingsPath(prop.getProperty(Settings.CLIENT_SETTINGS));
                 String clientFile = jfr.readFile(prop.getProperty(Settings.CLIENT_SETTINGS));
                 if (!clientFile.equals("")) {
                     config.setClientSettings(gson.fromJson(clientFile, ClientSettings.class));
-                    config.setClientSettingsAvailable(true);
                 }
-                config.setClientSettingsPathAvailable(true);
 
             }
 
@@ -78,9 +72,7 @@ public class JattyvFileController {
                 String serverFile = jfr.readFile(prop.getProperty(Settings.SERVER_SETTINGS));
                 if (!serverFile.equals("")) {
                     config.setServerSettings(gson.fromJson(serverFile, ServerSettings.class));
-                    config.setServerSettingsAvailable(true);
                 }
-                config.setServerSettingsPathAvailable(true);
             }
 
             return config;
