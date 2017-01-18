@@ -90,6 +90,17 @@ public class JattyvFileController {
         return null;
     }
 
+    public static String writeSettings(Settings settings) {
+        Properties prop = new Properties();
+        if (settings.isIpAvailable()) {
+            prop.put(Settings.IP_ADDRESS, settings.getIp());
+        }
+        if (settings.isPortAvailable()) {
+            prop.put(Settings.PORT, settings.getPort());
+        }
+        return prop.toString();
+    }
+
     public static Settings readSettings(String propContent, JattyvFileHandler jfr) {
         return readSettings(readConfig(propContent), jfr);
     }
