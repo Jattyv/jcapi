@@ -37,6 +37,8 @@ public class JattyvFileController {
 
     private static Gson gson = new Gson();
 
+    public final static String J_PROP_FILE = "jattyv.properties";
+
 
     public static Settings readSettings(InputStream propContent, JattyvFileHandler jfr) {
         try {
@@ -82,7 +84,7 @@ public class JattyvFileController {
         return null;
     }
 
-    public static String writeSettings(Settings settings) {
+    public static String getSettingsAsString(Settings settings) {
         Properties prop = new Properties();
         if (settings.isIpAvailable()) {
             prop.put(Settings.IP_ADDRESS, settings.getIp());

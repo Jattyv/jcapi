@@ -30,4 +30,6 @@ public interface JattyvFileHandler {
 
     public void write(String dataname, String content);
 
+    public void writeSettings(String dataName, Settings settings);
+
 }
