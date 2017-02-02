@@ -1,5 +1,5 @@
-/*
- * Copyright (C) 2016 Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
+/* 
+ * Copyright (C) 2016 Dimitrios Diamantidis <Dimitri.dia@ledimi.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,28 +14,34 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.jattyv.jcapi.client.gui;
+package de.jattyv.jcapi.server.network;
+
+import de.jattyv.jcapi.server.handler.ReloadHandler;
+import de.jattyv.jcapi.server.virtual.dataController.DataController;
 
 /**
  *
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
-public interface JGui {
+public class JServer {
+    protected int port;
+    protected boolean running;
+    protected ReloadHandler reloadHandler;
+    protected DataController dc;
 
-    public static final String LOGIN_WINDOW = "wlogin";
-    public static final String REGISTRATION_WINDOW = "wregist";
-    public static final String CHAT_WINDOW = "cwindow";
+    public JServer(int port) {
+        this.port = port;
+        running = true;
+        dc = new DataController();
+        reloadHandler = new ReloadHandler(dc);
+    }
     
-    public static final String ALERT_TYPE_INFO = "info";
-    public static final String ALERT_TYPE_CERT = "newcert";
+    public void listen() {
 
-    public void changeWindow(String window);
+    }
 
-    public void showError(String errKey);
-    
-    public boolean alert(String msg, String alertType);
-
-    public void addMessage(String fName, String message);
-
+    public void startServices() {
+        new Thread(reloadHandler).start();
+    }
 
 }

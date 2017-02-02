@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
+ * Copyright (C) 2017 Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,28 +14,42 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.jattyv.jcapi.client.gui;
+package de.jattyv.jcapi.server.virtual.dataController.data;
 
 /**
  *
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
-public interface JGui {
+public class Message {
 
-    public static final String LOGIN_WINDOW = "wlogin";
-    public static final String REGISTRATION_WINDOW = "wregist";
-    public static final String CHAT_WINDOW = "cwindow";
-    
-    public static final String ALERT_TYPE_INFO = "info";
-    public static final String ALERT_TYPE_CERT = "newcert";
+    private String fromUser;
+    private String toUser;
+    private String message;
+    private String to;
 
-    public void changeWindow(String window);
+    public Message(String fromUser, String toUser, String to, String message) {
+        this.fromUser = fromUser;
+        this.toUser = toUser;
+        this.to = to;
+        this.message = message;
+    }
 
-    public void showError(String errKey);
-    
-    public boolean alert(String msg, String alertType);
+    public String getFromUser() {
+        return fromUser;
+    }
 
-    public void addMessage(String fName, String message);
+    public String getToUser() {
+        return toUser;
+    }
+
+    public String getTo() {
+        return to;
+    }
+
+
+    public String getMessage() {
+        return message;
+    }
 
 
 }
