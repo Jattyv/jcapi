@@ -25,10 +25,15 @@ public interface JGui {
     public static final String LOGIN_WINDOW = "wlogin";
     public static final String REGISTRATION_WINDOW = "wregist";
     public static final String CHAT_WINDOW = "cwindow";
+    
+    public static final String ALERT_TYPE_INFO = "info";
+    public static final String ALERT_TYPE_CERT = "newcert";
 
     public void changeWindow(String window);
 
     public void showError(String errKey);
+    
+    public boolean prompt(String msg, String alertType);
 
     public void addMessage(String fName, String message);
 
