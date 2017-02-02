@@ -16,8 +16,12 @@
  */
 package de.jattyv.jcapi.server.virtual.dataController;
 
+import de.jattyv.jcapi.server.virtual.dataController.controller.GroupController;
+import de.jattyv.jcapi.server.virtual.dataController.controller.GroupMessageController;
 import de.jattyv.jcapi.server.virtual.dataController.controller.MessageController;
 import de.jattyv.jcapi.server.virtual.dataController.controller.UserController;
+import de.jattyv.jcapi.server.virtual.dataController.data.Group;
+import de.jattyv.jcapi.server.virtual.dataController.data.GroupMessage;
 import de.jattyv.jcapi.server.virtual.dataController.data.Message;
 import de.jattyv.jcapi.server.virtual.dataController.data.User;
 import java.util.LinkedList;
@@ -30,15 +34,21 @@ public class DataController {
 
     private LinkedList<User> users;
     private LinkedList<Message> messages;
+    private LinkedList<Group> groups;
+    private LinkedList<GroupMessage> groupMessages;
 
     private UserController userC;
     private MessageController msgC;
+    private GroupController groupC;
+    private GroupMessageController groupMsgC;
 
     public DataController() {
         users = new LinkedList<User>();
         messages = new LinkedList<Message>();
         userC = new UserController(users);
         msgC = new MessageController(messages);
+        groupC = new GroupController(groups);
+        groupMsgC = new GroupMessageController(groupMessages);
     }
 
     public UserController getUserC() {

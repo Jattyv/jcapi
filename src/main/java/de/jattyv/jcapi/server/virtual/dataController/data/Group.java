@@ -16,10 +16,33 @@
  */
 package de.jattyv.jcapi.server.virtual.dataController.data;
 
+import java.util.LinkedList;
+
 /**
  *
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
-public class Groups {
+public class Group {
+    
+    private String groupName;
+    private LinkedList<String> members;
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
+
+    public LinkedList<String> getMembers() {
+        return members;
+    }
+
+    public void setMembers(LinkedList<String> members) {
+        this.members = members;
+    }
+    
+    
 
 }

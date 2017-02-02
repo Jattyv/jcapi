@@ -33,8 +33,8 @@ public class Handler implements ChatTags {
     private Base session;
     private final MsgHandler msgHandler;
     private final UserHandler userHandler;
+    private final GroupHandler groupHandler;
     private DataController dc;
-
 
     public Handler(ServerThread con, DataController dc) {
         this.con = con;
@@ -42,6 +42,7 @@ public class Handler implements ChatTags {
         session = new Base();
         msgHandler = new MsgHandler(dc);
         userHandler = new UserHandler(dc);
+        groupHandler = new GroupHandler(dc);
     }
 
     public Container initSession(Container c) {
@@ -63,8 +64,20 @@ public class Handler implements ChatTags {
 
         switch (c.getSuperTag()) {
 
-                case NEW_MESSAGE:
-                    msgHandler.handle(c);
+            case NEW_MESSAGE:
+                msgHandler.handle(c);
+                break;
+
+            case U_CREATE_GROUP:
+                groupHandler.handle(c);
+                break;
+
+            case G_REQUEST_TO_USER:
+                groupHandler.handle(c);
+                break;
+
+            case NEW_GROUP_MESSAGE:
+                groupHandler.handle(c);
                 break;
 
         }

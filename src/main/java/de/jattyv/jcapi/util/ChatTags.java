@@ -66,6 +66,12 @@ public interface ChatTags {
      * A tag, declaring his content as the message.
      */
     public static final String MESSAGE = "MESSAGE";
+    public static final String GROUP_NAME = "GN";
+    public static final String U_CREATE_GROUP = "UCG";
+    public static final String G_REQUEST_TO_USER = "GRTU";
+    public static final String U_ADDED_TO_GROUP = "UATG";
+    public static final String NEW_GROUP_MESSAGE = "NGMSG";
+    public static final String GROUP_MESSAGE = "GMESSAGE";
     /**
      * A tag, declaring his content as an error.
      */

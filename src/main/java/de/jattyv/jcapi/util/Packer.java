@@ -48,5 +48,29 @@ public class Packer implements ChatTags {
         c.addE(U_PASSWORD, userPassword);
         return c;
     }
+    
+    public static Container packCreateGroup(String gName){
+        Container c = new Container();
+        c.setSuperTag(U_CREATE_GROUP);
+        c.addE(GROUP_NAME, gName);
+        return c;
+    }
+    
+    public static Container packAddUserToGroup(String gName, String fName){
+        Container c = new Container();
+        c.setSuperTag(G_REQUEST_TO_USER);
+        c.addE(GROUP_NAME, gName);
+        c.addE(TO_USER, fName);
+        return c;
+    }
+    
+    public static Container packGroupMessage(String userLkey, String gName, String msg){
+        Container c = new Container();
+        c.setSuperTag(NEW_GROUP_MESSAGE);
+        c.addE(FROM_USER, userLkey);
+        c.addE(GROUP_NAME, gName);
+        c.addE(MESSAGE, msg);
+        return c;
+    }
 
 }

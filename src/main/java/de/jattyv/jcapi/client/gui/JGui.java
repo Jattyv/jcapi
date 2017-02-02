@@ -28,6 +28,8 @@ public interface JGui {
     
     public static final String ALERT_TYPE_INFO = "info";
     public static final String ALERT_TYPE_CERT = "newcert";
+    
+    public void addGroup(String gName);
 
     public void changeWindow(String window);
 
@@ -36,6 +38,8 @@ public interface JGui {
     public boolean alert(String msg, String alertType);
 
     public void addMessage(String fName, String message);
+    
+    public void addGroupMessage(String gName, String fName, String message);
 
 
 }
