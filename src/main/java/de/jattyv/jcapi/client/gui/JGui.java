@@ -39,7 +39,7 @@ public interface JGui {
 
     public void addMessage(String fName, String message);
     
-    public void addGroupMessage(String gName, String fName, String message);
+    public void addGroupMessage(String gName, String message);
 
 
 }

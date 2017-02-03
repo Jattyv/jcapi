@@ -42,28 +42,28 @@ public class JattyvFactory implements ChatTags {
         return fLogin;
     }
 
-    public static Container createMessageContainer(String fromUser, String toUser, String message) {
+    public static Container createMessageContainer(String lkey, String toUser, String message) {
         Container msg = new Container();
         msg.setSuperTag(NEW_MESSAGE);
-        msg.addE(new Element(FROM_USER, fromUser));
+        msg.addE(new Element(FROM_USER, lkey));
         msg.addE(new Element(TO_USER, toUser));
         msg.addE(new Element(MESSAGE, message));
 
         return msg;
     }
     
-    public static Container createGroupRequestContainer(String gName, String fName){
+    public static Container createGroupRequestContainer(String gName, String tname){
         Container c = new Container();
         c.setSuperTag(G_REQUEST_TO_USER);
         c.addE(GROUP_NAME, gName);
-        c.addE(TO_USER, fName);
+        c.addE(TO_USER, tname);
         return c;
     }
     
-    public static Container createGroupMessageContainer(String userName, String gName, String msg){
+    public static Container createGroupMessageContainer(String lkey, String gName, String msg){
         Container c = new Container();
         c.setSuperTag(NEW_GROUP_MESSAGE);
-        c.addE(FROM_USER, userName);
+        c.addE(FROM_USER, lkey);
         c.addE(GROUP_NAME, gName);
         c.addE(MESSAGE, msg);
         return c;

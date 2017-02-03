@@ -35,6 +35,7 @@ public class Handler implements ChatTags {
 
     private MsgHandler msgHandler;
     private UserHandler userHandler;
+    private GroupHandler groupHandler;
     private ErrorHandler errHandler;
     private OutputHandler outHandler;
 
@@ -42,6 +43,7 @@ public class Handler implements ChatTags {
         user = new User();
         msgHandler = new MsgHandler(this);
         userHandler = new UserHandler(this);
+        groupHandler = new GroupHandler(this);
         errHandler = new ErrorHandler(this);
         outHandler = new OutputHandler(this);
 
@@ -52,6 +54,14 @@ public class Handler implements ChatTags {
 
             case NEW_MESSAGE:
                 msgHandler.handle(c);
+                break;
+
+            case G_REQUEST_TO_USER:
+                groupHandler.handle(c);
+                break;
+
+            case NEW_GROUP_MESSAGE:
+                groupHandler.handle(c);
                 break;
 
             case SESSION_SETTINGS:
@@ -98,7 +108,6 @@ public class Handler implements ChatTags {
     public JClient getCl() {
         return cl;
     }
-
 
     public LinkedList<String> getMessages(String uName) {
         return msgHandler.getMessages(uName);

@@ -36,11 +36,11 @@ public class MsgHandler extends JattyvHandler {
         String fromUserName = dc.getUserC().getUserByLKey(fromUser).getUserName();
         String toUser = c.getDataByName(TO_USER);
 
-        ReloadHandler.turnOnMessageReload(fromUserName);
-        ReloadHandler.turnOnMessageReload(toUser);
-
         dc.getMsgC().createNewMessage(fromUserName, toUser, fromUserName, message);
         dc.getMsgC().createNewMessage(fromUserName, toUser, toUser, message);
+
+        ReloadHandler.turnOnMessageReload(fromUserName);
+        ReloadHandler.turnOnMessageReload(toUser);
 
     }
 

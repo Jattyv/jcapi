@@ -49,6 +49,9 @@ public class DataController {
     public DataController() {
         users = new LinkedList<User>();
         messages = new LinkedList<Message>();
+        groups = new LinkedList<Group>();
+        groupMessages = new LinkedList<GroupMessage>();
+        groupRequests = new LinkedList<GroupRequest>();
         userC = new UserController(users);
         msgC = new MessageController(messages);
         groupC = new GroupController(groups);

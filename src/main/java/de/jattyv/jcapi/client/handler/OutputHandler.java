@@ -42,15 +42,15 @@ public class OutputHandler extends JattyvHandler {
     }
     
     public void createGroup(String gName){
-        handler.start(Packer.packCreateGroup(gName, handler.getUser().getLogKey()));
+        handler.send(Packer.packCreateGroup(gName, handler.getUser().getLogKey()));
     }
     
     public void addUserToGroup(String gName, String fName){
-        handler.start(Packer.packAddUserToGroup(gName, fName));
+        handler.send(Packer.packAddUserToGroup(gName, fName));
     }
     
     public void sendNewGroupMessage(String toGroup, String msg){
-        handler.start(Packer.packNewMessage(handler.getUser().getLogKey(), toGroup, msg));
+        handler.send(Packer.packNewMessage(handler.getUser().getLogKey(), toGroup, msg));
     }
 
 }
