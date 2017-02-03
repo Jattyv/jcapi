@@ -42,7 +42,7 @@ public class OutputHandler extends JattyvHandler {
     }
     
     public void joinGroup(String gName){
-        handler.start(Packer.packCreateGroup(gName));
+        handler.start(Packer.packCreateGroup(gName, handler.getUser().getLogKey()));
     }
     
     public void addUserToGroup(String gName, String fName){

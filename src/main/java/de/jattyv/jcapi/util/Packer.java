@@ -49,10 +49,11 @@ public class Packer implements ChatTags {
         return c;
     }
     
-    public static Container packCreateGroup(String gName){
+    public static Container packCreateGroup(String gName, String uName){
         Container c = new Container();
         c.setSuperTag(U_CREATE_GROUP);
         c.addE(GROUP_NAME, gName);
+        c.addE(U_NAME, uName);
         return c;
     }
     
