@@ -41,7 +41,7 @@ public class OutputHandler extends JattyvHandler {
         handler.start(Packer.packRegistration(uname, PasswordHasher.generateLKey(uname, upassword)));
     }
     
-    public void joinGroup(String gName){
+    public void createGroup(String gName){
         handler.start(Packer.packCreateGroup(gName, handler.getUser().getLogKey()));
     }
     
