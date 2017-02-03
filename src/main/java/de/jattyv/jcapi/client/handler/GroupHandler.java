@@ -6,6 +6,9 @@
 package de.jattyv.jcapi.client.handler;
 
 import de.jattyv.jcapi.data.jobject.Container;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
 
 /**
  *
@@ -13,14 +16,17 @@ import de.jattyv.jcapi.data.jobject.Container;
  */
 public class GroupHandler extends JattyvHandler {
 
+    private Map<String, LinkedList<String>> messages;
+
     public GroupHandler(Handler handler) {
         super(handler);
+        messages = new HashMap<>();
     }
 
     public void handle(Container c) {
         String gname = c.getDataByName(GROUP_NAME);
         switch (c.getSuperTag()) {
-            
+
             case G_REQUEST_TO_USER:
                 handler.getWindow().addGroup(gname);
                 break;
@@ -28,10 +34,28 @@ public class GroupHandler extends JattyvHandler {
             case NEW_GROUP_MESSAGE:
                 String fname = c.getDataByName(FROM_USER);
                 String msg = c.getDataByName(MESSAGE);
-                handler.getWindow().addGroupMessage(gname, fname+": "+msg);
+                String fmsg = fname + ": " + msg;
+                handler.getWindow().addGroupMessage(gname, fmsg);
+                addMessage(gname, fmsg);
                 break;
         }
+    }
 
+    private void addMessage(String gname, String message) {
+        if(messages.containsKey(gname)){
+            messages.get(gname).add(message);
+        }else{
+            LinkedList<String> tmp = new LinkedList<>();
+            tmp.add(message);
+            messages.put(gname, tmp);
+        }
+    }
+    
+    public LinkedList<String> getGroupMessages(String gname){
+        if(messages.containsKey(gname)){
+            return messages.get(gname);
+        }
+        return new LinkedList<String>();
     }
 
 }
