@@ -38,12 +38,15 @@ public class GroupRequestController {
         return requests;
     }
     
-    public void removeGroupRequest(String uName){
+    public void removeGroupRequests(String uName){
         for(int i=0; i<groupRequests.size(); i++){
             if(groupRequests.get(i).getuName().equals(uName)){
                 groupRequests.remove(i);
             }
         }
+    }
+    public void removeGroupRequest(GroupRequest req){
+        groupRequests.remove(req);
     }
     
 }

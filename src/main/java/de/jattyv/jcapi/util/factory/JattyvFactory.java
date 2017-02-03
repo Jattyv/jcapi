@@ -51,4 +51,21 @@ public class JattyvFactory implements ChatTags {
 
         return msg;
     }
+    
+    public static Container createGroupRequestContainer(String gName, String fName){
+        Container c = new Container();
+        c.setSuperTag(G_REQUEST_TO_USER);
+        c.addE(GROUP_NAME, gName);
+        c.addE(TO_USER, fName);
+        return c;
+    }
+    
+    public static Container createGroupMessageContainer(String userName, String gName, String msg){
+        Container c = new Container();
+        c.setSuperTag(NEW_GROUP_MESSAGE);
+        c.addE(FROM_USER, userName);
+        c.addE(GROUP_NAME, gName);
+        c.addE(MESSAGE, msg);
+        return c;
+    }
 }
