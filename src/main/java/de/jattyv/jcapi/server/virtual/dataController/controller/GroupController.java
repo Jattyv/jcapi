@@ -38,4 +38,13 @@ public class GroupController {
         return null;
     }
     
+    public void addToGroup(String gName, String uName){
+        for(Group group: groups){
+            if(group.getGroupName().equals(gName)){
+                group.getMembers().add(uName);
+                return;
+            }
+        }
+    }
+    
 }

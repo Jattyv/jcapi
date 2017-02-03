@@ -48,10 +48,10 @@ public class GroupMessageController {
                 if (groupMessages.get(i).getTo().get(i2).equals(uName)) {
                     groupMessages.get(i).getTo().remove(i2);
                 }
-                if (groupMessages.get(i).getTo().size() == 0) {
+            }
+            if (groupMessages.get(i).getTo().size() == 0) {
                     groupMessages.remove(i);
                 }
-            }
         }
     }
     
