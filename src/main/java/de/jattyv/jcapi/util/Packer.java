@@ -65,7 +65,7 @@ public class Packer implements ChatTags {
         return c;
     }
     
-    public static Container packGroupMessage(String userLkey, String gName, String msg){
+    public static Container packNewGroupMessage(String userLkey, String gName, String msg){
         Container c = new Container();
         c.setSuperTag(NEW_GROUP_MESSAGE);
         c.addE(FROM_USER, userLkey);

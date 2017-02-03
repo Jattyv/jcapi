@@ -50,7 +50,7 @@ public class OutputHandler extends JattyvHandler {
     }
     
     public void sendNewGroupMessage(String toGroup, String msg){
-        handler.send(Packer.packNewMessage(handler.getUser().getLogKey(), toGroup, msg));
+        handler.send(Packer.packNewGroupMessage(handler.getUser().getLogKey(), toGroup, msg));
     }
 
 }

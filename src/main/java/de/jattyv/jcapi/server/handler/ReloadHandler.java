@@ -132,7 +132,7 @@ public class ReloadHandler implements Runnable {
     public static void turnOnGroupMessageReload(String uname) {
         for (Client cl : cls) {
             if (cl.getuName().equals(uname)) {
-                cl.setNewGroupRequest(true);
+                cl.setNewGroupMessage(true);
                 return;
             }
         }
