@@ -27,6 +27,8 @@ public class Client {
     private ServerThread st;
     private String uName;
     private boolean newMessages;
+    private boolean newGroupMessage;
+    private boolean newGroupRequest;
 
     public Client(ServerThread st) {
         this.st = st;
@@ -64,5 +66,23 @@ public class Client {
     public void setNewMessages(boolean newMessages) {
         this.newMessages = newMessages;
     }
+
+    public boolean isNewGroupMessage() {
+        return newGroupMessage;
+    }
+
+    public void setNewGroupMessage(boolean newGroupMessage) {
+        this.newGroupMessage = newGroupMessage;
+    }
+
+    public boolean isNewGroupRequest() {
+        return newGroupRequest;
+    }
+
+    public void setNewGroupRequest(boolean newGroupRequest) {
+        this.newGroupRequest = newGroupRequest;
+    }
+    
+    
 
 }

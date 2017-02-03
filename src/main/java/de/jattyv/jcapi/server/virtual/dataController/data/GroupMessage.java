@@ -15,7 +15,7 @@ import java.util.List;
 public class GroupMessage {
     
     private String fromUser;
-    private String toUser;
+    private String toGName;
     private String message;
     private List<String> to;
 
@@ -27,12 +27,12 @@ public class GroupMessage {
         this.fromUser = fromUser;
     }
 
-    public String getToUser() {
-        return toUser;
+    public String getToGName() {
+        return toGName;
     }
 
-    public void setToUser(String toUser) {
-        this.toUser = toUser;
+    public void setToGName(String toGName) {
+        this.toGName = toGName;
     }
 
     public String getMessage() {

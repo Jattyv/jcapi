@@ -18,10 +18,12 @@ package de.jattyv.jcapi.server.virtual.dataController;
 
 import de.jattyv.jcapi.server.virtual.dataController.controller.GroupController;
 import de.jattyv.jcapi.server.virtual.dataController.controller.GroupMessageController;
+import de.jattyv.jcapi.server.virtual.dataController.controller.GroupRequestController;
 import de.jattyv.jcapi.server.virtual.dataController.controller.MessageController;
 import de.jattyv.jcapi.server.virtual.dataController.controller.UserController;
 import de.jattyv.jcapi.server.virtual.dataController.data.Group;
 import de.jattyv.jcapi.server.virtual.dataController.data.GroupMessage;
+import de.jattyv.jcapi.server.virtual.dataController.data.GroupRequest;
 import de.jattyv.jcapi.server.virtual.dataController.data.Message;
 import de.jattyv.jcapi.server.virtual.dataController.data.User;
 import java.util.LinkedList;
@@ -36,11 +38,13 @@ public class DataController {
     private LinkedList<Message> messages;
     private LinkedList<Group> groups;
     private LinkedList<GroupMessage> groupMessages;
+    private LinkedList<GroupRequest> groupRequests;
 
     private UserController userC;
     private MessageController msgC;
     private GroupController groupC;
     private GroupMessageController groupMsgC;
+    private GroupRequestController groupReqC;
 
     public DataController() {
         users = new LinkedList<User>();
@@ -49,6 +53,7 @@ public class DataController {
         msgC = new MessageController(messages);
         groupC = new GroupController(groups);
         groupMsgC = new GroupMessageController(groupMessages);
+        groupReqC = new GroupRequestController(groupRequests);
     }
 
     public UserController getUserC() {
@@ -58,6 +63,20 @@ public class DataController {
     public MessageController getMsgC() {
         return msgC;
     }
+
+    public GroupController getGroupC() {
+        return groupC;
+    }
+
+    public GroupMessageController getGroupMsgC() {
+        return groupMsgC;
+    }
+
+    public GroupRequestController getGroupReqC() {
+        return groupReqC;
+    }
+    
+    
 
 
 }

@@ -20,4 +20,22 @@ public class GroupController {
         this.groups = groups;
     }
     
+    public void createGroup(String gName, String uName){
+        Group group = new Group();
+        group.setGroupName(gName);
+        LinkedList<String> members = new LinkedList<>();
+        members.add(uName);
+        group.setMembers(members);
+        groups.add(group);
+    }
+    
+    public Group getGroup(String gName){
+        for(Group group: groups){
+            if(group.getGroupName().equals(gName)){
+                return group;
+            }
+        }
+        return null;
+    }
+    
 }
