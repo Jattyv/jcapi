@@ -18,7 +18,6 @@ package de.jattyv.jcapi.data.jfc;
 
 import com.google.gson.Gson;
 import de.jattyv.jcapi.data.jfc.data.ClientSettings;
-import de.jattyv.jcapi.data.jfc.data.ServerSettings;
 import de.jattyv.jcapi.data.jfc.data.Settings;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -41,7 +40,6 @@ public class JattyvFileController {
 
     public final static String J_PROP_FILE = "jattyv.properties";
 
-
     public static Settings readSettings(InputStream propContent, JattyvFileHandler jfr) {
         try {
             Properties prop = new Properties();
@@ -55,7 +53,7 @@ public class JattyvFileController {
             }
 
             if (prop.getProperty(Settings.AUTO_START_SERVER) != null) {
-            if (prop.getProperty(Settings.AUTO_START_SERVER).equals("1")) {
+                if (prop.getProperty(Settings.AUTO_START_SERVER).equals("1")) {
                     config.setAutoStartServer(true);
                 }
             }
@@ -70,12 +68,16 @@ public class JattyvFileController {
                 }
 
             }
-
-            if (prop.getProperty(Settings.SERVER_SETTINGS) != null) {
-                config.setServerSettingsPath(prop.getProperty(Settings.SERVER_SETTINGS));
-                String serverFile = jfr.readFile(prop.getProperty(Settings.SERVER_SETTINGS));
-                if (!serverFile.equals("")) {
-                    config.setServerSettings(gson.fromJson(serverFile, ServerSettings.class));
+            if (prop.getProperty(Settings.SERVER_DB) != null) {
+                config.setServerDB(prop.getProperty(Settings.SERVER_DB));
+                if (prop.getProperty(Settings.SERVER_DB_UNAME) != null) {
+                    config.setServerDBUserName(prop.getProperty(Settings.SERVER_DB_UNAME));
+                    if (prop.getProperty(Settings.SERVER_DB_PASSWORD) != null) {
+                        config.setServerDBPassword(prop.getProperty(Settings.SERVER_DB_PASSWORD));
+                    }
+                } else {
+                    config.setServerDBUserName("Jattyv");
+                    config.setServerDBPassword("Jattyv");
                 }
             }
 
@@ -105,7 +107,7 @@ public class JattyvFileController {
 
     public static InputStream readConfig(String propContent) {
         InputStream stream = new ByteArrayInputStream(propContent.getBytes(StandardCharsets.UTF_8));
-            return stream;
+        return stream;
     }
 
     public static String getFriendsAsJson(List<String> friends) {

@@ -21,6 +21,7 @@ import de.jattyv.jcapi.data.jobject.Base;
 import de.jattyv.jcapi.data.jobject.Container;
 import de.jattyv.jcapi.util.ChatTags;
 import de.jattyv.jcapi.server.network.ServerThread;
+import de.jattyv.jcapi.server.virtual.DBController.DBController;
 import de.jattyv.jcapi.server.virtual.dataController.DataController;
 
 /**
@@ -35,14 +36,17 @@ public class Handler implements ChatTags {
     private final UserHandler userHandler;
     private final GroupHandler groupHandler;
     private DataController dc;
+    private DBController dbc;
 
-    public Handler(ServerThread con, DataController dc) {
+    public Handler(ServerThread con, DataController dc, DBController dbc) {
         this.con = con;
         this.dc = dc;
+        this.dbc = dbc;
         session = new Base();
         msgHandler = new MsgHandler(dc);
         userHandler = new UserHandler(dc);
         groupHandler = new GroupHandler(dc);
+        
     }
 
     public Container initSession(Container c) {

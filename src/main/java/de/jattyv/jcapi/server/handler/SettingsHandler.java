@@ -17,7 +17,6 @@
 package de.jattyv.jcapi.server.handler;
 
 import de.jattyv.jcapi.data.chatobjects.User;
-import de.jattyv.jcapi.data.jfc.data.ServerSettings;
 import de.jattyv.jcapi.server.virtual.dataController.DataController;
 
 /**
@@ -26,11 +25,11 @@ import de.jattyv.jcapi.server.virtual.dataController.DataController;
  */
 public class SettingsHandler {
 
-    public static void handle(ServerSettings ssettings, DataController dc) {
+  /*  public static void handle(ServerSettings ssettings, DataController dc) {
         for (User u : ssettings.getUsers()) {
             dc.getUserC().createUser(u.getName(), u.getPassword());
         }
 
-    }
+    }*/
 
 }

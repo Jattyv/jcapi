@@ -30,18 +30,15 @@ import java.util.logging.Logger;
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
 public class Server extends JServer {
-    private ServerSocket listener;
 
+    private ServerSocket listener;
 
     public Server(int port) {
         super(port);
     }
 
     public Server(Settings settings) {
-        super(settings.getPort());
-        if (settings.isServerSettingsAvailable()) {
-            SettingsHandler.handle(settings.getServerSettings(), dc);
-        }
+        super(settings);
     }
 
     @Override
@@ -50,7 +47,7 @@ public class Server extends JServer {
             listener = new ServerSocket(port);
             while (running) {
                 Socket s = listener.accept();
-                ServerThread st = new ServerThread(new Connection(this, s), dc);
+                ServerThread st = new ServerThread(new Connection(this, s), dc, dbc);
                 Client cl = new Client(st);
                 cl.start();
             }

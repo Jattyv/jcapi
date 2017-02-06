@@ -27,33 +27,41 @@ public class Settings {
     public static final String AUTO_START_SERVER = "AutoStartServer";
     public static final String U_NAME = "UserName";
     public static final String SERVER_SETTINGS = "ServerSettingsPath";
+    public static final String SERVER_DB = "ServerDB";
+    public static final String SERVER_DB_UNAME = "DB-User";
+    public static final String SERVER_DB_PASSWORD = "DB-Password";
     public static final String CLIENT_SETTINGS = "ClienSettingsPath";
 
     private String ip;
     private int port;
     private boolean autoStartServer;
     private String uName;
-    private ServerSettings serverSettings;
     private ClientSettings clientSettings;
     private String serverSettingsPath;
     private String clientSettingsPath;
+    private String serverDB;
+    private String serverDBUserName;
+    private String serverDBPassword;
 
     private boolean ipAvailable;
     private boolean portAvailable;
     private boolean autoStartServerAvailable;
     private boolean uNameAvailable;
-    private boolean serverSettingsAvailable;
     private boolean clientSettingsAvailable;
-    private boolean serverSettingsPathAvailable;
     private boolean clientSettingsPathAvailable;
+    private boolean serverDBAvailable;
+    private boolean serverDBUserNameAvailable;
+    private boolean serverDBPasswordAvailable;
 
     public Settings() {
         ipAvailable = false;
         portAvailable = false;
         autoStartServerAvailable = false;
         uNameAvailable = false;
-        serverSettingsAvailable = false;
         clientSettingsAvailable = false;
+        serverDBAvailable = false;
+        serverDBUserNameAvailable = false;
+        serverDBPasswordAvailable = false;
     }
 
     public String getIp() {
@@ -90,15 +98,6 @@ public class Settings {
     public void setuName(String uName) {
         this.uName = uName;
         uNameAvailable = true;
-    }
-
-    public ServerSettings getServerSettings() {
-        return serverSettings;
-    }
-
-    public void setServerSettings(ServerSettings serverSettings) {
-        this.serverSettings = serverSettings;
-        serverSettingsAvailable = true;
     }
 
     public ClientSettings getClientSettings() {
@@ -142,14 +141,6 @@ public class Settings {
         this.uNameAvailable = uNameAvailable;
     }
 
-    public boolean isServerSettingsAvailable() {
-        return serverSettingsAvailable;
-    }
-
-    public void setServerSettingsAvailable(boolean serverSettingsAvailable) {
-        this.serverSettingsAvailable = serverSettingsAvailable;
-    }
-
     public boolean isClientSettingsAvailable() {
         return clientSettingsAvailable;
     }
@@ -161,12 +152,7 @@ public class Settings {
     public String getServerSettingsPath() {
         return serverSettingsPath;
     }
-
-    public void setServerSettingsPath(String serverSettingsPath) {
-        this.serverSettingsPath = serverSettingsPath;
-        serverSettingsPathAvailable = true;
-    }
-
+    
     public String getClientSettingsPath() {
         return clientSettingsPath;
     }
@@ -175,15 +161,7 @@ public class Settings {
         this.clientSettingsPath = clientSettingsPath;
         clientSettingsPathAvailable = true;
     }
-
-    public boolean isServerSettingsPathAvailable() {
-        return serverSettingsPathAvailable;
-    }
-
-    public void setServerSettingsPathAvailable(boolean serverSettingsPathAvailable) {
-        this.serverSettingsPathAvailable = serverSettingsPathAvailable;
-    }
-
+    
     public boolean isClientSettingsPathAvailable() {
         return clientSettingsPathAvailable;
     }
@@ -191,6 +169,59 @@ public class Settings {
     public void setClientSettingsPathAvailable(boolean clientSettingsPathAvailable) {
         this.clientSettingsPathAvailable = clientSettingsPathAvailable;
     }
+
+    public String getServerDB() {
+        return serverDB;
+    }
+
+    public void setServerDB(String serverDB) {
+        this.serverDB = serverDB;
+        this.serverDBAvailable = true;
+    }
+
+    public String getServerDBUserName() {
+        return serverDBUserName;
+    }
+
+    public void setServerDBUserName(String serverDBUserName) {
+        this.serverDBUserName = serverDBUserName;
+        this.serverDBUserNameAvailable = true;
+    }
+
+    public String getServerDBPassword() {
+        return serverDBPassword;
+    }
+
+    public void setServerDBPassword(String serverDBPassword) {
+        this.serverDBPassword = serverDBPassword;
+        this.serverDBPasswordAvailable = true;
+    }
+
+    public boolean isServerDBAvailable() {
+        return serverDBAvailable;
+    }
+
+    public void setServerDBAvailable(boolean serverDBAvailable) {
+        this.serverDBAvailable = serverDBAvailable;
+    }
+
+    public boolean isServerDBUserNameAvailable() {
+        return serverDBUserNameAvailable;
+    }
+
+    public void setServerDBUserNameAvailable(boolean serverDBUserNameAvailable) {
+        this.serverDBUserNameAvailable = serverDBUserNameAvailable;
+    }
+
+    public boolean isServerDBPasswordAvailable() {
+        return serverDBPasswordAvailable;
+    }
+
+    public void setServerDBPasswordAvailable(boolean serverDBPasswordAvailable) {
+        this.serverDBPasswordAvailable = serverDBPasswordAvailable;
+    }
+    
+    
 
 
 

@@ -16,7 +16,9 @@
  */
 package de.jattyv.jcapi.server.network;
 
+import de.jattyv.jcapi.data.jfc.data.Settings;
 import de.jattyv.jcapi.server.handler.ReloadHandler;
+import de.jattyv.jcapi.server.virtual.DBController.DBController;
 import de.jattyv.jcapi.server.virtual.dataController.DataController;
 
 /**
@@ -28,11 +30,37 @@ public class JServer {
     protected boolean running;
     protected ReloadHandler reloadHandler;
     protected DataController dc;
+    protected DBController dbc;
 
-    public JServer(int port) {
-        this.port = port;
+    public JServer(Settings settings) {
+        init(settings);
+    }
+    
+    public JServer(int port){
+        Settings settings = new Settings();
+        settings.setPort(port);
+        init(settings);
+        
+    }
+    
+    private void init(Settings settings){
+        this.port = settings.getPort();
         running = true;
         dc = new DataController();
+        String db = "jdbc:hsqldb:file:~/jattyv/jattyv";
+        String dbUname = "jattyv";
+        String dbPassword = "jattyv";
+        if (settings.isServerDBAvailable()) {
+            db = settings.getServerDB();
+            if (settings.isServerDBUserNameAvailable()) {
+                dbUname = settings.getServerDBUserName();
+                if (settings.isServerDBPasswordAvailable()) {
+                    dbPassword = settings.getServerDBPassword();
+                }
+            }
+        }
+        dbc = new DBController(db,dbUname, dbPassword);
+        dbc.init();
         reloadHandler = new ReloadHandler(dc);
     }
     

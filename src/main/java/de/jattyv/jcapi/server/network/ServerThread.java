@@ -22,6 +22,7 @@ import de.jattyv.jcapi.util.ChatTags;
 import de.jattyv.jcapi.util.factory.JattyvFactory;
 import de.jattyv.jcapi.server.handler.Handler;
 import de.jattyv.jcapi.server.network.data.JConnection;
+import de.jattyv.jcapi.server.virtual.DBController.DBController;
 import de.jattyv.jcapi.server.virtual.dataController.DataController;
 
 /**
@@ -35,12 +36,14 @@ public class ServerThread extends Thread implements ChatTags {
     private Gson gson;
     private boolean connected;
     private DataController dc;
+    private DBController dbc;
 
-    public ServerThread(JConnection con, DataController dc) {
+    public ServerThread(JConnection con, DataController dc, DBController dbc) {
         gson = new Gson();
         this.con = con;
         this.dc = dc;
-        handler = new Handler(this, dc);
+        this.dbc = dbc;
+        handler = new Handler(this, dc, dbc);
     }
 
     public String init() {
@@ -62,7 +65,10 @@ public class ServerThread extends Thread implements ChatTags {
     public void run() {
         String msg;
         while (connected) {
-            handler.handle(gson.fromJson(con.readMsg(), Container.class));
+            msg = con.readMsg();
+            if (msg != null) {
+                handler.handle(gson.fromJson(msg, Container.class));
+            }
         }
     }
 
