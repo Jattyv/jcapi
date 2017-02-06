@@ -30,27 +30,39 @@ public class OutputHandler extends JattyvHandler {
     }
 
     public void sendNewMessage(String toName, String message) {
-        handler.send(Packer.packNewMessage(handler.getUser().getLogKey(), toName, message));
+        if (!toName.isEmpty() && !message.isEmpty()) {
+            handler.send(Packer.packNewMessage(handler.getUser().getLogKey(), toName, message));
+        }
     }
 
     public void sendLogin(String uname, String upassword) {
-        handler.start(Packer.packLogin(uname, PasswordHasher.generateLKey(uname, upassword)));
+        if (!uname.isEmpty() && !upassword.isEmpty()) {
+            handler.start(Packer.packLogin(uname, PasswordHasher.generateLKey(uname, upassword)));
+        }
     }
 
     public void sendRegist(String uname, String upassword) {
-        handler.start(Packer.packRegistration(uname, PasswordHasher.generateLKey(uname, upassword)));
+        if (!uname.isEmpty() && !upassword.isEmpty()) {
+            handler.start(Packer.packRegistration(uname, PasswordHasher.generateLKey(uname, upassword)));
+        }
     }
-    
-    public void createGroup(String gName){
-        handler.send(Packer.packCreateGroup(gName, handler.getUser().getLogKey()));
+
+    public void createGroup(String gName) {
+        if (!gName.isEmpty()) {
+            handler.send(Packer.packCreateGroup(gName, handler.getUser().getLogKey()));
+        }
     }
-    
-    public void addUserToGroup(String gName, String fName){
-        handler.send(Packer.packAddUserToGroup(gName, fName));
+
+    public void addUserToGroup(String gName, String fName) {
+        if (!(gName.isEmpty()) && !fName.isEmpty()) {
+            handler.send(Packer.packAddUserToGroup(gName, fName));
+        }
     }
-    
-    public void sendNewGroupMessage(String toGroup, String msg){
-        handler.send(Packer.packNewGroupMessage(handler.getUser().getLogKey(), toGroup, msg));
+
+    public void sendNewGroupMessage(String toGroup, String msg) {
+        if (!toGroup.isEmpty() && !msg.isEmpty()) {
+            handler.send(Packer.packNewGroupMessage(handler.getUser().getLogKey(), toGroup, msg));
+        }
     }
 
 }
