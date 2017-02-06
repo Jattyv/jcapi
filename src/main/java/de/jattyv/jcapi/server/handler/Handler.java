@@ -44,8 +44,8 @@ public class Handler implements ChatTags {
         this.dbc = dbc;
         session = new Base();
         msgHandler = new MsgHandler(dc);
-        userHandler = new UserHandler(dc);
-        groupHandler = new GroupHandler(dc);
+        userHandler = new UserHandler(dc,dbc);
+        groupHandler = new GroupHandler(dc,dbc);
         
     }
 
@@ -55,6 +55,7 @@ public class Handler implements ChatTags {
         try {
             session = userHandler.handleFirstInput(command);
         } catch (Exception e) {
+            e.printStackTrace();
             con.close();
         }
         if (session != null) {

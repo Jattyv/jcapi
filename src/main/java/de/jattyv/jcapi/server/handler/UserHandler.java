@@ -18,17 +18,24 @@ package de.jattyv.jcapi.server.handler;
 
 import de.jattyv.jcapi.data.jobject.Base;
 import de.jattyv.jcapi.data.jobject.Container;
+import de.jattyv.jcapi.server.virtual.DBController.DBController;
+import de.jattyv.jcapi.server.virtual.DBController.entities.UserEntity;
 import de.jattyv.jcapi.util.factory.JattyvFactory;
 import de.jattyv.jcapi.server.virtual.dataController.DataController;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
 public class UserHandler extends JattyvHandler {
+    
+    private DBController dbc;
 
-    public UserHandler(DataController dc) {
+    public UserHandler(DataController dc, DBController dbc) {
         super(dc);
+        this.dbc = dbc;
     }
 
 
@@ -46,6 +53,7 @@ public class UserHandler extends JattyvHandler {
                         Container login = JattyvFactory.createLoginContainer(uName, uPassword);
                         b.addC(login);
                         dc.getUserC().setLkey(uName, login.getDataByName(U_LOG_KEY));
+                        dbc.getUserDao().createUser(uName, uPassword);
                     }
                 }
                 break;

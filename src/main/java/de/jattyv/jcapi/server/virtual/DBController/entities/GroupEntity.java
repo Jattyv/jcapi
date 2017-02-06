@@ -28,7 +28,7 @@ public class GroupEntity {
     @ManyToOne
     private ForeignCollection<UserEntity> Members;
     
-    GroupEntity(){
+    public GroupEntity(){
         
     }
 

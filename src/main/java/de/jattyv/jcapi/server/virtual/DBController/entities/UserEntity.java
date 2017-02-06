@@ -26,7 +26,7 @@ public class UserEntity {
     @DatabaseField(foreign = true, foreignAutoRefresh = true)
     private GroupEntity group;
     
-    UserEntity(){
+    public UserEntity(){
         
     }
 

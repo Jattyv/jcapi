@@ -42,14 +42,14 @@ public class DBController {
 
     public void init() {
         try {
-            TableUtils.createTable(connectionSource, UserEntity.class);
-            TableUtils.createTable(connectionSource, GroupEntity.class);
-
             Dao<UserEntity, Integer> users = DaoManager.createDao(connectionSource, UserEntity.class);
             Dao<GroupEntity, Integer> groups = DaoManager.createDao(connectionSource, GroupEntity.class);
 
             userDao = new UserDaoController(users);
             groupDao = new GroupDaoController(groups);
+            
+            TableUtils.createTable(connectionSource, UserEntity.class);
+            TableUtils.createTable(connectionSource, GroupEntity.class);
         } catch (SQLException ex) {
             Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
         }

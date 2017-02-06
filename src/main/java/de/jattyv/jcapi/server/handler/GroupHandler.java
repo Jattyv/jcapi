@@ -6,6 +6,7 @@
 package de.jattyv.jcapi.server.handler;
 
 import de.jattyv.jcapi.data.jobject.Container;
+import de.jattyv.jcapi.server.virtual.DBController.DBController;
 import de.jattyv.jcapi.server.virtual.dataController.DataController;
 import java.util.LinkedList;
 
@@ -14,9 +15,12 @@ import java.util.LinkedList;
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
 public class GroupHandler extends JattyvHandler {
+    
+    private DBController dbc;
 
-    public GroupHandler(DataController dc) {
+    public GroupHandler(DataController dc, DBController dbc) {
         super(dc);
+        this.dbc = dbc;
     }
 
     public void handle(Container c) {

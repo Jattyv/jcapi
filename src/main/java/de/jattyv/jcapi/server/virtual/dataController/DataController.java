@@ -16,6 +16,8 @@
  */
 package de.jattyv.jcapi.server.virtual.dataController;
 
+import de.jattyv.jcapi.server.virtual.DBController.DBController;
+import de.jattyv.jcapi.server.virtual.DBController.entities.UserEntity;
 import de.jattyv.jcapi.server.virtual.dataController.controller.GroupController;
 import de.jattyv.jcapi.server.virtual.dataController.controller.GroupMessageController;
 import de.jattyv.jcapi.server.virtual.dataController.controller.GroupRequestController;
@@ -27,6 +29,9 @@ import de.jattyv.jcapi.server.virtual.dataController.data.GroupRequest;
 import de.jattyv.jcapi.server.virtual.dataController.data.Message;
 import de.jattyv.jcapi.server.virtual.dataController.data.User;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -78,8 +83,16 @@ public class DataController {
     public GroupRequestController getGroupReqC() {
         return groupReqC;
     }
-    
-    
 
+    public void loadDataFromDB(DBController dbc) {
+        try {
+            List<UserEntity> userEntities = dbc.getUserDao().getUsers();
+            for (UserEntity user : userEntities) {
+                userC.createUser(user.getUserName(), user.getPassword());
+            }
+        } catch (NullPointerException e) {
+            Logger.getLogger(DataController.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
 
 }

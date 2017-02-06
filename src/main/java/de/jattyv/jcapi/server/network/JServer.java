@@ -61,6 +61,7 @@ public class JServer {
         }
         dbc = new DBController(db,dbUname, dbPassword);
         dbc.init();
+        dc.loadDataFromDB(dbc);
         reloadHandler = new ReloadHandler(dc);
     }
     
