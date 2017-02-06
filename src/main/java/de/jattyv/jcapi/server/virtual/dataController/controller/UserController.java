@@ -63,7 +63,7 @@ public class UserController {
 
     public User getUserByLKey(String lkey) {
         for (User user : users) {
-            if (user.getUserLogKey().equals(lkey)) {
+            if (user.getUserLogKey() != null && user.getUserLogKey().equals(lkey)) {
                 return user;
             }
         }
