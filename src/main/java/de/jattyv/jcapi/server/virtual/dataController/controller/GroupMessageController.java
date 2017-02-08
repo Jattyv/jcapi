@@ -21,10 +21,10 @@ public class GroupMessageController {
         this.groupMessages = groupMessages;
     }
 
-    public void createGroupMessage(String fromUser, String gName, LinkedList<String> to, String msg) {
+    public void createGroupMessage(String fromUser, String GID, LinkedList<String> to, String msg) {
         GroupMessage gmsg = new GroupMessage();
         gmsg.setFromUser(fromUser);
-        gmsg.setToGName(gName);
+        gmsg.setToGID(GID);
         gmsg.setTo(to);
         gmsg.setMessage(msg);
         groupMessages.add(gmsg);

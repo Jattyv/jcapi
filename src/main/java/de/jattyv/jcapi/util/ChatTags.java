@@ -66,12 +66,42 @@ public interface ChatTags {
      * A tag, declaring his content as the message.
      */
     public static final String MESSAGE = "MESSAGE";
+    /**
+     * A tag, declaring his content as the name of the group.
+     */
     public static final String GROUP_NAME = "GN";
+    /**
+     * A tag, declaring his content as the unique id of the group.
+     */
+    public static final String GROUP_ID = "GID";
+    /**
+     * A tag, declaring his content for creation of a group.
+     */
     public static final String U_CREATE_GROUP = "UCG";
+    /**
+     * A tag, declaring his content as a request to join a group.
+     */
     public static final String G_REQUEST_TO_USER = "GRTU";
+    /**
+     * A tag, declaring his content for an successfully join to the group.
+     */
     public static final String U_ADDED_TO_GROUP = "UATG";
+    /**
+     * A tag, declaring his content as an groupmessage.
+     */
     public static final String NEW_GROUP_MESSAGE = "NGMSG";
+    /**
+     * A tag, declaring his content as a groupmessage.
+     */
     public static final String GROUP_MESSAGE = "GMESSAGE";
+    /**
+     * A tag, declaring his content as a friendlist.
+     */
+    public static final String U_FRIENDLIST = "UFL";
+    /**
+     * A tag, declaring his content as a grouplist.
+     */
+    public static final String U_GROUPLIST = "UGL";
     /**
      * A tag, declaring his content as an error.
      */

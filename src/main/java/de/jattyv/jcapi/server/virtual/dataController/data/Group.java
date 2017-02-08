@@ -24,8 +24,17 @@ import java.util.LinkedList;
  */
 public class Group {
     
+    private String groupID;
     private String groupName;
     private LinkedList<String> members;
+
+    public String getGroupID() {
+        return groupID;
+    }
+
+    public void setGroupID(String groupID) {
+        this.groupID = groupID;
+    }
 
     public String getGroupName() {
         return groupName;

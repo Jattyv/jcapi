@@ -25,17 +25,18 @@ public class GroupHandler extends JattyvHandler {
 
     public void handle(Container c) {
         String gname = c.getDataByName(GROUP_NAME);
+        String gID = c.getDataByName(GROUP_ID);
         switch (c.getSuperTag()) {
 
             case G_REQUEST_TO_USER:
-                handler.getWindow().addGroup(gname);
+                handler.getWindow().addGroup(gname, gID);
                 break;
 
             case NEW_GROUP_MESSAGE:
                 String fname = c.getDataByName(FROM_USER);
                 String msg = c.getDataByName(MESSAGE);
                 String fmsg = fname + ": " + msg;
-                handler.getWindow().addGroupMessage(gname, fmsg);
+                handler.getWindow().addGroupMessage(gID, fmsg);
                 addMessage(gname, fmsg);
                 break;
         }

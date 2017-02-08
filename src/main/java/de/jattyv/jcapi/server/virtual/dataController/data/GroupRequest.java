@@ -11,8 +11,17 @@ package de.jattyv.jcapi.server.virtual.dataController.data;
  */
 public class GroupRequest {
     
+    private String gid;
     private String gName;
     private String uName;
+
+    public String getGid() {
+        return gid;
+    }
+
+    public void setGid(String gid) {
+        this.gid = gid;
+    }
 
     public String getgName() {
         return gName;

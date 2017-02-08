@@ -72,7 +72,7 @@ public class ReloadHandler implements Runnable {
     public void reloadGroupMessages(Client cl) {
         List<GroupMessage> gmessages = dc.getGroupMsgC().getGroupMessage(cl.getuName());
         for (GroupMessage gmsg : gmessages) {
-            cl.getSt().writeAsJson(JattyvFactory.createGroupMessageContainer(gmsg.getFromUser(), gmsg.getToGName(), gmsg.getMessage()));
+            cl.getSt().writeAsJson(JattyvFactory.createGroupMessageContainer(gmsg.getFromUser(), gmsg.getToGID(), gmsg.getMessage()));
         }
         dc.getGroupMsgC().removeGroupMessages(cl.getuName());
         cl.setNewGroupMessage(false);
@@ -81,7 +81,7 @@ public class ReloadHandler implements Runnable {
     public void reloadGroupRequests(Client cl) {
         List<GroupRequest> requests = dc.getGroupReqC().getGroupRequest(cl.getuName());
         for(GroupRequest req : requests){
-            cl.getSt().writeAsJson(JattyvFactory.createGroupRequestContainer(req.getgName(), cl.getuName()));
+            cl.getSt().writeAsJson(JattyvFactory.createGroupRequestContainer(req.getgName(), req.getGid(), cl.getuName()));
             dc.getGroupReqC().removeGroupRequest(req);
         }
         cl.setNewGroupRequest(false);

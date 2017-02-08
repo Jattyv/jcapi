@@ -16,6 +16,8 @@
  */
 package de.jattyv.jcapi.server.virtual.dataController.data;
 
+import java.util.List;
+
 /**
  *
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
@@ -25,6 +27,8 @@ public class User {
     private String userName;
     private String userLogKey;
     private String userPassword;
+    private List<User> friends;
+    private List<Group> groups;
 
     public User() {
 
@@ -58,6 +62,24 @@ public class User {
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
     }
+
+    public List<User> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(List<User> friends) {
+        this.friends = friends;
+    }
+
+    public List<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<Group> groups) {
+        this.groups = groups;
+    }
+    
+    
 
 
 }

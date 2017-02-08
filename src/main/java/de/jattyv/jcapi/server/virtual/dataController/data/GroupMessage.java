@@ -13,9 +13,9 @@ import java.util.List;
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
 public class GroupMessage {
-    
+
     private String fromUser;
-    private String toGName;
+    private String toGID;
     private String message;
     private List<String> to;
 
@@ -27,12 +27,12 @@ public class GroupMessage {
         this.fromUser = fromUser;
     }
 
-    public String getToGName() {
-        return toGName;
+    public String getToGID() {
+        return toGID;
     }
 
-    public void setToGName(String toGName) {
-        this.toGName = toGName;
+    public void setToGID(String toGID) {
+        this.toGID = toGID;
     }
 
     public String getMessage() {
@@ -50,7 +50,5 @@ public class GroupMessage {
     public void setTo(List<String> to) {
         this.to = to;
     }
-    
-    
-    
+
 }

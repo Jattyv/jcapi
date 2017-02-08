@@ -21,9 +21,10 @@ public class GroupRequestController {
         this.groupRequests = groupRequests;
     }
     
-    public void createGroupRequest(String gName, String uName){
+    public void createGroupRequest(String gName, String gID, String uName){
         GroupRequest req = new GroupRequest();
         req.setgName(gName);
+        req.setGid(gID);
         req.setuName(uName);
         groupRequests.add(req);
     }

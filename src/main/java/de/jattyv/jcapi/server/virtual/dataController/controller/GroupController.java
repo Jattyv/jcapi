@@ -20,27 +20,28 @@ public class GroupController {
         this.groups = groups;
     }
     
-    public void createGroup(String gName, String uName){
+    public void createGroup(String gName,String gID, String uName){
         Group group = new Group();
         group.setGroupName(gName);
+        group.setGroupID(gID);
         LinkedList<String> members = new LinkedList<>();
         members.add(uName);
         group.setMembers(members);
         groups.add(group);
     }
     
-    public Group getGroup(String gName){
+    public Group getGroup(String gID){
         for(Group group: groups){
-            if(group.getGroupName().equals(gName)){
+            if(group.getGroupID().equals(gID)){
                 return group;
             }
         }
         return null;
     }
     
-    public void addToGroup(String gName, String uName){
+    public void addToGroup(String gID, String uName){
         for(Group group: groups){
-            if(group.getGroupName().equals(gName)){
+            if(group.getGroupID().equals(gID)){
                 group.getMembers().add(uName);
                 return;
             }

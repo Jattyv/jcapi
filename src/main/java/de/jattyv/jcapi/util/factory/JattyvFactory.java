@@ -41,6 +41,13 @@ public class JattyvFactory implements ChatTags {
         fLogin.addE(new Element(ERR_KEY, LOG_FAIL));
         return fLogin;
     }
+    
+    public static Container createErrorContainer(String errCode){
+        Container err = new Container();
+        err.setSuperTag(JERROR);
+        err.addE(new Element(ERR_KEY, errCode));
+        return err;
+    }
 
     public static Container createMessageContainer(String lkey, String toUser, String message) {
         Container msg = new Container();
@@ -52,19 +59,20 @@ public class JattyvFactory implements ChatTags {
         return msg;
     }
     
-    public static Container createGroupRequestContainer(String gName, String tname){
+    public static Container createGroupRequestContainer(String gName, String gID, String tname){
         Container c = new Container();
         c.setSuperTag(G_REQUEST_TO_USER);
         c.addE(GROUP_NAME, gName);
+        c.addE(GROUP_ID, gID);
         c.addE(TO_USER, tname);
         return c;
     }
     
-    public static Container createGroupMessageContainer(String lkey, String gName, String msg){
+    public static Container createGroupMessageContainer(String lkey, String gID, String msg){
         Container c = new Container();
         c.setSuperTag(NEW_GROUP_MESSAGE);
         c.addE(FROM_USER, lkey);
-        c.addE(GROUP_NAME, gName);
+        c.addE(GROUP_ID, gID);
         c.addE(MESSAGE, msg);
         return c;
     }

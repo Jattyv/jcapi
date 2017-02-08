@@ -6,6 +6,10 @@
 package de.jattyv.jcapi.server.virtual.DBController.entities;
 
 import com.j256.ormlite.dao.ForeignCollection;
+import com.j256.ormlite.field.DataType;
+import com.j256.ormlite.field.DatabaseField;
+import java.io.Serializable;
+import java.util.LinkedList;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -16,7 +20,7 @@ import javax.persistence.ManyToOne;
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
 @Entity(name = "Groups")
-public class GroupEntity {
+public class GroupEntity implements Serializable{
     
     
     @Id
@@ -25,8 +29,8 @@ public class GroupEntity {
     @Column(nullable = false)
     private String GroupName;
     
-    @ManyToOne
-    private ForeignCollection<UserEntity> Members;
+    @DatabaseField(dataType = DataType.BYTE_ARRAY)
+    private LinkedList<UserEntity> Members;
     
     public GroupEntity(){
         
@@ -48,11 +52,11 @@ public class GroupEntity {
         this.GroupName = GroupName;
     }
 
-    public ForeignCollection<UserEntity> getMembers() {
+    public LinkedList<UserEntity> getMembers() {
         return Members;
     }
 
-    public void setMembers(ForeignCollection<UserEntity> Members) {
+    public void setMembers(LinkedList<UserEntity> Members) {
         this.Members = Members;
     }
     

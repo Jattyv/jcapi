@@ -29,7 +29,9 @@ public interface JGui {
     public static final String ALERT_TYPE_INFO = "info";
     public static final String ALERT_TYPE_CERT = "newcert";
     
-    public void addGroup(String gName);
+    public void addFriend(String fName);
+    
+    public void addGroup(String gName, String gID);
 
     public void changeWindow(String window);
 
@@ -39,7 +41,7 @@ public interface JGui {
 
     public void addMessage(String fName, String message);
     
-    public void addGroupMessage(String gName, String message);
+    public void addGroupMessage(String gID, String message);
 
 
 }
