@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.jattyv.jcapi</groupId>
     <artifactId>jcapi</artifactId>
-    <version>0.2</version>
+    <version>0.3-SNAPSHOT</version>
     <name>Jattyv Chat API</name>
     <packaging>jar</packaging>
     <properties>
