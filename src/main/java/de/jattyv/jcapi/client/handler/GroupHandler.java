@@ -64,10 +64,11 @@ public class GroupHandler extends JattyvHandler {
     }
 
     public LinkedList<String> getGroupMessages(String gID) {
+        LinkedList<String> toReturn = new LinkedList<>();
         if (messages.containsKey(gID)) {
-            return messages.get(gID);
+            toReturn = messages.get(gID);
         }
-        return null;
+        return toReturn;
     }
 
 }
