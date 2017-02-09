@@ -8,7 +8,6 @@ package de.jattyv.jcapi.server.virtual.DBController.controller;
 import com.j256.ormlite.dao.Dao;
 import de.jattyv.jcapi.server.virtual.DBController.entities.GroupEntity;
 import java.sql.SQLException;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,16 +23,16 @@ public class GroupDaoController {
     public GroupDaoController(Dao<GroupEntity, Integer> groups) {
         this.groups = groups;
     }
-    
-    public List<GroupEntity> getGroups(){
+
+    public List<GroupEntity> getGroups() {
         List<GroupEntity> res = null;
         try {
             res = groups.queryForAll();
         } catch (SQLException ex) {
             Logger.getLogger(GroupDaoController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return res;
     }
-    
+
 }

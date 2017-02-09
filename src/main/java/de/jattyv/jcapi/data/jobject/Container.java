@@ -54,7 +54,7 @@ public class Container {
 
     /**
      * Constructs a container. Sets the supertag, the list of c and the list of
-     * e to the given     * one.
+     * e to the given * one.
      *
      * @param superTag The needed supertag.
      * @param c The needed list of containers.

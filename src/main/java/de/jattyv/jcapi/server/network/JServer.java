@@ -26,6 +26,7 @@ import de.jattyv.jcapi.server.virtual.dataController.DataController;
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
 public class JServer {
+
     protected int port;
     protected boolean running;
     protected ReloadHandler reloadHandler;
@@ -35,15 +36,15 @@ public class JServer {
     public JServer(Settings settings) {
         init(settings);
     }
-    
-    public JServer(int port){
+
+    public JServer(int port) {
         Settings settings = new Settings();
         settings.setPort(port);
         init(settings);
-        
+
     }
-    
-    private void init(Settings settings){
+
+    private void init(Settings settings) {
         this.port = settings.getPort();
         running = true;
         dc = new DataController();
@@ -59,12 +60,12 @@ public class JServer {
                 }
             }
         }
-        dbc = new DBController(db,dbUname, dbPassword);
+        dbc = new DBController(db, dbUname, dbPassword);
         dbc.init();
         dc.loadDataFromDB(dbc);
         reloadHandler = new ReloadHandler(dc);
     }
-    
+
     public void listen() {
 
     }

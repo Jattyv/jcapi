@@ -17,7 +17,6 @@
 package de.jattyv.jcapi.server.network;
 
 import de.jattyv.jcapi.data.jfc.data.Settings;
-import de.jattyv.jcapi.server.handler.SettingsHandler;
 import de.jattyv.jcapi.server.network.data.Connection;
 import java.io.IOException;
 import java.net.ServerSocket;

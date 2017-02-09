@@ -5,13 +5,10 @@
  */
 package de.jattyv.jcapi.server.virtual.DBController.entities;
 
-import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.field.ForeignCollectionField;
 import java.io.Serializable;
 import java.util.LinkedList;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -21,22 +18,22 @@ import javax.persistence.Id;
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
 @Entity(name = "Users")
-public class UserEntity implements Serializable{
-    
+public class UserEntity implements Serializable {
+
     @Id
     private String UserName;
-    
+
     @Column(nullable = false)
     private String Password;
-    
+
     @DatabaseField(dataType = DataType.BYTE_ARRAY)
     LinkedList<UserEntity> friends;
-    
+
     @DatabaseField(dataType = DataType.BYTE_ARRAY)
     LinkedList<GroupEntity> groups;
-    
-    public UserEntity(){
-        
+
+    public UserEntity() {
+
     }
 
     public String getUserName() {
@@ -70,9 +67,5 @@ public class UserEntity implements Serializable{
     public void setGroups(LinkedList<GroupEntity> groups) {
         this.groups = groups;
     }
-    
-    
-    
-    
-    
+
 }

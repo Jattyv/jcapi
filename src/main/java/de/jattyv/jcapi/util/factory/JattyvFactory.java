@@ -41,34 +41,33 @@ public class JattyvFactory implements ChatTags {
         fLogin.addE(new Element(ERR_KEY, LOG_FAIL));
         return fLogin;
     }
-    
-    public static Container createErrorContainer(String errCode){
+
+    public static Container createErrorContainer(String errCode) {
         Container err = new Container();
         err.setSuperTag(JERROR);
         err.addE(new Element(ERR_KEY, errCode));
         return err;
     }
 
-    public static Container createMessageContainer(String lkey, String toUser, String message) {
+    public static Container createMessageContainer(String lkey, String toName, String message) {
         Container msg = new Container();
         msg.setSuperTag(NEW_MESSAGE);
         msg.addE(new Element(FROM_USER, lkey));
-        msg.addE(new Element(TO_USER, toUser));
+        msg.addE(new Element(TO_USER, toName));
         msg.addE(new Element(MESSAGE, message));
 
         return msg;
     }
-    
-    public static Container createGroupRequestContainer(String gName, String gID, String tname){
+
+    public static Container createGroupRequestContainer(String gName, String gID) {
         Container c = new Container();
         c.setSuperTag(G_REQUEST_TO_USER);
         c.addE(GROUP_NAME, gName);
         c.addE(GROUP_ID, gID);
-        c.addE(TO_USER, tname);
         return c;
     }
-    
-    public static Container createGroupMessageContainer(String lkey, String gID, String msg){
+
+    public static Container createGroupMessageContainer(String lkey, String gID, String msg) {
         Container c = new Container();
         c.setSuperTag(NEW_GROUP_MESSAGE);
         c.addE(FROM_USER, lkey);

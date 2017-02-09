@@ -16,8 +16,8 @@
  */
 package de.jattyv.jcapi.server.handler;
 
-import de.jattyv.jcapi.util.ChatTags;
 import de.jattyv.jcapi.server.virtual.dataController.DataController;
+import de.jattyv.jcapi.util.ChatTags;
 
 /**
  *

@@ -19,10 +19,10 @@ package de.jattyv.jcapi.server.handler;
 import com.google.gson.Gson;
 import de.jattyv.jcapi.data.jobject.Base;
 import de.jattyv.jcapi.data.jobject.Container;
-import de.jattyv.jcapi.util.ChatTags;
 import de.jattyv.jcapi.server.network.ServerThread;
 import de.jattyv.jcapi.server.virtual.DBController.DBController;
 import de.jattyv.jcapi.server.virtual.dataController.DataController;
+import de.jattyv.jcapi.util.ChatTags;
 
 /**
  *
@@ -44,9 +44,9 @@ public class Handler implements ChatTags {
         this.dbc = dbc;
         session = new Base();
         msgHandler = new MsgHandler(dc);
-        userHandler = new UserHandler(dc,dbc);
-        groupHandler = new GroupHandler(dc,dbc);
-        
+        userHandler = new UserHandler(dc, dbc);
+        groupHandler = new GroupHandler(dc, dbc);
+
     }
 
     public Container initSession(Container c) {

@@ -17,7 +17,6 @@
 package de.jattyv.jcapi.server.network.data;
 
 import de.jattyv.jcapi.server.network.JServer;
-import de.jattyv.jcapi.server.network.data.JConnection;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -60,7 +59,7 @@ public class Connection implements JConnection {
     @Override
     public String readMsg() {
         try {
-           return in.readUTF();
+            return in.readUTF();
         } catch (IOException ex) {
             Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
         }

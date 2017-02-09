@@ -17,14 +17,14 @@ import java.util.logging.Logger;
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
 public class UserDaoController {
-    
+
     private Dao<UserEntity, Integer> users;
 
     public UserDaoController(Dao<UserEntity, Integer> users) {
         this.users = users;
     }
-    
-    public List<UserEntity> getUsers(){
+
+    public List<UserEntity> getUsers() {
         List<UserEntity> res = null;
         try {
             res = users.queryForAll();
@@ -33,8 +33,8 @@ public class UserDaoController {
         }
         return res;
     }
-    
-    public void createUser(String uName, String uPassword){
+
+    public void createUser(String uName, String uPassword) {
         try {
             UserEntity entity = new UserEntity();
             entity.setUserName(uName);
@@ -44,5 +44,5 @@ public class UserDaoController {
             Logger.getLogger(UserDaoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
 }

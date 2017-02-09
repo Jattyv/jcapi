@@ -39,24 +39,24 @@ import java.util.logging.Logger;
  */
 public class DataController {
 
-    private LinkedList<User> users;
-    private LinkedList<Message> messages;
-    private LinkedList<Group> groups;
-    private LinkedList<GroupMessage> groupMessages;
-    private LinkedList<GroupRequest> groupRequests;
+    private final LinkedList<User> users;
+    private final LinkedList<Message> messages;
+    private final LinkedList<Group> groups;
+    private final LinkedList<GroupMessage> groupMessages;
+    private final LinkedList<GroupRequest> groupRequests;
 
-    private UserController userC;
-    private MessageController msgC;
-    private GroupController groupC;
-    private GroupMessageController groupMsgC;
-    private GroupRequestController groupReqC;
+    private final UserController userC;
+    private final MessageController msgC;
+    private final GroupController groupC;
+    private final GroupMessageController groupMsgC;
+    private final GroupRequestController groupReqC;
 
     public DataController() {
-        users = new LinkedList<User>();
-        messages = new LinkedList<Message>();
-        groups = new LinkedList<Group>();
-        groupMessages = new LinkedList<GroupMessage>();
-        groupRequests = new LinkedList<GroupRequest>();
+        users = new LinkedList<>();
+        messages = new LinkedList<>();
+        groups = new LinkedList<>();
+        groupMessages = new LinkedList<>();
+        groupRequests = new LinkedList<>();
         userC = new UserController(users);
         msgC = new MessageController(messages);
         groupC = new GroupController(groups);

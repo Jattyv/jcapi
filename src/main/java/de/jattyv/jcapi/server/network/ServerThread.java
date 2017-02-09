@@ -18,12 +18,12 @@ package de.jattyv.jcapi.server.network;
 
 import com.google.gson.Gson;
 import de.jattyv.jcapi.data.jobject.Container;
-import de.jattyv.jcapi.util.ChatTags;
-import de.jattyv.jcapi.util.factory.JattyvFactory;
 import de.jattyv.jcapi.server.handler.Handler;
 import de.jattyv.jcapi.server.network.data.JConnection;
 import de.jattyv.jcapi.server.virtual.DBController.DBController;
 import de.jattyv.jcapi.server.virtual.dataController.DataController;
+import de.jattyv.jcapi.util.ChatTags;
+import de.jattyv.jcapi.util.factory.JattyvFactory;
 
 /**
  *

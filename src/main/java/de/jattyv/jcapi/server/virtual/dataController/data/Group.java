@@ -23,7 +23,7 @@ import java.util.LinkedList;
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
 public class Group {
-    
+
     private String groupID;
     private String groupName;
     private LinkedList<String> members;
@@ -51,7 +51,5 @@ public class Group {
     public void setMembers(LinkedList<String> members) {
         this.members = members;
     }
-    
-    
 
 }

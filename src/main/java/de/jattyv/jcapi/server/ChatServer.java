@@ -28,9 +28,9 @@ public class ChatServer {
     private Server server;
     private JattyvServer jServer;
 
-        public ChatServer(int port) {
-            server = new Server(port);
-            jServer = new JattyvServer(server);
+    public ChatServer(int port) {
+        server = new Server(port);
+        jServer = new JattyvServer(server);
     }
 
     public ChatServer(Settings settings) {

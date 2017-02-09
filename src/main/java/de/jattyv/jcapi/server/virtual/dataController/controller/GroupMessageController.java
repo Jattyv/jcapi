@@ -49,10 +49,10 @@ public class GroupMessageController {
                     groupMessages.get(i).getTo().remove(i2);
                 }
             }
-            if (groupMessages.get(i).getTo().size() == 0) {
-                    groupMessages.remove(i);
-                }
+            if (groupMessages.get(i).getTo().isEmpty()) {
+                groupMessages.remove(i);
+            }
         }
     }
-    
+
 }

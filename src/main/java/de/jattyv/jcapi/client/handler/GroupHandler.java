@@ -1,7 +1,18 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2017 Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package de.jattyv.jcapi.client.handler;
 
@@ -37,26 +48,26 @@ public class GroupHandler extends JattyvHandler {
                 String msg = c.getDataByName(MESSAGE);
                 String fmsg = fname + ": " + msg;
                 handler.getWindow().addGroupMessage(gID, fmsg);
-                addMessage(gname, fmsg);
+                addMessage(gID, fmsg);
                 break;
         }
     }
 
-    private void addMessage(String gname, String message) {
-        if(messages.containsKey(gname)){
-            messages.get(gname).add(message);
-        }else{
+    private void addMessage(String gID, String message) {
+        if (messages.containsKey(gID)) {
+            messages.get(gID).add(message);
+        } else {
             LinkedList<String> tmp = new LinkedList<>();
             tmp.add(message);
-            messages.put(gname, tmp);
+            messages.put(gID, tmp);
         }
     }
-    
-    public LinkedList<String> getGroupMessages(String gname){
-        if(messages.containsKey(gname)){
-            return messages.get(gname);
+
+    public LinkedList<String> getGroupMessages(String gID) {
+        if (messages.containsKey(gID)) {
+            return messages.get(gID);
         }
-        return new LinkedList<String>();
+        return null;
     }
 
 }

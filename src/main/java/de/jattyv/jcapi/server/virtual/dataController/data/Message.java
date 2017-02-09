@@ -46,10 +46,8 @@ public class Message {
         return to;
     }
 
-
     public String getMessage() {
         return message;
     }
-
 
 }

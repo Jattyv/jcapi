@@ -53,15 +53,15 @@ public class OutputHandler extends JattyvHandler {
         }
     }
 
-    public void addUserToGroup(String gName, String fName) {
-        if (!(gName.isEmpty()) && !fName.isEmpty()) {
-            handler.send(Packer.packAddUserToGroup(gName, fName));
+    public void addUserToGroup(String gID, String fName) {
+        if (!(gID.isEmpty()) && !fName.isEmpty()) {
+            handler.send(Packer.packAddUserToGroup(gID, fName));
         }
     }
 
-    public void sendNewGroupMessage(String toGroup, String msg) {
-        if (!toGroup.isEmpty() && !msg.isEmpty()) {
-            handler.send(Packer.packNewGroupMessage(handler.getUser().getLogKey(), toGroup, msg));
+    public void sendNewGroupMessage(String togID, String msg) {
+        if (!togID.isEmpty() && !msg.isEmpty()) {
+            handler.send(Packer.packNewGroupMessage(handler.getUser().getLogKey(), togID, msg));
         }
     }
 

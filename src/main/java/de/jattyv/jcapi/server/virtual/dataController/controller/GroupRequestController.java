@@ -14,40 +14,41 @@ import java.util.List;
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
 public class GroupRequestController {
-    
+
     private List<GroupRequest> groupRequests;
-    
-    public GroupRequestController(List<GroupRequest> groupRequests){
+
+    public GroupRequestController(List<GroupRequest> groupRequests) {
         this.groupRequests = groupRequests;
     }
-    
-    public void createGroupRequest(String gName, String gID, String uName){
+
+    public void createGroupRequest(String gName, String gID, String uName) {
         GroupRequest req = new GroupRequest();
         req.setgName(gName);
         req.setGid(gID);
         req.setuName(uName);
         groupRequests.add(req);
     }
-    
-    public LinkedList<GroupRequest> getGroupRequest(String uName){
+
+    public LinkedList<GroupRequest> getGroupRequest(String uName) {
         LinkedList<GroupRequest> requests = new LinkedList<>();
-        for(GroupRequest req : groupRequests){
-            if(req.getuName().equals(uName)){
+        for (GroupRequest req : groupRequests) {
+            if (req.getuName().equals(uName)) {
                 requests.add(req);
             }
         }
         return requests;
     }
-    
-    public void removeGroupRequests(String uName){
-        for(int i=0; i<groupRequests.size(); i++){
-            if(groupRequests.get(i).getuName().equals(uName)){
+
+    public void removeGroupRequests(String uName) {
+        for (int i = 0; i < groupRequests.size(); i++) {
+            if (groupRequests.get(i).getuName().equals(uName)) {
                 groupRequests.remove(i);
             }
         }
     }
-    public void removeGroupRequest(GroupRequest req){
+
+    public void removeGroupRequest(GroupRequest req) {
         groupRequests.remove(req);
     }
-    
+
 }

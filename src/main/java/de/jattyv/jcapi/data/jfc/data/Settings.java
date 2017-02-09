@@ -152,7 +152,7 @@ public class Settings {
     public String getServerSettingsPath() {
         return serverSettingsPath;
     }
-    
+
     public String getClientSettingsPath() {
         return clientSettingsPath;
     }
@@ -161,7 +161,7 @@ public class Settings {
         this.clientSettingsPath = clientSettingsPath;
         clientSettingsPathAvailable = true;
     }
-    
+
     public boolean isClientSettingsPathAvailable() {
         return clientSettingsPathAvailable;
     }
@@ -220,10 +220,5 @@ public class Settings {
     public void setServerDBPasswordAvailable(boolean serverDBPasswordAvailable) {
         this.serverDBPasswordAvailable = serverDBPasswordAvailable;
     }
-    
-    
-
-
-
 
 }

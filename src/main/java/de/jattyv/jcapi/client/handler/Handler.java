@@ -112,8 +112,8 @@ public class Handler implements ChatTags {
     public LinkedList<String> getMessages(String uName) {
         return msgHandler.getMessages(uName);
     }
-    
-    public LinkedList<String> getGroupMessages(String gname){
+
+    public LinkedList<String> getGroupMessages(String gname) {
         return groupHandler.getGroupMessages(gname);
     }
 

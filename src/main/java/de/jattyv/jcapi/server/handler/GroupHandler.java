@@ -1,7 +1,18 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2017 Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package de.jattyv.jcapi.server.handler;
 
@@ -17,7 +28,7 @@ import java.util.LinkedList;
  */
 public class GroupHandler extends JattyvHandler {
 
-    private DBController dbc;
+    private final DBController dbc;
 
     public GroupHandler(DataController dc, DBController dbc) {
         super(dc);
@@ -30,13 +41,12 @@ public class GroupHandler extends JattyvHandler {
         switch (c.getSuperTag()) {
 
             case U_CREATE_GROUP:
-                String ulkey = c.getDataByName(U_NAME);
+                String ulkey = c.getDataByName(FROM_USER);
                 String uname = dc.getUserC().getUserByLKey(ulkey).getUserName();
                 gID = LKeyGenerator.generateLKey(uname, ulkey);
                 dc.getGroupC().createGroup(gname, gID, uname);
                 dc.getGroupReqC().createGroupRequest(gname, gID, uname);
                 ReloadHandler.turnOnGroupRequestReload(uname);
-
                 break;
 
             case G_REQUEST_TO_USER:

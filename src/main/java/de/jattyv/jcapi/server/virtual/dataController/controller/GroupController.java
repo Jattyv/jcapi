@@ -13,14 +13,14 @@ import java.util.LinkedList;
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
 public class GroupController {
-    
-    private LinkedList<Group> groups;
+
+    private final LinkedList<Group> groups;
 
     public GroupController(LinkedList<Group> groups) {
         this.groups = groups;
     }
-    
-    public void createGroup(String gName,String gID, String uName){
+
+    public void createGroup(String gName, String gID, String uName) {
         Group group = new Group();
         group.setGroupName(gName);
         group.setGroupID(gID);
@@ -29,23 +29,23 @@ public class GroupController {
         group.setMembers(members);
         groups.add(group);
     }
-    
-    public Group getGroup(String gID){
-        for(Group group: groups){
-            if(group.getGroupID().equals(gID)){
+
+    public Group getGroup(String gID) {
+        for (Group group : groups) {
+            if (group.getGroupID().equals(gID)) {
                 return group;
             }
         }
         return null;
     }
-    
-    public void addToGroup(String gID, String uName){
-        for(Group group: groups){
-            if(group.getGroupID().equals(gID)){
+
+    public void addToGroup(String gID, String uName) {
+        for (Group group : groups) {
+            if (group.getGroupID().equals(gID)) {
                 group.getMembers().add(uName);
                 return;
             }
         }
     }
-    
+
 }

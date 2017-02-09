@@ -27,8 +27,8 @@ import de.jattyv.jcapi.data.jfc.data.Settings;
  */
 public class Chat {
 
-    private Handler handler;
-    private Client cl;
+    private final Handler handler;
+    private final Client cl;
 
     public Chat(Settings settings) {
         handler = new Handler();
@@ -51,6 +51,5 @@ public class Chat {
     public void setGui(JGui gui) {
         handler.setWindow(gui);
     }
-
 
 }

@@ -10,7 +10,7 @@ package de.jattyv.jcapi.server.virtual.dataController.data;
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
 public class GroupRequest {
-    
+
     private String gid;
     private String gName;
     private String uName;
@@ -38,7 +38,5 @@ public class GroupRequest {
     public void setuName(String uName) {
         this.uName = uName;
     }
-    
-    
-    
+
 }

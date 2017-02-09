@@ -25,7 +25,7 @@ import java.util.logging.Logger;
  */
 public class Reload extends Thread {
 
-    private Client cl;
+    private final Client cl;
     private boolean connected;
 
     public Reload(Client cl) {

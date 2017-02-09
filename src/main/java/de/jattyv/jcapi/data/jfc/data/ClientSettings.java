@@ -34,5 +34,4 @@ public class ClientSettings {
         this.friends = friends;
     }
 
-
 }

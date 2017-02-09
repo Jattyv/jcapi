@@ -22,10 +22,10 @@ package de.jattyv.jcapi.data.chatobjects;
  */
 public class Message {
 
-    private String fromUser;
-    private String toUser;
-    private String message;
-    private String to;
+    private final String fromUser;
+    private final String toUser;
+    private final String message;
+    private final String to;
 
     public Message(String fromUser, String toUser, String to, String message) {
         this.fromUser = fromUser;
@@ -49,6 +49,5 @@ public class Message {
     public String getMessage() {
         return message;
     }
-
 
 }

@@ -115,6 +115,4 @@ public interface ChatTags {
      */
     public static final String LOG_FAIL = "LOGF";
 
-
-
 }

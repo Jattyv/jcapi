@@ -43,5 +43,4 @@ public class JattyvServer extends Thread {
         init();
     }
 
-
 }

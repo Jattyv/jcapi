@@ -5,7 +5,6 @@
  */
 package de.jattyv.jcapi.server.virtual.dataController.data;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**

@@ -143,7 +143,7 @@ public class Base {
     public void addDataToC(String superTag, Element e, int position) {
         if (c.size() > position) {
             if (c.get(position).getSuperTag().equals(superTag)) {
-            this.getC().get(position).getE().add(e);
+                this.getC().get(position).getE().add(e);
             }
         } else {
             for (int i = c.size(); i <= position; i++) {

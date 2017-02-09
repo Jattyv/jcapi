@@ -18,17 +18,16 @@ package de.jattyv.jcapi.client.handler;
 
 import de.jattyv.jcapi.data.chatobjects.Message;
 import de.jattyv.jcapi.data.jobject.Container;
-import static de.jattyv.jcapi.util.ChatTags.FROM_USER;
-import static de.jattyv.jcapi.util.ChatTags.MESSAGE;
+import de.jattyv.jcapi.util.ChatTags;
 import java.util.LinkedList;
 
 /**
  *
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
-public class MsgHandler extends JattyvHandler {
+public class MsgHandler extends JattyvHandler implements ChatTags {
 
-    private LinkedList<Message> messages;
+    private final LinkedList<Message> messages;
 
     public MsgHandler(Handler handler) {
         super(handler);
@@ -47,7 +46,6 @@ public class MsgHandler extends JattyvHandler {
             to = toUser;
         }
 
-
         messages.add(new Message(fromUser, toUser, to, message));
         handler.getWindow().addMessage(to, fromUser + ": " + message);
     }
@@ -56,7 +54,7 @@ public class MsgHandler extends JattyvHandler {
         LinkedList<String> toReturn = new LinkedList<>();
         for (Message m : messages) {
             if (m.getTo().equals(uName)) {
-            toReturn.add(m.getFromUser() + ": " + m.getMessage());
+                toReturn.add(m.getFromUser() + ": " + m.getMessage());
             }
         }
         return toReturn;

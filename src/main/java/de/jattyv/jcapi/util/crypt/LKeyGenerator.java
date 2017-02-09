@@ -54,7 +54,7 @@ public class LKeyGenerator {
         byte[] saltBytes = dat.toString().getBytes();
         byte[] lkey = null;
         try {
-        PBEKeySpec spec = new PBEKeySpec(passwordChars, saltBytes, ITERATIONS, KEY_LENGTH);
+            PBEKeySpec spec = new PBEKeySpec(passwordChars, saltBytes, ITERATIONS, KEY_LENGTH);
             SecretKeyFactory key = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
             lkey = key.generateSecret(spec).getEncoded();
         } catch (InvalidKeySpecException ex) {

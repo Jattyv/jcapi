@@ -7,7 +7,6 @@ package de.jattyv.jcapi.server.virtual.DBController;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
-import com.j256.ormlite.db.HsqldbDatabaseType;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
@@ -33,8 +32,8 @@ public class DBController {
 
     public DBController(String db, String dbUname, String dbPassword) {
         try {
-            connectionSource = 
-                    new JdbcConnectionSource(db, dbUname, dbPassword);
+            connectionSource
+                    = new JdbcConnectionSource(db, dbUname, dbPassword);
         } catch (SQLException ex) {
             Logger.getLogger(DBController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -47,7 +46,7 @@ public class DBController {
 
             userDao = new UserDaoController(users);
             groupDao = new GroupDaoController(groups);
-            
+
             TableUtils.createTable(connectionSource, UserEntity.class);
             TableUtils.createTable(connectionSource, GroupEntity.class);
         } catch (SQLException ex) {

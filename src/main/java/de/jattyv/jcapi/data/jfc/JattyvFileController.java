@@ -36,7 +36,7 @@ import java.util.logging.Logger;
  */
 public class JattyvFileController {
 
-    private static Gson gson = new Gson();
+    private static final Gson gson = new Gson();
 
     public final static String J_PROP_FILE = "jattyv.properties";
 

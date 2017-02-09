@@ -58,7 +58,6 @@ public class Client {
         this.uName = uName;
     }
 
-
     public boolean isNewMessages() {
         return newMessages;
     }
@@ -82,7 +81,5 @@ public class Client {
     public void setNewGroupRequest(boolean newGroupRequest) {
         this.newGroupRequest = newGroupRequest;
     }
-    
-    
 
 }

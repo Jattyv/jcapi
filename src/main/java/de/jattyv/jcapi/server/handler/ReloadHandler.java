@@ -16,12 +16,12 @@
  */
 package de.jattyv.jcapi.server.handler;
 
-import de.jattyv.jcapi.util.factory.JattyvFactory;
 import de.jattyv.jcapi.server.network.Client;
 import de.jattyv.jcapi.server.virtual.dataController.DataController;
 import de.jattyv.jcapi.server.virtual.dataController.data.GroupMessage;
 import de.jattyv.jcapi.server.virtual.dataController.data.GroupRequest;
 import de.jattyv.jcapi.server.virtual.dataController.data.Message;
+import de.jattyv.jcapi.util.factory.JattyvFactory;
 import static java.lang.Thread.sleep;
 import java.util.LinkedList;
 import java.util.List;
@@ -80,8 +80,8 @@ public class ReloadHandler implements Runnable {
 
     public void reloadGroupRequests(Client cl) {
         List<GroupRequest> requests = dc.getGroupReqC().getGroupRequest(cl.getuName());
-        for(GroupRequest req : requests){
-            cl.getSt().writeAsJson(JattyvFactory.createGroupRequestContainer(req.getgName(), req.getGid(), cl.getuName()));
+        for (GroupRequest req : requests) {
+            cl.getSt().writeAsJson(JattyvFactory.createGroupRequestContainer(req.getgName(), req.getGid()));
             dc.getGroupReqC().removeGroupRequest(req);
         }
         cl.setNewGroupRequest(false);
