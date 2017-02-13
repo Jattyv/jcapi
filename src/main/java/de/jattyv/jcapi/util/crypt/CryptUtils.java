@@ -17,6 +17,7 @@
 package de.jattyv.jcapi.util.crypt;
 
 import java.security.InvalidKeyException;
+import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
@@ -24,6 +25,8 @@ import java.security.NoSuchProviderException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,14 +36,15 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 
 /**
  *
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
 public class CryptUtils {
-    
-    public static String encrypt(String text, PublicKey pub){
+
+    public static String encrypt(String text, PublicKey pub) {
         try {
             Cipher rsaCipher = Cipher.getInstance("RSA");
             rsaCipher.init(Cipher.ENCRYPT_MODE, pub);
@@ -58,9 +62,9 @@ public class CryptUtils {
         }
         return "";
     }
-    
-    public static String decrypt(String cipherText, PrivateKey priv){
-                try {
+
+    public static String decrypt(String cipherText, PrivateKey priv) {
+        try {
             Cipher rsaCipher = Cipher.getInstance("RSA");
             rsaCipher.init(Cipher.DECRYPT_MODE, priv);
             byte[] base64text = Base64.getDecoder().decode(cipherText.getBytes());
@@ -78,8 +82,8 @@ public class CryptUtils {
         }
         return "";
     }
-    
-    public static String encrypt(String text, SecretKey key){
+
+    public static String encrypt(String text, SecretKey key) {
         try {
             Cipher aesCipher = Cipher.getInstance("AES");
             aesCipher.init(Cipher.ENCRYPT_MODE, key);
@@ -96,8 +100,8 @@ public class CryptUtils {
         }
         return null;
     }
-    
-    public static String decrypt(String cipherText, SecretKey key){
+
+    public static String decrypt(String cipherText, SecretKey key) {
         try {
             Cipher aesCipher = Cipher.getInstance("AES");
             aesCipher.init(Cipher.DECRYPT_MODE, key);
@@ -139,6 +143,40 @@ public class CryptUtils {
             Logger.getLogger(CryptUtils.class.getName()).log(Level.SEVERE, null, ex);
         }
         return pair;
+    }
+
+    public static SecretKey toKey(byte[] key) {
+        return new SecretKeySpec(key, 0, key.length, "AES");
+    }
+    
+    public static String KeyToString(SecretKey key){
+        return Base64.getEncoder().encodeToString(key.getEncoded());
+    }
+    public static SecretKey StringToKey(String key){
+        byte[] decKey = Base64.getDecoder().decode(key);
+        return toKey(decKey);
+    }
+    
+    public static PublicKey StringToPublicKey(String key){
+        byte[] decKey = Base64.getDecoder().decode(key);
+        return toPublicKey(decKey);
+    }
+    
+    public static String PublicKeyToString(PublicKey key){
+        return Base64.getEncoder().encodeToString(key.getEncoded());
+    }
+
+    public static PublicKey toPublicKey(byte[] key) {
+        KeyFactory kf;
+        try {
+            kf = KeyFactory.getInstance("RSA");
+            return kf.generatePublic(new X509EncodedKeySpec(key));
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(CryptUtils.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidKeySpecException ex) {
+            Logger.getLogger(CryptUtils.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
 }

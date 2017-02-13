@@ -17,6 +17,8 @@
 package de.jattyv.jcapi.util.crypt;
 
 import java.security.KeyPair;
+import java.security.PublicKey;
+import java.util.Base64;
 import javax.crypto.SecretKey;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
@@ -43,6 +45,27 @@ public class CryptUtilsTest {
         String cipherText = CryptUtils.encrypt(text, keys.getPublic());
         String decText = CryptUtils.decrypt(cipherText, keys.getPrivate());
         assertEquals(decText, text);
+    }
+    
+    @Test
+    public void AESTransformingTest(){
+        SecretKey key = CryptUtils.generateAESKey();
+        KeyPair keys = CryptUtils.generateKeyPair();
+        String cipherText = CryptUtils.encrypt(CryptUtils.KeyToString(key), keys.getPublic());
+        SecretKey decKey = CryptUtils.StringToKey(CryptUtils.decrypt(cipherText, keys.getPrivate()));
+        String decKeyText = CryptUtils.encrypt(CryptUtils.KeyToString(decKey), keys.getPublic());
+        String t1 = CryptUtils.encrypt(text, key);
+        String t2 = CryptUtils.encrypt(text, decKey);
+        assertEquals(t1, t2);
+    }
+    
+    @Test
+    public void RSATransformingTest(){
+        KeyPair keys = CryptUtils.generateKeyPair();
+        String pubAsString = CryptUtils.PublicKeyToString(keys.getPublic());
+        PublicKey StringAsPub = CryptUtils.StringToPublicKey(pubAsString);
+        String toTestString = CryptUtils.PublicKeyToString(StringAsPub);
+        assertEquals(pubAsString, toTestString);
     }
 
 }
