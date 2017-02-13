@@ -37,7 +37,7 @@ public class PasswordHasher {
     /**
      * The length of the key.
      */
-    private static final int KEY_LENGTH = 512;
+    private static final int KEY_LENGTH = 1024;
 
     /**
      * Generates a logkey from the user name and the user password. Uses the
