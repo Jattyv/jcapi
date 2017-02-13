@@ -39,7 +39,6 @@ public class JattyvServer extends Thread {
 
     @Override
     public void run() {
-        server.startServices();
         init();
     }
 

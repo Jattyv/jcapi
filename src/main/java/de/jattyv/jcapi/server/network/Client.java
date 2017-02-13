@@ -16,7 +16,7 @@
  */
 package de.jattyv.jcapi.server.network;
 
-import de.jattyv.jcapi.server.handler.ReloadHandler;
+import de.jattyv.jcapi.server.handler.MReloadHandler;
 
 /**
  *
@@ -37,12 +37,11 @@ public class Client {
 
     public void start() {
         uName = st.init();
-        ReloadHandler.removeUser(uName);
         if (uName == null) {
-            ReloadHandler.removeClient(this);
             return;
         }
-        ReloadHandler.addClient(this);
+        MReloadHandler.removeUser(uName);
+        MReloadHandler.addClient(this);
         st.start();
     }
 

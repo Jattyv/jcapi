@@ -39,8 +39,8 @@ public class MsgHandler extends JattyvHandler {
         dc.getMsgC().createNewMessage(fromUserName, toUser, fromUserName, message);
         dc.getMsgC().createNewMessage(fromUserName, toUser, toUser, message);
 
-        ReloadHandler.turnOnMessageReload(fromUserName);
-        ReloadHandler.turnOnMessageReload(toUser);
+        MReloadHandler.turnOnMessageReload(fromUserName);
+        MReloadHandler.turnOnMessageReload(toUser);
 
     }
 

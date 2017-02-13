@@ -46,7 +46,7 @@ public class GroupHandler extends JattyvHandler {
                 gID = LKeyGenerator.generateLKey(uname, ulkey);
                 dc.getGroupC().createGroup(gname, gID, uname);
                 dc.getGroupReqC().createGroupRequest(gname, gID, uname);
-                ReloadHandler.turnOnGroupRequestReload(uname);
+                MReloadHandler.turnOnGroupRequestReload(uname);
                 break;
 
             case G_REQUEST_TO_USER:
@@ -55,7 +55,7 @@ public class GroupHandler extends JattyvHandler {
                 String tname = c.getDataByName(TO_USER);
                 dc.getGroupC().addToGroup(gID, tname);
                 dc.getGroupReqC().createGroupRequest(gname, gID, tname);
-                ReloadHandler.turnOnGroupRequestReload(tname);
+                MReloadHandler.turnOnGroupRequestReload(tname);
 
                 break;
 
@@ -67,7 +67,7 @@ public class GroupHandler extends JattyvHandler {
                 LinkedList<String> members = new LinkedList<>(dc.getGroupC().getGroup(gID).getMembers());
                 dc.getGroupMsgC().createGroupMessage(fname, gID, members, msg);
                 for (String memberName : members) {
-                    ReloadHandler.turnOnGroupMessageReload(memberName);
+                    MReloadHandler.turnOnGroupMessageReload(memberName);
                 }
                 break;
         }
