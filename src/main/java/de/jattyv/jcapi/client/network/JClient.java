@@ -53,6 +53,14 @@ public class JClient {
     public void write(Container c) {
 
     }
+    
+    public void write(String s){
+        
+    }
+    
+    public String read(){
+        return "";
+    }
 
     public void reload() {
 

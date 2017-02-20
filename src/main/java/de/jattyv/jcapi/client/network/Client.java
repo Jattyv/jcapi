@@ -69,6 +69,27 @@ public class Client extends JClient {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    @Override
+    public void write(String s){
+        try {
+            out.writeUTF(s);
+        } catch (IOException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    @Override
+    public String read(){
+        String input = "";
+        try {
+            input = in.readUTF();
+        } catch (IOException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return input;
+    }
 
     @Override
     public void reload() {
@@ -90,4 +111,8 @@ public class Client extends JClient {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    
+    
+    
 }
