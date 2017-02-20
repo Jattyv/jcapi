@@ -91,9 +91,13 @@ public interface ChatTags {
      */
     public static final String NEW_GROUP_MESSAGE = "NGMSG";
     /**
-     * A tag, declaring his content as an FriendRequest.
+     * A tag, declaring his content as an request to an friend.
      */
     public static final String U_REQUEST_TO_FRIEND = "URTF";
+    /**
+     * A tag, declaring his content as an friendrequest.
+     */
+    public static final String U_FRIENDREQUEST = "UFR";
     /**
      * A tag, declaring his cotent as an accept for an friendrequest.
      */

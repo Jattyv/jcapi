@@ -36,6 +36,7 @@ public class Handler implements ChatTags {
     private MsgHandler msgHandler;
     private UserHandler userHandler;
     private GroupHandler groupHandler;
+    private FriendRequestHandler frHandler;
     private ErrorHandler errHandler;
     private OutputHandler outHandler;
 
@@ -44,6 +45,7 @@ public class Handler implements ChatTags {
         msgHandler = new MsgHandler(this);
         userHandler = new UserHandler(this);
         groupHandler = new GroupHandler(this);
+        frHandler = new FriendRequestHandler(this);
         errHandler = new ErrorHandler(this);
         outHandler = new OutputHandler(this);
 
@@ -62,6 +64,10 @@ public class Handler implements ChatTags {
 
             case NEW_GROUP_MESSAGE:
                 groupHandler.handle(c);
+                break;
+                
+            case U_FRIENDREQUEST:
+                frHandler.handle(c);
                 break;
 
             case SESSION_SETTINGS:

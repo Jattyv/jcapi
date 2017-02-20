@@ -78,7 +78,7 @@ public class JattyvFactory implements ChatTags {
     
     public static Container createFriendRequestContainer(String uName, String fName){
         Container c = new Container();
-        c.setSuperTag(U_REQUEST_TO_FRIEND);
+        c.setSuperTag(U_FRIENDREQUEST);
         c.addE(FROM_USER, uName);
         c.addE(TO_USER, fName);
         return c;

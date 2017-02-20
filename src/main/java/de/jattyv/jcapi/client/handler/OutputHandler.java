@@ -64,5 +64,11 @@ public class OutputHandler extends JattyvHandler {
             handler.send(Packer.packNewGroupMessage(handler.getUser().getLogKey(), togID, msg));
         }
     }
+    
+    public void sendNewFriendRequest(String fName){
+        if(!fName.isEmpty()){
+            handler.send(Packer.packNewFriendRequest(handler.getUser().getLogKey(), fName));
+        }
+    }
 
 }
