@@ -20,7 +20,7 @@ public class FriendRequestHandler extends JattyvHandler {
     public void handle(Container c){
         switch(c.getSuperTag()){
             case U_FRIENDREQUEST:
-                String fName = c.getDataByName(U_NAME);
+                String fName = c.getDataByName(FROM_USER);
                 handler.getWindow().addFriend(fName);
                 break;
         }

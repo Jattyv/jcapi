@@ -40,7 +40,7 @@ public class FriendRequestController {
 
     public void removeFriendRequests(String uName) {
         for (int i = 0; i < friendRequests.size(); i++) {
-            if (friendRequests.get(i).getuName().equals(uName)) {
+            if (friendRequests.get(i).getfName().equals(uName)) {
                 friendRequests.remove(i);
             }
         }

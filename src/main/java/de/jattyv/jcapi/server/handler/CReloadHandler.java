@@ -41,8 +41,8 @@ public class CReloadHandler implements Runnable {
         if (cl.isNewGroupRequest()) {
             reloadGroupRequests();
         }
-        if(cl.isNewFriendRequest()) {
-            
+        if (cl.isNewFriendRequest()) {
+            reloadFriendRequests();
         }
 
     }
@@ -73,14 +73,14 @@ public class CReloadHandler implements Runnable {
         }
         cl.setNewGroupRequest(false);
     }
-    
+
     public void reloadFriendRequests() {
         List<FriendRequest> requests = dc.getFriendReqC().getFriendRequest(cl.getuName());
-        for(FriendRequest req : requests){
+        for (FriendRequest req : requests) {
             cl.getSt().writeAsJson(JattyvFactory.createFriendRequestContainer(req.getuName(), req.getfName()));
             dc.getFriendReqC().removeFriendRequest(req);
         }
-        
+        cl.setNewFriendRequest(false);
     }
 
     public Client getCl() {
