@@ -38,13 +38,23 @@ public class Base {
     }
 
     /**
-     * Constructs a base and sets the list of to the given one.
+     * Constructs a base and sets the list of c to the given one.
      *
      * @param c The needed list of containers.
      */
     public Base(List<Container> c) {
         this();
         this.c = c;
+    }
+
+    /**
+     * Constructs a base and adds to the list of c the given one.
+     *
+     * @param c The needed container.
+     */
+    public Base(Container c) {
+        this();
+        addC(c);
     }
 
     /**

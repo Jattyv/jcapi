@@ -19,6 +19,7 @@ package de.jattyv.jcapi.client.handler;
 import de.jattyv.jcapi.client.gui.JGui;
 import de.jattyv.jcapi.client.network.JClient;
 import de.jattyv.jcapi.data.chatobjects.User;
+import de.jattyv.jcapi.data.jobject.Base;
 import de.jattyv.jcapi.data.jobject.Container;
 import de.jattyv.jcapi.util.ChatTags;
 import java.util.LinkedList;
@@ -51,6 +52,12 @@ public class Handler implements ChatTags {
 
     }
 
+    public void handle(Base b) {
+        for (Container c : b.getC()) {
+            handle(c);
+        }
+    }
+
     public void handle(Container c) {
         switch (c.getSuperTag()) {
 
@@ -65,7 +72,7 @@ public class Handler implements ChatTags {
             case NEW_GROUP_MESSAGE:
                 groupHandler.handle(c);
                 break;
-                
+
             case U_FRIENDREQUEST:
                 frHandler.handle(c);
                 break;

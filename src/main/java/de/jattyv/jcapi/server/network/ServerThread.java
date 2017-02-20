@@ -17,6 +17,7 @@
 package de.jattyv.jcapi.server.network;
 
 import com.google.gson.Gson;
+import de.jattyv.jcapi.data.jobject.Base;
 import de.jattyv.jcapi.data.jobject.Container;
 import de.jattyv.jcapi.server.handler.Handler;
 import de.jattyv.jcapi.server.network.data.JConnection;
@@ -49,11 +50,11 @@ public class ServerThread extends Thread implements ChatTags {
     public String init() {
         Container login = handler.initSession(gson.fromJson(con.readMsg(), Container.class));
         if (login != null) {
-            con.writeMsg(gson.toJson(login));
+            con.writeMsg(gson.toJson(new Base(login)));
             connected = true;
             return login.getDataByName(U_NAME);
         } else {
-            con.writeMsg(gson.toJson(JattyvFactory.createLoginFailedContainer()));
+            con.writeMsg(gson.toJson(new Base(JattyvFactory.createLoginFailedContainer())));
         }
 
         con.closeCon();
@@ -76,8 +77,8 @@ public class ServerThread extends Thread implements ChatTags {
         con.writeMsg(msg);
     }
 
-    public void writeAsJson(Container c) {
-        con.writeMsg(gson.toJson(c));
+    public void writeAsJson(Base b) {
+        con.writeMsg(gson.toJson(b));
     }
 
     public void close() {

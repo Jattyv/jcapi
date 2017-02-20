@@ -17,6 +17,7 @@
 package de.jattyv.jcapi.client.network;
 
 import de.jattyv.jcapi.data.jfc.data.Settings;
+import de.jattyv.jcapi.data.jobject.Base;
 import de.jattyv.jcapi.data.jobject.Container;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -69,19 +70,18 @@ public class Client extends JClient {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     @Override
-    public void write(String s){
+    public void write(String s) {
         try {
             out.writeUTF(s);
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
+
     @Override
-    public String read(){
+    public String read() {
         String input = "";
         try {
             input = in.readUTF();
@@ -95,8 +95,8 @@ public class Client extends JClient {
     public void reload() {
         try {
             String input = in.readUTF();
-            Container c = gson.fromJson(input, Container.class);
-            handler.handle(c);
+            Base b = gson.fromJson(input, Base.class);
+            handler.handle(b);
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -111,8 +111,5 @@ public class Client extends JClient {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
-    
-    
+
 }
