@@ -7,6 +7,7 @@ package de.jattyv.jcapi.server.handler;
 
 import de.jattyv.jcapi.server.network.Client;
 import de.jattyv.jcapi.server.virtual.dataController.DataController;
+import de.jattyv.jcapi.server.virtual.dataController.data.FriendRequest;
 import de.jattyv.jcapi.server.virtual.dataController.data.GroupMessage;
 import de.jattyv.jcapi.server.virtual.dataController.data.GroupRequest;
 import de.jattyv.jcapi.server.virtual.dataController.data.Message;
@@ -40,6 +41,9 @@ public class CReloadHandler implements Runnable {
         if (cl.isNewGroupRequest()) {
             reloadGroupRequests();
         }
+        if(cl.isNewFriendRequest()) {
+            
+        }
 
     }
 
@@ -68,6 +72,15 @@ public class CReloadHandler implements Runnable {
             dc.getGroupReqC().removeGroupRequest(req);
         }
         cl.setNewGroupRequest(false);
+    }
+    
+    public void reloadFriendRequests() {
+        List<FriendRequest> requests = dc.getFriendReqC().getFriendRequest(cl.getuName());
+        for(FriendRequest req : requests){
+            cl.getSt().writeAsJson(JattyvFactory.createFriendRequestContainer(req.getuName(), req.getfName()));
+            dc.getFriendReqC().removeFriendRequest(req);
+        }
+        
     }
 
     public Client getCl() {

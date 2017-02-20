@@ -76,5 +76,14 @@ public class MReloadHandler {
             }
         }
     }
+    
+    public static void turnOnFriendRequestReload(String uname) {
+        for (CReloadHandler cr : crh) {
+            if (cr.getuName().equals(uname)) {
+                cr.getCl().setNewFriendRequest(true);
+                return;
+            }
+        }
+    }
 
 }

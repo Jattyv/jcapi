@@ -18,11 +18,13 @@ package de.jattyv.jcapi.server.virtual.dataController;
 
 import de.jattyv.jcapi.server.virtual.DBController.DBController;
 import de.jattyv.jcapi.server.virtual.DBController.entities.UserEntity;
+import de.jattyv.jcapi.server.virtual.dataController.controller.FriendRequestController;
 import de.jattyv.jcapi.server.virtual.dataController.controller.GroupController;
 import de.jattyv.jcapi.server.virtual.dataController.controller.GroupMessageController;
 import de.jattyv.jcapi.server.virtual.dataController.controller.GroupRequestController;
 import de.jattyv.jcapi.server.virtual.dataController.controller.MessageController;
 import de.jattyv.jcapi.server.virtual.dataController.controller.UserController;
+import de.jattyv.jcapi.server.virtual.dataController.data.FriendRequest;
 import de.jattyv.jcapi.server.virtual.dataController.data.Group;
 import de.jattyv.jcapi.server.virtual.dataController.data.GroupMessage;
 import de.jattyv.jcapi.server.virtual.dataController.data.GroupRequest;
@@ -44,12 +46,14 @@ public class DataController {
     private final LinkedList<Group> groups;
     private final LinkedList<GroupMessage> groupMessages;
     private final LinkedList<GroupRequest> groupRequests;
+    private final LinkedList<FriendRequest> friendRequests;
 
     private final UserController userC;
     private final MessageController msgC;
     private final GroupController groupC;
     private final GroupMessageController groupMsgC;
     private final GroupRequestController groupReqC;
+    private final FriendRequestController friendReqC;
 
     public DataController() {
         users = new LinkedList<>();
@@ -57,11 +61,13 @@ public class DataController {
         groups = new LinkedList<>();
         groupMessages = new LinkedList<>();
         groupRequests = new LinkedList<>();
+        friendRequests = new LinkedList<>();
         userC = new UserController(users);
         msgC = new MessageController(messages);
         groupC = new GroupController(groups);
         groupMsgC = new GroupMessageController(groupMessages);
         groupReqC = new GroupRequestController(groupRequests);
+        friendReqC = new FriendRequestController(friendRequests);
     }
 
     public UserController getUserC() {
@@ -82,6 +88,10 @@ public class DataController {
 
     public GroupRequestController getGroupReqC() {
         return groupReqC;
+    }
+
+    public FriendRequestController getFriendReqC() {
+        return friendReqC;
     }
 
     public void loadDataFromDB(DBController dbc) {

@@ -49,10 +49,10 @@ public class JattyvFactory implements ChatTags {
         return err;
     }
 
-    public static Container createMessageContainer(String lkey, String toName, String message) {
+    public static Container createMessageContainer(String uName, String toName, String message) {
         Container msg = new Container();
         msg.setSuperTag(NEW_MESSAGE);
-        msg.addE(new Element(FROM_USER, lkey));
+        msg.addE(new Element(FROM_USER, uName));
         msg.addE(new Element(TO_USER, toName));
         msg.addE(new Element(MESSAGE, message));
 
@@ -67,12 +67,20 @@ public class JattyvFactory implements ChatTags {
         return c;
     }
 
-    public static Container createGroupMessageContainer(String lkey, String gID, String msg) {
+    public static Container createGroupMessageContainer(String uName, String gID, String msg) {
         Container c = new Container();
         c.setSuperTag(NEW_GROUP_MESSAGE);
-        c.addE(FROM_USER, lkey);
+        c.addE(FROM_USER, uName);
         c.addE(GROUP_ID, gID);
         c.addE(MESSAGE, msg);
+        return c;
+    }
+    
+    public static Container createFriendRequestContainer(String uName, String fName){
+        Container c = new Container();
+        c.setSuperTag(U_REQUEST_TO_FRIEND);
+        c.addE(FROM_USER, uName);
+        c.addE(TO_USER, fName);
         return c;
     }
 }

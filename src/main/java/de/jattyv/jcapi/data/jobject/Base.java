@@ -29,38 +29,22 @@ public class Base {
      * A List of Containers.
      */
     protected List<Container> c;
-    /**
-     * A List of Elements.
-     */
-    protected List<Element> e;
 
     /**
      * Constructs an empty Base.
      */
     public Base() {
         this.c = new LinkedList<>();
-        this.e = e = new LinkedList<>();
-    }
-
-    /**
-     * Constructs a base and sets the lists with the given ones.
-     *
-     * @param e The list of elements.
-     * @param c The list of containers.
-     */
-    public Base(List<Element> e, List<Container> c) {
-        this.e = e;
-        this.c = c;
     }
 
     /**
      * Constructs a base and sets the list of to the given one.
      *
-     * @param e The needed list of elements.
+     * @param c The needed list of containers.
      */
-    public Base(List<Element> e) {
+    public Base(List<Container> c) {
         this();
-        this.e = e;
+        this.c = c;
     }
 
     /**
@@ -166,43 +150,6 @@ public class Base {
             }
         }
         return null;
-    }
-
-    /**
-     * Returns the list e.
-     *
-     * @return The list e.
-     */
-    public List<Element> getE() {
-        return e;
-    }
-
-    /**
-     * Sets the list e to the given one.
-     *
-     * @param e A list of elements.
-     */
-    public void setE(List<Element> e) {
-        this.e = e;
-    }
-
-    /**
-     * Adds an element to the list e.
-     *
-     * @param e The element to add.
-     */
-    public void addE(Element e) {
-        this.e.add(e);
-    }
-
-    /**
-     * Creates a new element and add it to the list e.
-     *
-     * @param dataName name of the data.
-     * @param data The data.
-     */
-    public void addE(String dataName, String data) {
-        this.e.add(new Element(dataName, data));
     }
 
 }
