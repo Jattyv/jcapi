@@ -16,6 +16,9 @@
  */
 package de.jattyv.jcapi.client.gui;
 
+import de.jattyv.jcapi.client.gui.cell.FG;
+import java.util.List;
+
 /**
  *
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
@@ -42,5 +45,7 @@ public interface JGui {
     public void addMessage(String fName, String message);
 
     public void addGroupMessage(String gID, String message);
+    
+    public void updateFGList(List<FG> fgs);
 
 }

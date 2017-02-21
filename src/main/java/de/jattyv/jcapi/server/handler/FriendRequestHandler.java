@@ -13,23 +13,30 @@ import de.jattyv.jcapi.server.virtual.dataController.data.User;
  *
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
-public class FriendRequestHandler extends JattyvHandler{
-    
+public class FriendRequestHandler extends JattyvHandler {
+
     public FriendRequestHandler(DataController dc) {
         super(dc);
     }
-    
-    public void handle(Container c){
-        switch(c.getSuperTag()){
+
+    public void handle(Container c) {
+        String uLkey = c.getDataByName(FROM_USER);
+        User user = dc.getUserC().getUserByLKey(uLkey);
+        String fName = c.getDataByName(TO_USER);
+        switch (c.getSuperTag()) {
             case U_REQUEST_TO_FRIEND:
-                String uLkey = c.getDataByName(FROM_USER);
-                User user = dc.getUserC().getUserByLKey(uLkey);
-                String fName = c.getDataByName(TO_USER);
                 dc.getFriendReqC().createFriendRequest(user.getUserName(), fName);
                 MReloadHandler.turnOnFriendRequestReload(fName);
                 break;
+
+            case U_AGREE_FRIEND:
+                dc.getUserC().addFriend(user.getUserName(), fName);
+                dc.getUserC().addFriend(fName, user.getUserName());
+                MReloadHandler.turnOnNewFGList(fName);
+                MReloadHandler.turnOnNewFGList(user.getUserName());
+                break;
         }
-        
+
     }
-    
+
 }

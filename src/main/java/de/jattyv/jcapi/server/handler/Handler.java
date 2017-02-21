@@ -90,6 +90,10 @@ public class Handler implements ChatTags {
             case U_REQUEST_TO_FRIEND:
                 friendReqHandler.handle(c);
                 break;
+                
+            case U_AGREE_FRIEND:
+                friendReqHandler.handle(c);
+                break;
 
         }
 

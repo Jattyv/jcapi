@@ -5,6 +5,7 @@
  */
 package de.jattyv.jcapi.server.handler;
 
+import de.jattyv.jcapi.client.gui.cell.FG;
 import de.jattyv.jcapi.data.jobject.Base;
 import de.jattyv.jcapi.data.jobject.Container;
 import de.jattyv.jcapi.server.network.Client;
@@ -45,6 +46,9 @@ public class CReloadHandler implements Runnable {
         }
         if (cl.isNewFriendRequest()) {
             reloadFriendRequests();
+        }
+        if(cl.isNewFGList()){
+            reloadFGList();
         }
 
     }
@@ -91,6 +95,14 @@ public class CReloadHandler implements Runnable {
         }
         cl.getSt().writeAsJson(b);
         cl.setNewFriendRequest(false);
+    }
+    
+    public void reloadFGList(){
+        List<FG> fglist = dc.getUserC().getFGList(cl.getuName());
+        Base b = new Base();
+        b.addC(JattyvFactory.createFGListContainer(fglist));
+        cl.getSt().writeAsJson(b);
+        cl.setNewFGList(false);
     }
 
     public Client getCl() {

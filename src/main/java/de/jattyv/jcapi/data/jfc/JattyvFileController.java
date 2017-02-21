@@ -17,6 +17,7 @@
 package de.jattyv.jcapi.data.jfc;
 
 import com.google.gson.Gson;
+import de.jattyv.jcapi.client.gui.cell.FG;
 import de.jattyv.jcapi.data.jfc.data.ClientSettings;
 import de.jattyv.jcapi.data.jfc.data.Settings;
 import java.io.ByteArrayInputStream;
@@ -110,9 +111,9 @@ public class JattyvFileController {
         return stream;
     }
 
-    public static String getFriendsAsJson(List<String> friends) {
+    public static String getFGAsJson(List<FG> fgs) {
         ClientSettings cs = new ClientSettings();
-        cs.setFriends(friends);
+        cs.setFriends(fgs);
         return gson.toJson(cs);
     }
 

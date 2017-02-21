@@ -16,10 +16,12 @@
  */
 package de.jattyv.jcapi.util.factory;
 
+import de.jattyv.jcapi.client.gui.cell.FG;
 import de.jattyv.jcapi.data.jobject.Container;
 import de.jattyv.jcapi.data.jobject.Element;
 import de.jattyv.jcapi.util.ChatTags;
 import de.jattyv.jcapi.util.crypt.LKeyGenerator;
+import java.util.List;
 
 /**
  *
@@ -81,6 +83,20 @@ public class JattyvFactory implements ChatTags {
         c.setSuperTag(U_FRIENDREQUEST);
         c.addE(FROM_USER, uName);
         c.addE(TO_USER, fName);
+        return c;
+    }
+
+    public static Container createFGListContainer(List<FG> fgs) {
+        Container c = new Container();
+        c.setSuperTag(U_FGLIST);
+        for(FG fg : fgs){
+            Container temp = new Container();
+            temp.setSuperTag(U_FGLIST);
+            temp.addE(FG_NAME, fg.getTitle());
+            temp.addE(FG_TYPE, ""+fg.getType());
+            temp.addE(FG_ID, fg.getId());
+            c.addC(temp);
+        }
         return c;
     }
 }

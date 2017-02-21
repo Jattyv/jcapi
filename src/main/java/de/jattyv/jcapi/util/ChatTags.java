@@ -103,13 +103,21 @@ public interface ChatTags {
      */
     public static final String U_AGREE_FRIEND = "AFR";
     /**
-     * A tag, declaring his content as a friendlist.
+     * A tag, declaring his content as a friend/group list.
      */
-    public static final String U_FRIENDLIST = "UFL";
+    public static final String U_FGLIST = "UFGL";
     /**
-     * A tag, declaring his content as a grouplist.
+     * A tag, declaring his content as the name of the FG;
      */
-    public static final String U_GROUPLIST = "UGL";
+    public static final String FG_NAME = "FGN";
+    /**
+     * A tag, declaring his content as the id of the FG.
+     */
+    public static final String FG_ID = "FGID";
+    /**
+     * A tag, declaring his content as the type of the FG.
+     */
+    public static final String FG_TYPE = "FGTYPE";
     /**
      * A tag, declaring his content as an error.
      */

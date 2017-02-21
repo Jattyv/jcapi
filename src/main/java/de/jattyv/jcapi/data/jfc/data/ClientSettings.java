@@ -16,6 +16,7 @@
  */
 package de.jattyv.jcapi.data.jfc.data;
 
+import de.jattyv.jcapi.client.gui.cell.FG;
 import java.util.List;
 
 /**
@@ -24,14 +25,14 @@ import java.util.List;
  */
 public class ClientSettings {
 
-    private List<String> friends;
+    private List<FG> fgs;
 
-    public List<String> getFriends() {
-        return friends;
+    public List<FG> getFriends() {
+        return fgs;
     }
 
-    public void setFriends(List<String> friends) {
-        this.friends = friends;
+    public void setFriends(List<FG> fgs) {
+        this.fgs = fgs;
     }
 
 }

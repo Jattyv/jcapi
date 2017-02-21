@@ -16,8 +16,10 @@
  */
 package de.jattyv.jcapi.server.virtual.dataController.controller;
 
+import de.jattyv.jcapi.client.gui.cell.FG;
 import de.jattyv.jcapi.server.virtual.dataController.data.User;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
@@ -65,6 +67,44 @@ public class UserController {
         for (User user : users) {
             if (user.getUserLogKey() != null && user.getUserLogKey().equals(lkey)) {
                 return user;
+            }
+        }
+        return null;
+    }
+    
+    protected User getUserByName(String name){
+        for (User user : users) {
+            if (user.getUserName().equals(name)) {
+                return user;
+            }
+        }
+        return null;
+    }
+    
+    public void addFriend(String uName, String fname){
+        for(User user : users){
+            if(user.getUserName().equals(uName)){
+                FG fg = new FG(fname, FG.FG_TYPE_FRIEND, fname);
+                user.getFgs().add(fg);
+                return;
+            }
+        }
+    }
+    
+    public void addGroup(String uName, String gName, String gid ){
+        for(User user : users){
+            if(user.getUserName().equals(uName)){
+                FG fg = new FG(gName, FG.FG_TYPE_GROUP, gid);
+                user.getFgs().add(fg);
+                return;
+            }
+        }
+    }
+    
+    public List<FG> getFGList(String uName){
+        for(User user : users){
+            if(user.getUserName().equals(uName)){
+                return user.getFgs();
             }
         }
         return null;

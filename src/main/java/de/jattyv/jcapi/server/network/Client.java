@@ -30,6 +30,7 @@ public class Client {
     private boolean newGroupMessage;
     private boolean newGroupRequest;
     private boolean newFriendRequest;
+    private boolean newFGList;
 
     public Client(ServerThread st) {
         this.st = st;
@@ -88,6 +89,14 @@ public class Client {
 
     public void setNewFriendRequest(boolean newFriendRequest) {
         this.newFriendRequest = newFriendRequest;
+    }
+
+    public boolean isNewFGList() {
+        return newFGList;
+    }
+
+    public void setNewFGList(boolean newFGList) {
+        this.newFGList = newFGList;
     }
 
 }

@@ -25,10 +25,7 @@ import java.util.List;
  */
 public class Container {
 
-    /**
-     * The number of the elements int the list of e
-     */
-    public int size;
+    
     /**
      * The tag of the container.
      */
@@ -37,14 +34,33 @@ public class Container {
      * A list of elements.
      */
     protected List<Element> e;
+    /**
+     * A list of container. Is useful for multi dimensional container.
+     */
+    protected List<Container> c;
 
     /**
      * Constructs an empty container.
      */
     public Container() {
         e = new LinkedList<>();
+        c = new LinkedList<>();
         this.superTag = "";
-        size = 0;
+    }
+
+    /**
+     * Constructs a container. Sets the supertag, the list of c and the list of
+     * e to the given * one.
+     *
+     * @param superTag The needed supertag.
+     * @param c The needed list of containers.
+     * @param e The needed list of elements.
+     */
+    public Container(String superTag, List<Container> c, List<Element> e) {
+        this();
+        this.superTag = superTag;
+        this.addE(e);
+        this.addC(c);
     }
 
     /**
@@ -160,7 +176,6 @@ public class Container {
      */
     public void addE(Element e) {
         this.e.add(e);
-        size++;
     }
 
     /**
@@ -185,6 +200,22 @@ public class Container {
                 e.get(i).setData(newData);
             }
         }
+    }
+
+    public List<Container> getC() {
+        return c;
+    }
+
+    public void setC(List<Container> c) {
+        this.c = c;
+    }
+
+    public void addC(Container c) {
+        this.c.add(c);
+    }
+
+    public void addC(List<Container> c) {
+        this.c.addAll(c);
     }
 
 }

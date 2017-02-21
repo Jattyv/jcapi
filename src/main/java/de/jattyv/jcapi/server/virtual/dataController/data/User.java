@@ -16,6 +16,8 @@
  */
 package de.jattyv.jcapi.server.virtual.dataController.data;
 
+import de.jattyv.jcapi.client.gui.cell.FG;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -27,8 +29,7 @@ public class User {
     private String userName;
     private String userLogKey;
     private String userPassword;
-    private List<User> friends;
-    private List<Group> groups;
+    private List<FG> fgs;
 
     public User() {
 
@@ -37,6 +38,7 @@ public class User {
     public User(String userName, String userPassword) {
         this.userName = userName;
         this.userPassword = userPassword;
+        fgs = new LinkedList<>();
     }
 
     public String getUserName() {
@@ -63,20 +65,12 @@ public class User {
         this.userPassword = userPassword;
     }
 
-    public List<User> getFriends() {
-        return friends;
+    public List<FG> getFgs() {
+        return fgs;
     }
 
-    public void setFriends(List<User> friends) {
-        this.friends = friends;
-    }
-
-    public List<Group> getGroups() {
-        return groups;
-    }
-
-    public void setGroups(List<Group> groups) {
-        this.groups = groups;
+    public void setFgs(List<FG> fgs) {
+        this.fgs = fgs;
     }
 
 }
