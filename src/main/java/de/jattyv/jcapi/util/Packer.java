@@ -82,4 +82,12 @@ public class Packer implements ChatTags {
         return c;
     }
 
+    public static Container packOkayToFriendRequest(String ulkey, String fname) {
+        Container c = new Container();
+        c.setSuperTag(U_AGREE_FRIEND);
+        c.addE(FROM_USER, ulkey);
+        c.addE(TO_USER, fname);
+        return c;
+    }
+
 }

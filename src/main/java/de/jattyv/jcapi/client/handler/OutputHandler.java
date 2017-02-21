@@ -70,5 +70,11 @@ public class OutputHandler extends JattyvHandler {
             handler.send(Packer.packNewFriendRequest(handler.getUser().getLogKey(), fName));
         }
     }
+    
+    public void sendOkayToFriendRequest(String fname){
+        if(!fname.isEmpty()){
+            handler.send(Packer.packOkayToFriendRequest(handler.getUser().getLogKey(), fname));
+        }
+    }
 
 }

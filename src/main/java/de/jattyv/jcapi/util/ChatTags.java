@@ -85,7 +85,7 @@ public interface ChatTags {
     /**
      * A tag, declaring his content for an successfully join to the group.
      */
-    public static final String U_ADDED_TO_GROUP = "UATG";
+    public static final String U_AGREE_TO_GROUP = "UATG";
     /**
      * A tag, declaring his content as an groupmessage.
      */
@@ -101,7 +101,7 @@ public interface ChatTags {
     /**
      * A tag, declaring his cotent as an accept for an friendrequest.
      */
-    public static final String U_ADDED_FRIEND = "AFR";
+    public static final String U_AGREE_FRIEND = "AFR";
     /**
      * A tag, declaring his content as a friendlist.
      */
