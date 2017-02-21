@@ -76,6 +76,9 @@ public class Handler implements ChatTags {
             case U_FRIENDREQUEST:
                 frHandler.handle(c);
                 break;
+                
+            case U_FGLIST:
+                userHandler.handle(c);
 
             case SESSION_SETTINGS:
                 userHandler.handle(c);

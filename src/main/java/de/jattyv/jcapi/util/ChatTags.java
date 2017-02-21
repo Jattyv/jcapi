@@ -85,7 +85,7 @@ public interface ChatTags {
     /**
      * A tag, declaring his content for an successfully join to the group.
      */
-    public static final String U_AGREE_TO_GROUP = "UATG";
+    public static final String U_AGREE_GROUP = "UATG";
     /**
      * A tag, declaring his content as an groupmessage.
      */

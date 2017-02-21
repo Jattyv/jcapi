@@ -73,8 +73,8 @@ public class Packer implements ChatTags {
         c.addE(MESSAGE, msg);
         return c;
     }
-    
-    public static Container packNewFriendRequest(String ulkey, String fName){
+
+    public static Container packNewFriendRequest(String ulkey, String fName) {
         Container c = new Container();
         c.setSuperTag(U_REQUEST_TO_FRIEND);
         c.addE(FROM_USER, ulkey);
@@ -87,6 +87,14 @@ public class Packer implements ChatTags {
         c.setSuperTag(U_AGREE_FRIEND);
         c.addE(FROM_USER, ulkey);
         c.addE(TO_USER, fname);
+        return c;
+    }
+
+    public static Container packOkayToGroupRequest(String ulkey, String gid) {
+        Container c = new Container();
+        c.setSuperTag(U_AGREE_GROUP);
+        c.addE(FROM_USER, ulkey);
+        c.addE(GROUP_ID, gid);
         return c;
     }
 

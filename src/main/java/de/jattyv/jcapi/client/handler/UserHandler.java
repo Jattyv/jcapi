@@ -17,7 +17,10 @@
 package de.jattyv.jcapi.client.handler;
 
 import de.jattyv.jcapi.client.gui.JGui;
+import de.jattyv.jcapi.client.gui.cell.FG;
 import de.jattyv.jcapi.data.jobject.Container;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
@@ -30,8 +33,26 @@ public class UserHandler extends JattyvHandler {
     }
 
     public void handle(Container c) {
-        handler.getUser().setLogKey(c.getDataByName(U_LOG_KEY));
-        handler.getWindow().changeWindow(JGui.CHAT_WINDOW);
+
+        switch (c.getSuperTag()) {
+
+            case U_FGLIST:
+                List<FG> fgs = new LinkedList<>();
+                for(Container cfg : c.getC()){
+                    String fgTitle = cfg.getDataByName(FG_NAME);
+                    String fgId = cfg.getDataByName(FG_ID);
+                    int fgType = Integer.parseInt(cfg.getDataByName(FG_TYPE));
+                    FG fg = new FG(fgTitle,fgType,fgId);
+                    fgs.add(fg);
+                }
+                handler.getWindow().updateFGList(fgs);
+                break;
+
+            case SESSION_SETTINGS:
+                handler.getUser().setLogKey(c.getDataByName(U_LOG_KEY));
+                handler.getWindow().changeWindow(JGui.CHAT_WINDOW);
+                break;
+        }
     }
 
 }

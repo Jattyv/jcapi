@@ -65,6 +65,12 @@ public class OutputHandler extends JattyvHandler {
         }
     }
     
+    public void sendOkayToGroupRequest(String gid){
+        if(!gid.isEmpty()){
+            handler.send(Packer.packOkayToGroupRequest(handler.getUser().getLogKey(), gid));
+        }
+    }
+    
     public void sendNewFriendRequest(String fName){
         if(!fName.isEmpty()){
             handler.send(Packer.packNewFriendRequest(handler.getUser().getLogKey(), fName));
