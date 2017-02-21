@@ -90,10 +90,11 @@ public class Packer implements ChatTags {
         return c;
     }
 
-    public static Container packOkayToGroupRequest(String ulkey, String gid) {
+    public static Container packOkayToGroupRequest(String ulkey,String gName, String gid) {
         Container c = new Container();
         c.setSuperTag(U_AGREE_GROUP);
         c.addE(FROM_USER, ulkey);
+        c.addE(GROUP_NAME, gName);
         c.addE(GROUP_ID, gid);
         return c;
     }

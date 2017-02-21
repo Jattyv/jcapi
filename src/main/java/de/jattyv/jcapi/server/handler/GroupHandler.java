@@ -38,6 +38,8 @@ public class GroupHandler extends JattyvHandler {
     public void handle(Container c) {
         String gname = c.getDataByName(GROUP_NAME);
         String gID = "";
+        String flkey = "";
+        String fname = "";
         switch (c.getSuperTag()) {
 
             case U_CREATE_GROUP:
@@ -61,14 +63,22 @@ public class GroupHandler extends JattyvHandler {
 
             case NEW_GROUP_MESSAGE:
                 gID = c.getDataByName(GROUP_ID);
-                String flkey = c.getDataByName(FROM_USER);
-                String fname = dc.getUserC().getUserByLKey(flkey).getUserName();
+                flkey = c.getDataByName(FROM_USER);
+                fname = dc.getUserC().getUserByLKey(flkey).getUserName();
                 String msg = c.getDataByName(MESSAGE);
                 LinkedList<String> members = new LinkedList<>(dc.getGroupC().getGroup(gID).getMembers());
                 dc.getGroupMsgC().createGroupMessage(fname, gID, members, msg);
                 for (String memberName : members) {
                     MReloadHandler.turnOnGroupMessageReload(memberName);
                 }
+                break;
+
+            case U_AGREE_GROUP:
+                gID = c.getDataByName(GROUP_ID);
+                flkey = c.getDataByName(FROM_USER);
+                fname = dc.getUserC().getUserByLKey(flkey).getUserName();
+                dc.getUserC().addGroup(fname, gname, gID);
+                MReloadHandler.turnOnNewFGList(fname);
                 break;
         }
     }
