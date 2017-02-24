@@ -25,58 +25,112 @@ import de.jattyv.jcapi.util.crypt.PasswordHasher;
  */
 public class OutputHandler extends JattyvHandler {
 
+    /**
+     * Constructs the OutPutHandler.
+     * 
+     * @param handler The needed Hanlder for handling everything outgoing message.
+     */
     public OutputHandler(Handler handler) {
         super(handler);
     }
 
+    /**
+     * Sends a new message to an friend.
+     * 
+     * @param toName The name of the friend.
+     * @param message The message.
+     */
     public void sendNewMessage(String toName, String message) {
         if (!toName.isEmpty() && !message.isEmpty()) {
             handler.send(Packer.packNewMessage(handler.getUser().getLogKey(), toName, message));
         }
     }
 
+    /**
+     * Sends a container for log in.
+     * @param uname The name of the user.
+     * @param upassword The hashed password of the user.
+     */
     public void sendLogin(String uname, String upassword) {
         if (!uname.isEmpty() && !upassword.isEmpty()) {
             handler.start(Packer.packLogin(uname, PasswordHasher.generateLKey(uname, upassword)));
         }
     }
 
+    /**
+     * Sends a container for registration.
+     * 
+     * @param uname The name of the user.
+     * @param upassword The password of the user.
+     */
     public void sendRegist(String uname, String upassword) {
         if (!uname.isEmpty() && !upassword.isEmpty()) {
             handler.start(Packer.packRegistration(uname, PasswordHasher.generateLKey(uname, upassword)));
         }
     }
 
+    /**
+     * Sends a container for creating a group.
+     * 
+     * @param gName The name of the group.
+     */
     public void createGroup(String gName) {
         if (!gName.isEmpty()) {
             handler.send(Packer.packCreateGroup(gName, handler.getUser().getLogKey()));
         }
     }
 
+    /**
+     * Adds a request to a group to a friend.
+     * 
+     * @param gID The id of the group.
+     * @param fName The name of the friend.
+     */
     public void addUserToGroup(String gID, String fName) {
         if (!(gID.isEmpty()) && !fName.isEmpty()) {
             handler.send(Packer.packAddUserToGroup(gID, fName));
         }
     }
 
+    /**
+     * Sends a new message to a group.
+     * 
+     * @param togID The id of the group.
+     * @param msg The message.
+     */
     public void sendNewGroupMessage(String togID, String msg) {
         if (!togID.isEmpty() && !msg.isEmpty()) {
             handler.send(Packer.packNewGroupMessage(handler.getUser().getLogKey(), togID, msg));
         }
     }
     
+    /**
+     * Sends an agreement for a grouprequest.
+     * 
+     * @param gName The name of the group.
+     * @param gid The id of the group.
+     */
     public void sendOkayToGroupRequest(String gName, String gid){
         if(!gid.isEmpty()){
             handler.send(Packer.packOkayToGroupRequest(handler.getUser().getLogKey(),gName, gid));
         }
     }
     
+    /**
+     * Sends a new request to add a new friend.
+     * 
+     * @param fName The name of the friend.
+     */
     public void sendNewFriendRequest(String fName){
         if(!fName.isEmpty()){
             handler.send(Packer.packNewFriendRequest(handler.getUser().getLogKey(), fName));
         }
     }
-    
+   
+    /**
+     * Sends an agreement for a request to add a friend.
+     * @param fname The name of the friend.
+     */
     public void sendOkayToFriendRequest(String fname){
         if(!fname.isEmpty()){
             handler.send(Packer.packOkayToFriendRequest(handler.getUser().getLogKey(), fname));

@@ -29,6 +29,13 @@ import java.util.List;
  */
 public class JattyvFactory implements ChatTags {
 
+    /**
+     * Creates a logincontainer, that will contain the loginkey.
+     * 
+     * @param uname The needed username.
+     * @param upassword The needed password.
+     * @return a container with the needed information for the client.
+     */
     public static Container createLoginContainer(String uname, String upassword) {
         Container login = new Container();
         login.setSuperTag(SESSION_SETTINGS);
@@ -37,6 +44,11 @@ public class JattyvFactory implements ChatTags {
         return login;
     }
 
+    /**
+     * Creates a container wich contains the errorkey for logins.
+     * 
+     * @return a container wich contains the errorkey for logins.
+     */
     public static Container createLoginFailedContainer() {
         Container fLogin = new Container();
         fLogin.setSuperTag(JERROR);
@@ -44,6 +56,12 @@ public class JattyvFactory implements ChatTags {
         return fLogin;
     }
 
+    /**
+     * Creates an errorcontainer with the given errkey.
+     * 
+     * @param errCode The needed errorcode.
+     * @return an errorcontainer with the given errkey.
+     */
     public static Container createErrorContainer(String errCode) {
         Container err = new Container();
         err.setSuperTag(JERROR);
@@ -51,6 +69,14 @@ public class JattyvFactory implements ChatTags {
         return err;
     }
 
+    /**
+     * Creates an messagecontainer.
+     * 
+     * @param uName The name from the sender.
+     * @param toName The name from the receiver.
+     * @param message The message.
+     * @return an messagecontainer.
+     */
     public static Container createMessageContainer(String uName, String toName, String message) {
         Container msg = new Container();
         msg.setSuperTag(NEW_MESSAGE);
@@ -61,6 +87,13 @@ public class JattyvFactory implements ChatTags {
         return msg;
     }
 
+    /**
+     * Creates a container wich contains information for a grouprequest.
+     * 
+     * @param gName The name of the group.
+     * @param gID The id of the group.
+     * @return a container wich contains information for a grouprequest.
+     */
     public static Container createGroupRequestContainer(String gName, String gID) {
         Container c = new Container();
         c.setSuperTag(G_REQUEST_TO_USER);
@@ -69,6 +102,14 @@ public class JattyvFactory implements ChatTags {
         return c;
     }
 
+    /**
+     * Creates a container wich contains information for a groupmessage.
+     * 
+     * @param uName The name of the sender.
+     * @param gID The groupid.
+     * @param msg The message.
+     * @return a container wich contains information for a groupmessage.
+     */
     public static Container createGroupMessageContainer(String uName, String gID, String msg) {
         Container c = new Container();
         c.setSuperTag(NEW_GROUP_MESSAGE);
@@ -78,6 +119,13 @@ public class JattyvFactory implements ChatTags {
         return c;
     }
     
+    /**
+     * Creates a container wich contains information for a friendrequest.
+     * 
+     * @param uName The name of the sender(person who wants to be friend with).
+     * @param fName The name of the receiver(peron who will be asked to be friend with).
+     * @return a container wich contains information for a friendrequest.
+     */
     public static Container createFriendRequestContainer(String uName, String fName){
         Container c = new Container();
         c.setSuperTag(U_FRIENDREQUEST);
@@ -86,6 +134,12 @@ public class JattyvFactory implements ChatTags {
         return c;
     }
 
+    /**
+     * Creates a container wich contains the users friend and grouplist.
+     * 
+     * @param fgs The friend/group list.
+     * @return a container wich contains the users friend and grouplist.
+     */
     public static Container createFGListContainer(List<FG> fgs) {
         Container c = new Container();
         c.setSuperTag(U_FGLIST);

@@ -25,27 +25,88 @@ import java.util.List;
  */
 public interface JGui {
 
+    /**
+     * The key for the login card.
+     */
     public static final String LOGIN_WINDOW = "wlogin";
+    /**
+     * The key for the registration card.
+     */
     public static final String REGISTRATION_WINDOW = "wregist";
+    /**
+     * the card for the chatting card.
+     */
     public static final String CHAT_WINDOW = "cwindow";
 
+    
+    /**
+     * A key declaring his content as an information for alert types.
+     */
     public static final String ALERT_TYPE_INFO = "info";
+    /**
+     * A key declaring his content as an information about a new certificat for alert types.
+     */
     public static final String ALERT_TYPE_CERT = "newcert";
 
+    /**
+     * Asks for adding a friend.
+     * 
+     * @param fName The name of the friend.
+     */
     public void addFriend(String fName);
 
+    /**
+     * Asks for adding a group.
+     * 
+     * @param gName The name of the group, for displaying.
+     * @param gID The groupid for the answer when acepting.
+     */
     public void addGroup(String gName, String gID);
 
+    /**
+     * Changes the window.
+     * 
+     * @param window The window to open.
+     */
     public void changeWindow(String window);
 
+    /**
+     * Shows an alert that contains an errormessage.
+     * 
+     * @param errKey The errorkey.
+     */
     public void showError(String errKey);
 
+    /**
+     * Shows an alert.
+     * 
+     * @param msg The alertmessage.
+     * @param alertType The type of alert.
+     * @return The decision.(YES/NO)
+     */
     public boolean alert(String msg, String alertType);
 
+    /**
+     * Adds a new friendmessage.
+     * 
+     * @param fName The name of the friend.
+     * @param message The message.
+     */
     public void addMessage(String fName, String message);
 
+    /**
+     * Adds a new groupmessage.
+     * 
+     * @param gID The id of the group.
+     * @param message The message.
+     */
     public void addGroupMessage(String gID, String message);
     
+    /**
+     * Updates the list of friends/groups.
+     * 
+     * @param fgs The new list of friends/groups.
+     */
     public void updateFGList(List<FG> fgs);
 
 }

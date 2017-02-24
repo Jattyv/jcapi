@@ -44,6 +44,12 @@ import javax.crypto.spec.SecretKeySpec;
  */
 public class CryptUtils {
 
+    /**
+     * Encrypts an with RSA.
+     * @param text The text to encrypt.
+     * @param pub The needed publickey.
+     * @return The encrypted text.
+     */
     public static String encrypt(String text, PublicKey pub) {
         try {
             Cipher rsaCipher = Cipher.getInstance("RSA");
@@ -63,6 +69,12 @@ public class CryptUtils {
         return "";
     }
 
+    /**
+     * Decrypts an encrypted text with RSA.
+     * @param cipherText The encrypted text.
+     * @param priv The needed private key.
+     * @return The decrypted text.
+     */
     public static String decrypt(String cipherText, PrivateKey priv) {
         try {
             Cipher rsaCipher = Cipher.getInstance("RSA");
@@ -83,6 +95,13 @@ public class CryptUtils {
         return "";
     }
 
+    /**
+     * Encrypts an text with AES.
+     * 
+     * @param text The to encrypt.
+     * @param key The needed key.
+     * @return An encrypted text.
+     */
     public static String encrypt(String text, SecretKey key) {
         try {
             Cipher aesCipher = Cipher.getInstance("AES");
@@ -101,6 +120,13 @@ public class CryptUtils {
         return null;
     }
 
+    /**
+     * Decrypts an encrypted text with AES.
+     * 
+     * @param cipherText The encrypted text.
+     * @param key The needed key.
+     * @return An decrypted text.
+     */
     public static String decrypt(String cipherText, SecretKey key) {
         try {
             Cipher aesCipher = Cipher.getInstance("AES");
@@ -119,6 +145,11 @@ public class CryptUtils {
         return null;
     }
 
+    /**
+     * Generates an AES key.
+     * 
+     * @return An AES key.
+     */
     public static SecretKey generateAESKey() {
         SecretKey key = null;
         try {
@@ -132,6 +163,11 @@ public class CryptUtils {
         return key;
     }
 
+    /**
+     * Generates an RSA keypair.
+     * 
+     * @return An RSA keypair.
+     */
     public static KeyPair generateKeyPair() {
         KeyPair pair = null;
         try {
@@ -145,27 +181,63 @@ public class CryptUtils {
         return pair;
     }
 
+    /**
+     * Converts an Array of bytes into an key.
+     * @param key The key to convert.
+     * @return The key.
+     */
     public static SecretKey toKey(byte[] key) {
         return new SecretKeySpec(key, 0, key.length, "AES");
     }
     
+    /**
+     * Converts an Key into String.
+     * 
+     * @param key The key to convert.
+     * @return A string that contains the keyinformation.
+     */
     public static String KeyToString(SecretKey key){
         return Base64.getEncoder().encodeToString(key.getEncoded());
     }
+    
+    /**
+     * Converts an String into a Key.
+     * 
+     * @param key The key to convert.
+     * @return The key.
+     */
     public static SecretKey StringToKey(String key){
         byte[] decKey = Base64.getDecoder().decode(key);
         return toKey(decKey);
     }
     
+    /**
+     * Converts a string into a public key.
+     * 
+     * @param key The needed public key.
+     * @return The converted key.
+     */
     public static PublicKey StringToPublicKey(String key){
         byte[] decKey = Base64.getDecoder().decode(key);
         return toPublicKey(decKey);
     }
     
+    /**
+     * Converts an public key into a string.
+     * 
+     * @param key The needed key to convert.
+     * @return The converted key.
+     */
     public static String PublicKeyToString(PublicKey key){
         return Base64.getEncoder().encodeToString(key.getEncoded());
     }
 
+    /**
+     * Converts an array of bytes into a key.
+     * 
+     * @param key The needed key to convert.
+     * @return The converted key.
+     */
     public static PublicKey toPublicKey(byte[] key) {
         KeyFactory kf;
         try {
