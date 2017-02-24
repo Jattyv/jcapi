@@ -69,18 +69,6 @@ public class JattyvFileController {
                 }
 
             }
-            if (prop.getProperty(Settings.SERVER_DB) != null) {
-                config.setServerDB(prop.getProperty(Settings.SERVER_DB));
-                if (prop.getProperty(Settings.SERVER_DB_UNAME) != null) {
-                    config.setServerDBUserName(prop.getProperty(Settings.SERVER_DB_UNAME));
-                    if (prop.getProperty(Settings.SERVER_DB_PASSWORD) != null) {
-                        config.setServerDBPassword(prop.getProperty(Settings.SERVER_DB_PASSWORD));
-                    }
-                } else {
-                    config.setServerDBUserName("Jattyv");
-                    config.setServerDBPassword("Jattyv");
-                }
-            }
 
             return config;
         } catch (IOException ex) {

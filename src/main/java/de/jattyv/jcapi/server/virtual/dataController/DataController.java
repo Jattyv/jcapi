@@ -29,9 +29,6 @@ import de.jattyv.jcapi.server.virtual.dataController.data.GroupRequest;
 import de.jattyv.jcapi.server.virtual.dataController.data.Message;
 import de.jattyv.jcapi.server.virtual.dataController.data.User;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

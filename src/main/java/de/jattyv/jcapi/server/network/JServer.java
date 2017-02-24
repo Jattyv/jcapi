@@ -46,18 +46,6 @@ public class JServer {
         this.port = settings.getPort();
         running = true;
         dc = new DataController();
-        String db = "jdbc:hsqldb:file:~/jattyv/jattyv";
-        String dbUname = "jattyv";
-        String dbPassword = "jattyv";
-        if (settings.isServerDBAvailable()) {
-            db = settings.getServerDB();
-            if (settings.isServerDBUserNameAvailable()) {
-                dbUname = settings.getServerDBUserName();
-                if (settings.isServerDBPasswordAvailable()) {
-                    dbPassword = settings.getServerDBPassword();
-                }
-            }
-        }
         reloadHandler = new MReloadHandler(dc);
     }
 
