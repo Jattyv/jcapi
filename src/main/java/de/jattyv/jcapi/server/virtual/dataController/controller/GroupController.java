@@ -20,12 +20,11 @@ public class GroupController {
         this.groups = groups;
     }
 
-    public void createGroup(String gName, String gID, String uName) {
+    public void createGroup(String gName, String gID) {
         Group group = new Group();
         group.setGroupName(gName);
         group.setGroupID(gID);
         LinkedList<String> members = new LinkedList<>();
-        members.add(uName);
         group.setMembers(members);
         groups.add(group);
     }
@@ -46,6 +45,19 @@ public class GroupController {
                 return;
             }
         }
+    }
+    
+    public boolean isUserInGroup(String gID, String uName){
+        for(Group group : groups){
+            if(group.getGroupID().equals(gID)){
+                for(String mem: group.getMembers()){
+                    if(mem.equals(uName)){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
 }

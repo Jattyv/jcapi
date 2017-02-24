@@ -5,6 +5,7 @@
  */
 package de.jattyv.jcapi.server.handler;
 
+import de.jattyv.jcapi.client.gui.cell.FG;
 import de.jattyv.jcapi.data.jobject.Container;
 import de.jattyv.jcapi.server.virtual.dataController.DataController;
 import de.jattyv.jcapi.server.virtual.dataController.data.User;
@@ -23,6 +24,9 @@ public class FriendRequestHandler extends JattyvHandler {
         String uLkey = c.getDataByName(FROM_USER);
         User user = dc.getUserC().getUserByLKey(uLkey);
         String fName = c.getDataByName(TO_USER);
+        if (!isUserFriendsOk(user, fName)) {
+            return;
+        }
         switch (c.getSuperTag()) {
             case U_REQUEST_TO_FRIEND:
                 dc.getFriendReqC().createFriendRequest(user.getUserName(), fName);
@@ -37,6 +41,18 @@ public class FriendRequestHandler extends JattyvHandler {
                 break;
         }
 
+    }
+
+    private boolean isUserFriendsOk(User user, String fname) {
+        if (fname.equals(user.getUserName())) {
+            return false;
+        }
+        for (FG fg : user.getFgs()) {
+            if (fg.getTitle().equals(fname) && fg.getType() == FG.FG_TYPE_FRIEND) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

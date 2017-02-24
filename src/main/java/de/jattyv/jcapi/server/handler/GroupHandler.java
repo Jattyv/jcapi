@@ -27,7 +27,6 @@ import java.util.LinkedList;
  */
 public class GroupHandler extends JattyvHandler {
 
-
     public GroupHandler(DataController dc) {
         super(dc);
     }
@@ -43,7 +42,7 @@ public class GroupHandler extends JattyvHandler {
                 String ulkey = c.getDataByName(FROM_USER);
                 String uname = dc.getUserC().getUserByLKey(ulkey).getUserName();
                 gID = LKeyGenerator.generateLKey(uname, ulkey);
-                dc.getGroupC().createGroup(gname, gID, uname);
+                dc.getGroupC().createGroup(gname, gID);
                 dc.getGroupReqC().createGroupRequest(gname, gID, uname);
                 MReloadHandler.turnOnGroupRequestReload(uname);
                 break;
@@ -52,16 +51,20 @@ public class GroupHandler extends JattyvHandler {
                 gID = c.getDataByName(GROUP_ID);
                 gname = dc.getGroupC().getGroup(gID).getGroupName();
                 String tname = c.getDataByName(TO_USER);
-                dc.getGroupC().addToGroup(gID, tname);
+                if (dc.getGroupC().isUserInGroup(gID, tname)) {
+                    return;
+                }
                 dc.getGroupReqC().createGroupRequest(gname, gID, tname);
                 MReloadHandler.turnOnGroupRequestReload(tname);
-
                 break;
 
             case NEW_GROUP_MESSAGE:
                 gID = c.getDataByName(GROUP_ID);
                 flkey = c.getDataByName(FROM_USER);
                 fname = dc.getUserC().getUserByLKey(flkey).getUserName();
+                if (dc.getGroupC().isUserInGroup(gID, fname)) {
+                    return;
+                }
                 String msg = c.getDataByName(MESSAGE);
                 LinkedList<String> members = new LinkedList<>(dc.getGroupC().getGroup(gID).getMembers());
                 dc.getGroupMsgC().createGroupMessage(fname, gID, members, msg);
@@ -74,6 +77,10 @@ public class GroupHandler extends JattyvHandler {
                 gID = c.getDataByName(GROUP_ID);
                 flkey = c.getDataByName(FROM_USER);
                 fname = dc.getUserC().getUserByLKey(flkey).getUserName();
+                if (dc.getGroupC().isUserInGroup(gID, fname)) {
+                    return;
+                }
+                dc.getGroupC().addToGroup(gID, fname);
                 dc.getUserC().addGroup(fname, gname, gID);
                 MReloadHandler.turnOnNewFGList(fname);
                 break;
