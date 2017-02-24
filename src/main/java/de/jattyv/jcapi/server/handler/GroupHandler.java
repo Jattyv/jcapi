@@ -62,7 +62,7 @@ public class GroupHandler extends JattyvHandler {
                 gID = c.getDataByName(GROUP_ID);
                 flkey = c.getDataByName(FROM_USER);
                 fname = dc.getUserC().getUserByLKey(flkey).getUserName();
-                if (dc.getGroupC().isUserInGroup(gID, fname)) {
+                if (!dc.getGroupC().isUserInGroup(gID, fname)) {
                     return;
                 }
                 String msg = c.getDataByName(MESSAGE);
