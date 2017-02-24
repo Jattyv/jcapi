@@ -17,6 +17,7 @@
 package de.jattyv.jcapi.data.jfc;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import de.jattyv.jcapi.client.gui.cell.FG;
 import de.jattyv.jcapi.data.jfc.data.ClientSettings;
 import de.jattyv.jcapi.data.jfc.data.Settings;
@@ -25,6 +26,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Properties;
@@ -40,9 +42,17 @@ public class JattyvFileController {
     private static final Gson gson = new Gson();
 
     public final static String J_PROP_FILE = "jattyv.properties";
+    
+    JattyvFileHandler fileHandler;
+    
+    public JattyvFileController(JattyvFileHandler fileHandler){
+        this.fileHandler = fileHandler;
+    }
 
-    public static Settings readSettings(InputStream propContent, JattyvFileHandler jfr) {
+    public Settings readSettings() {
         try {
+            String settingsAsString = fileHandler.readFile(J_PROP_FILE);
+            InputStream propContent = new ByteArrayInputStream(settingsAsString.getBytes(StandardCharsets.UTF_8));
             Properties prop = new Properties();
             prop.load(propContent);
             Settings config = new Settings();
@@ -68,8 +78,13 @@ public class JattyvFileController {
         }
         return null;
     }
+    
+    public void writeSettings(Settings settings){
+        String settingsAsString = getSettingsAsString(settings);
+        fileHandler.write(J_PROP_FILE, settingsAsString);
+    }
 
-    public static String getSettingsAsString(Settings settings) {
+    public String getSettingsAsString(Settings settings) {
         Properties prop = new Properties();
         if (settings.isIpAvailable()) {
             prop.put(Settings.IP_ADDRESS, settings.getIp());
@@ -82,19 +97,22 @@ public class JattyvFileController {
         return writer.getBuffer().toString();
     }
 
-    public static Settings readSettings(String propContent, JattyvFileHandler jfr) {
-        return readSettings(readConfig(propContent), jfr);
-    }
-
-    public static InputStream readConfig(String propContent) {
-        InputStream stream = new ByteArrayInputStream(propContent.getBytes(StandardCharsets.UTF_8));
-        return stream;
-    }
-
     public static String getFGAsJson(List<FG> fgs) {
         ClientSettings cs = new ClientSettings();
         cs.setFriends(fgs);
         return gson.toJson(cs);
+    }
+    
+    public void writeFriends(String dataName, List<FG> fgs){
+        String fgsAsString = getFGAsJson(fgs);
+        fileHandler.write(dataName, fgsAsString);
+    }
+    
+    public List<FG> readFriends(String dataName){
+        String fgsAsJson = fileHandler.readFile(dataName);
+        Type fgsType = new TypeToken<List<FG>>() {}.getType();
+        List<FG> fgs = gson.fromJson(fgsAsJson, fgsType);
+        return fgs;
     }
 
 }

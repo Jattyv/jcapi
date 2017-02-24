@@ -24,12 +24,8 @@ import de.jattyv.jcapi.data.jfc.data.Settings;
  */
 public interface JattyvFileHandler {
 
-    public Settings readSettings(String path);
-
     public String readFile(String path);
 
     public void write(String dataname, String content);
-
-    public void writeSettings(String dataName, Settings settings);
-
+    
 }
