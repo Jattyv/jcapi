@@ -16,8 +16,6 @@
  */
 package de.jattyv.jcapi.data.jfc;
 
-import de.jattyv.jcapi.data.jfc.data.Settings;
-
 /**
  *
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;

@@ -19,6 +19,9 @@ package de.jattyv.jcapi.client;
 import de.jattyv.jcapi.client.gui.JGui;
 import de.jattyv.jcapi.client.handler.Handler;
 import de.jattyv.jcapi.client.network.Client;
+import de.jattyv.jcapi.client.network.JClient;
+import de.jattyv.jcapi.data.jfc.JattyvFileController;
+import de.jattyv.jcapi.data.jfc.JattyvFileHandler;
 import de.jattyv.jcapi.data.jfc.data.Settings;
 
 /**
@@ -27,19 +30,30 @@ import de.jattyv.jcapi.data.jfc.data.Settings;
  */
 public class Chat {
 
-    private final Handler handler;
-    private final Client cl;
+    private Handler handler;
+    private JClient cl;
+    public static JattyvFileController jfc = null;
 
     public Chat(Settings settings) {
-        handler = new Handler();
-        cl = new Client(settings);
-        cl.setHandler(handler);
-        handler.setClient(cl);
+        init(settings);
     }
 
     public Chat(String ip, int port) {
         handler = new Handler();
         cl = new Client(ip, port);
+        cl.setHandler(handler);
+        handler.setClient(cl);
+    }
+
+    public Chat(JattyvFileHandler fileHandler) {
+        jfc = new JattyvFileController(fileHandler);
+        Settings settings = jfc.readSettings();
+        init(settings);
+    }
+    
+    public void init(Settings settings){
+        handler = new Handler();
+        cl = new Client(settings);
         cl.setHandler(handler);
         handler.setClient(cl);
     }

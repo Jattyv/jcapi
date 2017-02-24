@@ -16,6 +16,8 @@
  */
 package de.jattyv.jcapi.server;
 
+import de.jattyv.jcapi.data.jfc.JattyvFileController;
+import de.jattyv.jcapi.data.jfc.JattyvFileHandler;
 import de.jattyv.jcapi.data.jfc.data.Settings;
 import de.jattyv.jcapi.server.network.Server;
 
@@ -27,6 +29,15 @@ public class ChatServer {
 
     private Server server;
     private JattyvServer jServer;
+    public static JattyvFileController jfc = null;
+
+    
+    public ChatServer(JattyvFileHandler fileHandler) {
+        jfc = new JattyvFileController(fileHandler);
+        Settings settings = jfc.readSettings();
+        server = new Server(settings);
+        jServer = new JattyvServer(server);
+    }
 
     public ChatServer(int port) {
         server = new Server(port);

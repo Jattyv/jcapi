@@ -16,8 +16,10 @@
  */
 package de.jattyv.jcapi.client.handler;
 
+import de.jattyv.jcapi.client.Chat;
 import de.jattyv.jcapi.client.gui.JGui;
 import de.jattyv.jcapi.client.gui.cell.FG;
+import de.jattyv.jcapi.data.jfc.JattyvFileController;
 import de.jattyv.jcapi.data.jobject.Container;
 import java.util.LinkedList;
 import java.util.List;
@@ -27,9 +29,12 @@ import java.util.List;
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
 public class UserHandler extends JattyvHandler {
+    
+    private final List<FG> fgs;
 
     public UserHandler(Handler handler) {
         super(handler);
+        this.fgs = new LinkedList<>();
     }
 
     public void handle(Container c) {
@@ -46,11 +51,13 @@ public class UserHandler extends JattyvHandler {
                     fgs.add(fg);
                 }
                 handler.getWindow().updateFGList(fgs);
+                Chat.jfc.writeFriends(handler.getUser().getName(), fgs);
                 break;
 
             case SESSION_SETTINGS:
                 handler.getUser().setLogKey(c.getDataByName(U_LOG_KEY));
                 handler.getWindow().changeWindow(JGui.CHAT_WINDOW);
+                Chat.jfc.readFriends(handler.getUser().getName());
                 break;
         }
     }

@@ -42,6 +42,7 @@ public class JattyvFileController {
     private static final Gson gson = new Gson();
 
     public final static String J_PROP_FILE = "jattyv.properties";
+    public final static String J_FG_EXTENSION = ".json";
     
     JattyvFileHandler fileHandler;
     
@@ -52,7 +53,7 @@ public class JattyvFileController {
     public Settings readSettings() {
         try {
             String settingsAsString = fileHandler.readFile(J_PROP_FILE);
-            InputStream propContent = new ByteArrayInputStream(settingsAsString.getBytes(StandardCharsets.UTF_8));
+            InputStream propContent = new ByteArrayInputStream(settingsAsString.getBytes(StandardCharsets.US_ASCII));
             Properties prop = new Properties();
             prop.load(propContent);
             Settings config = new Settings();
@@ -105,12 +106,12 @@ public class JattyvFileController {
     
     public void writeFriends(String dataName, List<FG> fgs){
         String fgsAsString = getFGAsJson(fgs);
-        fileHandler.write(dataName, fgsAsString);
+        fileHandler.write(dataName+ J_FG_EXTENSION, fgsAsString);
     }
     
     public List<FG> readFriends(String dataName){
-        String fgsAsJson = fileHandler.readFile(dataName);
-        Type fgsType = new TypeToken<List<FG>>() {}.getType();
+        String fgsAsJson = fileHandler.readFile(dataName+ J_FG_EXTENSION);
+        Type fgsType = new TypeToken<List<FG>>(){}.getType();
         List<FG> fgs = gson.fromJson(fgsAsJson, fgsType);
         return fgs;
     }
