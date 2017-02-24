@@ -46,7 +46,7 @@ public class Server extends JServer {
             listener = new ServerSocket(port);
             while (running) {
                 Socket s = listener.accept();
-                ServerThread st = new ServerThread(new Connection(this, s), dc, dbc);
+                ServerThread st = new ServerThread(new Connection(this, s), dc);
                 Client cl = new Client(st);
                 cl.start();
             }

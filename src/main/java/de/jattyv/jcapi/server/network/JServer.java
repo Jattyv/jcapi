@@ -18,7 +18,6 @@ package de.jattyv.jcapi.server.network;
 
 import de.jattyv.jcapi.data.jfc.data.Settings;
 import de.jattyv.jcapi.server.handler.MReloadHandler;
-import de.jattyv.jcapi.server.virtual.DBController.DBController;
 import de.jattyv.jcapi.server.virtual.dataController.DataController;
 
 /**
@@ -31,7 +30,6 @@ public class JServer {
     protected boolean running;
     protected MReloadHandler reloadHandler;
     protected DataController dc;
-    protected DBController dbc;
 
     public JServer(Settings settings) {
         init(settings);
@@ -60,9 +58,6 @@ public class JServer {
                 }
             }
         }
-        dbc = new DBController(db, dbUname, dbPassword);
-        dbc.init();
-        dc.loadDataFromDB(dbc);
         reloadHandler = new MReloadHandler(dc);
     }
 

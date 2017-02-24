@@ -17,7 +17,6 @@
 package de.jattyv.jcapi.server.handler;
 
 import de.jattyv.jcapi.data.jobject.Container;
-import de.jattyv.jcapi.server.virtual.DBController.DBController;
 import de.jattyv.jcapi.server.virtual.dataController.DataController;
 import de.jattyv.jcapi.util.crypt.LKeyGenerator;
 import java.util.LinkedList;
@@ -28,11 +27,9 @@ import java.util.LinkedList;
  */
 public class GroupHandler extends JattyvHandler {
 
-    private final DBController dbc;
 
-    public GroupHandler(DataController dc, DBController dbc) {
+    public GroupHandler(DataController dc) {
         super(dc);
-        this.dbc = dbc;
     }
 
     public void handle(Container c) {

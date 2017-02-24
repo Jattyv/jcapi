@@ -20,7 +20,6 @@ import com.google.gson.Gson;
 import de.jattyv.jcapi.data.jobject.Base;
 import de.jattyv.jcapi.data.jobject.Container;
 import de.jattyv.jcapi.server.network.ServerThread;
-import de.jattyv.jcapi.server.virtual.DBController.DBController;
 import de.jattyv.jcapi.server.virtual.dataController.DataController;
 import de.jattyv.jcapi.util.ChatTags;
 
@@ -37,16 +36,14 @@ public class Handler implements ChatTags {
     private final GroupHandler groupHandler;
     private final FriendRequestHandler friendReqHandler;
     private DataController dc;
-    private DBController dbc;
 
-    public Handler(ServerThread con, DataController dc, DBController dbc) {
+    public Handler(ServerThread con, DataController dc) {
         this.con = con;
         this.dc = dc;
-        this.dbc = dbc;
         session = new Base();
         msgHandler = new MsgHandler(dc);
-        userHandler = new UserHandler(dc, dbc);
-        groupHandler = new GroupHandler(dc, dbc);
+        userHandler = new UserHandler(dc);
+        groupHandler = new GroupHandler(dc);
         friendReqHandler = new FriendRequestHandler(dc);
 
     }

@@ -16,8 +16,6 @@
  */
 package de.jattyv.jcapi.server.virtual.dataController;
 
-import de.jattyv.jcapi.server.virtual.DBController.DBController;
-import de.jattyv.jcapi.server.virtual.DBController.entities.UserEntity;
 import de.jattyv.jcapi.server.virtual.dataController.controller.FriendRequestController;
 import de.jattyv.jcapi.server.virtual.dataController.controller.GroupController;
 import de.jattyv.jcapi.server.virtual.dataController.controller.GroupMessageController;
@@ -92,17 +90,6 @@ public class DataController {
 
     public FriendRequestController getFriendReqC() {
         return friendReqC;
-    }
-
-    public void loadDataFromDB(DBController dbc) {
-        try {
-            List<UserEntity> userEntities = dbc.getUserDao().getUsers();
-            for (UserEntity user : userEntities) {
-                userC.createUser(user.getUserName(), user.getPassword());
-            }
-        } catch (NullPointerException e) {
-            Logger.getLogger(DataController.class.getName()).log(Level.SEVERE, null, e);
-        }
     }
 
 }

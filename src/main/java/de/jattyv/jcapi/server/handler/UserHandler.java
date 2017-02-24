@@ -18,7 +18,6 @@ package de.jattyv.jcapi.server.handler;
 
 import de.jattyv.jcapi.data.jobject.Base;
 import de.jattyv.jcapi.data.jobject.Container;
-import de.jattyv.jcapi.server.virtual.DBController.DBController;
 import de.jattyv.jcapi.server.virtual.dataController.DataController;
 import de.jattyv.jcapi.util.factory.JattyvFactory;
 
@@ -28,11 +27,9 @@ import de.jattyv.jcapi.util.factory.JattyvFactory;
  */
 public class UserHandler extends JattyvHandler {
 
-    private DBController dbc;
 
-    public UserHandler(DataController dc, DBController dbc) {
+    public UserHandler(DataController dc) {
         super(dc);
-        this.dbc = dbc;
     }
 
     public Base handleFirstInput(Container c) {
@@ -49,7 +46,6 @@ public class UserHandler extends JattyvHandler {
                         Container login = JattyvFactory.createLoginContainer(uName, uPassword);
                         b.addC(login);
                         dc.getUserC().setLkey(uName, login.getDataByName(U_LOG_KEY));
-                        dbc.getUserDao().createUser(uName, uPassword);
                     }
                 }
                 break;
