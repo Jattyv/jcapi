@@ -61,14 +61,6 @@ public class JattyvFileController {
             if (prop.getProperty(Settings.U_NAME) != null) {
                 config.setuName(prop.getProperty(Settings.U_NAME));
             }
-            if (prop.getProperty(Settings.CLIENT_SETTINGS) != null) {
-                config.setClientSettingsPath(prop.getProperty(Settings.CLIENT_SETTINGS));
-                String clientFile = jfr.readFile(prop.getProperty(Settings.CLIENT_SETTINGS));
-                if (!clientFile.equals("")) {
-                    config.setClientSettings(gson.fromJson(clientFile, ClientSettings.class));
-                }
-
-            }
 
             return config;
         } catch (IOException ex) {

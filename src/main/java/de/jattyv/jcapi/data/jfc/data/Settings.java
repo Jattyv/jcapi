@@ -27,29 +27,24 @@ public class Settings {
     public static final String AUTO_START_SERVER = "AutoStartServer";
     public static final String U_NAME = "UserName";
     public static final String SERVER_SETTINGS = "ServerSettingsPath";
-    public static final String CLIENT_SETTINGS = "ClienSettingsPath";
-
+    
     private String ip;
     private int port;
     private boolean autoStartServer;
     private String uName;
     private ClientSettings clientSettings;
     private String serverSettingsPath;
-    private String clientSettingsPath;
 
     private boolean ipAvailable;
     private boolean portAvailable;
     private boolean autoStartServerAvailable;
     private boolean uNameAvailable;
-    private boolean clientSettingsAvailable;
-    private boolean clientSettingsPathAvailable;
 
     public Settings() {
         ipAvailable = false;
         portAvailable = false;
         autoStartServerAvailable = false;
         uNameAvailable = false;
-        clientSettingsAvailable = false;
     }
 
     public String getIp() {
@@ -92,10 +87,6 @@ public class Settings {
         return clientSettings;
     }
 
-    public void setClientSettings(ClientSettings clientSettings) {
-        this.clientSettings = clientSettings;
-        clientSettingsAvailable = true;
-    }
 
     public boolean isIpAvailable() {
         return ipAvailable;
@@ -129,33 +120,8 @@ public class Settings {
         this.uNameAvailable = uNameAvailable;
     }
 
-    public boolean isClientSettingsAvailable() {
-        return clientSettingsAvailable;
-    }
-
-    public void setClientSettingsAvailable(boolean clientSettingsAvailable) {
-        this.clientSettingsAvailable = clientSettingsAvailable;
-    }
-
     public String getServerSettingsPath() {
         return serverSettingsPath;
-    }
-
-    public String getClientSettingsPath() {
-        return clientSettingsPath;
-    }
-
-    public void setClientSettingsPath(String clientSettingsPath) {
-        this.clientSettingsPath = clientSettingsPath;
-        clientSettingsPathAvailable = true;
-    }
-
-    public boolean isClientSettingsPathAvailable() {
-        return clientSettingsPathAvailable;
-    }
-
-    public void setClientSettingsPathAvailable(boolean clientSettingsPathAvailable) {
-        this.clientSettingsPathAvailable = clientSettingsPathAvailable;
     }
 
 }
