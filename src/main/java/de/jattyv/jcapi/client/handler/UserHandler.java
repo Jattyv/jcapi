@@ -29,7 +29,7 @@ import java.util.List;
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
 public class UserHandler extends JattyvHandler {
-    
+
     private final List<FG> fgs;
 
     public UserHandler(Handler handler) {
@@ -38,16 +38,17 @@ public class UserHandler extends JattyvHandler {
     }
 
     public void handle(Container c) {
+        List<FG> fgs;
 
         switch (c.getSuperTag()) {
 
             case U_FGLIST:
-                List<FG> fgs = new LinkedList<>();
-                for(Container cfg : c.getC()){
+                fgs = new LinkedList<>();
+                for (Container cfg : c.getC()) {
                     String fgTitle = cfg.getDataByName(FG_NAME);
                     String fgId = cfg.getDataByName(FG_ID);
                     int fgType = Integer.parseInt(cfg.getDataByName(FG_TYPE));
-                    FG fg = new FG(fgTitle,fgType,fgId);
+                    FG fg = new FG(fgTitle, fgType, fgId);
                     fgs.add(fg);
                 }
                 handler.getWindow().updateFGList(fgs);
@@ -57,7 +58,10 @@ public class UserHandler extends JattyvHandler {
             case SESSION_SETTINGS:
                 handler.getUser().setLogKey(c.getDataByName(U_LOG_KEY));
                 handler.getWindow().changeWindow(JGui.CHAT_WINDOW);
-                handler.getWindow().updateFGList(Chat.jfc.readFriends(handler.getUser().getName()));
+                fgs = Chat.jfc.readFriends(handler.getUser().getName());
+                if (fgs != null) {
+                    handler.getWindow().updateFGList(fgs);
+                }
                 break;
         }
     }

@@ -24,16 +24,19 @@ public class FriendHandler extends JattyvHandler {
         String uLkey = c.getDataByName(FROM_USER);
         User user = dc.getUserC().getUserByLKey(uLkey);
         String fName = c.getDataByName(TO_USER);
-        if (!isUserFriendsOk(user, fName)) {
-            return;
-        }
         switch (c.getSuperTag()) {
             case U_REQUEST_TO_FRIEND:
+                if (!isUserFriendsOk(user, fName)) {
+                    return;
+                }
                 dc.getFriendReqC().createFriendRequest(user.getUserName(), fName);
                 MReloadHandler.turnOnFriendRequestReload(fName);
                 break;
 
             case U_AGREE_FRIEND:
+                if (!isUserFriendsOk(user, fName)) {
+                    return;
+                }
                 dc.getUserC().addFriend(user.getUserName(), fName);
                 dc.getUserC().addFriend(fName, user.getUserName());
                 MReloadHandler.turnOnNewFGList(fName);
