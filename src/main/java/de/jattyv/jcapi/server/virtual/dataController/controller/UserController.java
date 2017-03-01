@@ -114,7 +114,7 @@ public class UserController {
         for (User user : users) {
             if (user.getUserName().equals(uname)) {
                 for (FG fg : user.getFgs()) {
-                    if (fg.getTitle().equals(uname)) {
+                    if (fg.getId().equals(gID)) {
                         if (fg.getType() == FG.FG_TYPE_GROUP) {
                             user.getFgs().remove(fg);
                             return;
