@@ -17,6 +17,7 @@
 package de.jattyv.jcapi.server.network.data;
 
 import de.jattyv.jcapi.server.network.JServer;
+import de.jattyv.jcapi.server.network.ServerThread;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -30,14 +31,14 @@ import java.util.logging.Logger;
  */
 public class Connection implements JConnection {
 
-    private JServer server;
+    private ServerThread st;
     private Socket socket;
 
     private DataOutputStream out;
     private DataInputStream in;
 
-    public Connection(JServer server, Socket socket) {
-        this.server = server;
+    public Connection(ServerThread st, Socket socket) {
+        this.st = st;
         this.socket = socket;
         try {
             out = new DataOutputStream(socket.getOutputStream());
@@ -53,6 +54,7 @@ public class Connection implements JConnection {
             out.writeUTF(msg);
         } catch (IOException ex) {
             Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
+            close();
         }
     }
 
@@ -62,8 +64,13 @@ public class Connection implements JConnection {
             return in.readUTF();
         } catch (IOException ex) {
             Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
+            close();
         }
         return null;
+    }
+
+    public void close() {
+        st.close();
     }
 
     @Override

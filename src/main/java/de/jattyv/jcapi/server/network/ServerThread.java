@@ -20,10 +20,13 @@ import com.google.gson.Gson;
 import de.jattyv.jcapi.data.jobject.Base;
 import de.jattyv.jcapi.data.jobject.Container;
 import de.jattyv.jcapi.server.handler.Handler;
+import de.jattyv.jcapi.server.handler.MReloadHandler;
+import de.jattyv.jcapi.server.network.data.Connection;
 import de.jattyv.jcapi.server.network.data.JConnection;
 import de.jattyv.jcapi.server.virtual.dataController.DataController;
 import de.jattyv.jcapi.util.ChatTags;
 import de.jattyv.jcapi.util.factory.JattyvFactory;
+import java.net.Socket;
 
 /**
  *
@@ -37,9 +40,9 @@ public class ServerThread extends Thread implements ChatTags {
     private boolean connected;
     private DataController dc;
 
-    public ServerThread(JConnection con, DataController dc) {
+    public ServerThread(Socket s, DataController dc) {
         gson = new Gson();
-        this.con = con;
+        this.con = new Connection(this, s);
         this.dc = dc;
         handler = new Handler(this, dc);
     }
@@ -79,6 +82,8 @@ public class ServerThread extends Thread implements ChatTags {
     }
 
     public void close() {
+        MReloadHandler.removeUser(handler.getUname());
+        connected = false;
         con.closeCon();
     }
 

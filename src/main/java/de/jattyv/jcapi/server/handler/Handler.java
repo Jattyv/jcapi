@@ -37,6 +37,8 @@ public class Handler implements ChatTags {
     private final FriendHandler friendHandler;
     private DataController dc;
 
+    private String uname;
+
     public Handler(ServerThread con, DataController dc) {
         this.con = con;
         this.dc = dc;
@@ -58,6 +60,7 @@ public class Handler implements ChatTags {
             con.close();
         }
         if (session != null) {
+            uname = session.getDatabySuperTag(SESSION_SETTINGS).getDataByName(U_NAME);
             return session.getDatabySuperTag(SESSION_SETTINGS);
         }
         return null;
@@ -83,29 +86,33 @@ public class Handler implements ChatTags {
             case G_REQUEST_TO_USER:
                 groupHandler.handle(c);
                 break;
-                
+
             case U_REQUEST_TO_FRIEND:
                 friendHandler.handle(c);
                 break;
-                
+
             case U_AGREE_FRIEND:
                 friendHandler.handle(c);
                 break;
-            
+
             case U_AGREE_GROUP:
                 groupHandler.handle(c);
                 break;
-                
+
             case U_REM_FRIEND:
                 friendHandler.handle(c);
                 break;
-            
+
             case U_REM_GROUP:
                 groupHandler.handle(c);
                 break;
 
         }
 
+    }
+
+    public String getUname() {
+        return uname;
     }
 
 }
