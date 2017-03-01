@@ -57,7 +57,7 @@ public class UserHandler extends JattyvHandler {
             case SESSION_SETTINGS:
                 handler.getUser().setLogKey(c.getDataByName(U_LOG_KEY));
                 handler.getWindow().changeWindow(JGui.CHAT_WINDOW);
-                Chat.jfc.readFriends(handler.getUser().getName());
+                handler.getWindow().updateFGList(Chat.jfc.readFriends(handler.getUser().getName()));
                 break;
         }
     }
