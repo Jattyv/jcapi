@@ -60,4 +60,17 @@ public class GroupController {
         return false;
     }
 
+    public void remUser(String gID, String uname) {
+        for(Group group : groups){
+            if(group.getGroupID().equals(gID)){
+                for(String mem: group.getMembers()){
+                    if(mem.equals(uname)){
+                        group.getMembers().remove(mem);
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
 }

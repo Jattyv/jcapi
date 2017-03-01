@@ -34,13 +34,13 @@ public class GroupHandler extends JattyvHandler {
     public void handle(Container c) {
         String gname = c.getDataByName(GROUP_NAME);
         String gID = "";
-        String flkey = "";
-        String fname = "";
+        String ulkey = "";
+        String uname = "";
         switch (c.getSuperTag()) {
 
             case U_CREATE_GROUP:
-                String ulkey = c.getDataByName(FROM_USER);
-                String uname = dc.getUserC().getUserByLKey(ulkey).getUserName();
+                ulkey = c.getDataByName(FROM_USER);
+                uname = dc.getUserC().getUserByLKey(ulkey).getUserName();
                 gID = LKeyGenerator.generateLKey(uname, ulkey);
                 dc.getGroupC().createGroup(gname, gID);
                 dc.getGroupReqC().createGroupRequest(gname, gID, uname);
@@ -60,14 +60,14 @@ public class GroupHandler extends JattyvHandler {
 
             case NEW_GROUP_MESSAGE:
                 gID = c.getDataByName(GROUP_ID);
-                flkey = c.getDataByName(FROM_USER);
-                fname = dc.getUserC().getUserByLKey(flkey).getUserName();
-                if (!dc.getGroupC().isUserInGroup(gID, fname)) {
+                ulkey = c.getDataByName(FROM_USER);
+                uname = dc.getUserC().getUserByLKey(ulkey).getUserName();
+                if (!dc.getGroupC().isUserInGroup(gID, uname)) {
                     return;
                 }
                 String msg = c.getDataByName(MESSAGE);
                 LinkedList<String> members = new LinkedList<>(dc.getGroupC().getGroup(gID).getMembers());
-                dc.getGroupMsgC().createGroupMessage(fname, gID, members, msg);
+                dc.getGroupMsgC().createGroupMessage(uname, gID, members, msg);
                 for (String memberName : members) {
                     MReloadHandler.turnOnGroupMessageReload(memberName);
                 }
@@ -75,14 +75,23 @@ public class GroupHandler extends JattyvHandler {
 
             case U_AGREE_GROUP:
                 gID = c.getDataByName(GROUP_ID);
-                flkey = c.getDataByName(FROM_USER);
-                fname = dc.getUserC().getUserByLKey(flkey).getUserName();
-                if (dc.getGroupC().isUserInGroup(gID, fname)) {
+                ulkey = c.getDataByName(FROM_USER);
+                uname = dc.getUserC().getUserByLKey(ulkey).getUserName();
+                if (dc.getGroupC().isUserInGroup(gID, uname)) {
                     return;
                 }
-                dc.getGroupC().addToGroup(gID, fname);
-                dc.getUserC().addGroup(fname, gname, gID);
-                MReloadHandler.turnOnNewFGList(fname);
+                dc.getGroupC().addToGroup(gID, uname);
+                dc.getUserC().addGroup(uname, gname, gID);
+                MReloadHandler.turnOnNewFGList(uname);
+                break;
+
+            case U_REM_GROUP:
+                ulkey = c.getDataByName(FROM_USER);
+                uname = dc.getUserC().getUserByLKey(ulkey).getUserName();
+                gID = c.getDataByName(FG_ID);
+                dc.getGroupC().remUser(gID, uname);
+                dc.getUserC().remGroup(uname, gID);
+                MReloadHandler.turnOnNewFGList(uname);
                 break;
         }
     }

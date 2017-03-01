@@ -71,8 +71,8 @@ public class UserController {
         }
         return null;
     }
-    
-    protected User getUserByName(String name){
+
+    protected User getUserByName(String name) {
         for (User user : users) {
             if (user.getUserName().equals(name)) {
                 return user;
@@ -80,34 +80,64 @@ public class UserController {
         }
         return null;
     }
-    
-    public void addFriend(String uName, String fname){
-        for(User user : users){
-            if(user.getUserName().equals(uName)){
+
+    public void addFriend(String uName, String fname) {
+        for (User user : users) {
+            if (user.getUserName().equals(uName)) {
                 FG fg = new FG(fname, FG.FG_TYPE_FRIEND, fname);
                 user.getFgs().add(fg);
                 return;
             }
         }
     }
-    
-    public void addGroup(String uName, String gName, String gid ){
-        for(User user : users){
-            if(user.getUserName().equals(uName)){
+
+    public void addGroup(String uName, String gName, String gid) {
+        for (User user : users) {
+            if (user.getUserName().equals(uName)) {
                 FG fg = new FG(gName, FG.FG_TYPE_GROUP, gid);
                 user.getFgs().add(fg);
                 return;
             }
         }
     }
-    
-    public List<FG> getFGList(String uName){
-        for(User user : users){
-            if(user.getUserName().equals(uName)){
+
+    public List<FG> getFGList(String uName) {
+        for (User user : users) {
+            if (user.getUserName().equals(uName)) {
                 return user.getFgs();
             }
         }
         return null;
+    }
+
+    public void remGroup(String uname, String gID) {
+        for (User user : users) {
+            if (user.getUserName().equals(uname)) {
+                for (FG fg : user.getFgs()) {
+                    if (fg.getTitle().equals(uname)) {
+                        if (fg.getType() == FG.FG_TYPE_GROUP) {
+                            user.getFgs().remove(fg);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public void remFriend(String userName, String fName) {
+        for (User user : users) {
+            if (user.getUserName().equals(userName)) {
+                for (FG fg : user.getFgs()) {
+                    if (fg.getTitle().equals(fName)) {
+                        if (fg.getType() == FG.FG_TYPE_FRIEND) {
+                            user.getFgs().remove(fg);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
     }
 
 }

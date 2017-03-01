@@ -34,7 +34,7 @@ public class Handler implements ChatTags {
     private final MsgHandler msgHandler;
     private final UserHandler userHandler;
     private final GroupHandler groupHandler;
-    private final FriendRequestHandler friendReqHandler;
+    private final FriendHandler friendHandler;
     private DataController dc;
 
     public Handler(ServerThread con, DataController dc) {
@@ -44,7 +44,7 @@ public class Handler implements ChatTags {
         msgHandler = new MsgHandler(dc);
         userHandler = new UserHandler(dc);
         groupHandler = new GroupHandler(dc);
-        friendReqHandler = new FriendRequestHandler(dc);
+        friendHandler = new FriendHandler(dc);
 
     }
 
@@ -85,14 +85,22 @@ public class Handler implements ChatTags {
                 break;
                 
             case U_REQUEST_TO_FRIEND:
-                friendReqHandler.handle(c);
+                friendHandler.handle(c);
                 break;
                 
             case U_AGREE_FRIEND:
-                friendReqHandler.handle(c);
+                friendHandler.handle(c);
                 break;
             
             case U_AGREE_GROUP:
+                groupHandler.handle(c);
+                break;
+                
+            case U_REM_FRIEND:
+                friendHandler.handle(c);
+                break;
+            
+            case U_REM_GROUP:
                 groupHandler.handle(c);
                 break;
 
