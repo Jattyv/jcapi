@@ -107,7 +107,8 @@ public interface ChatTags {
      */
     public static final String U_AGREE_FRIEND = "AFR";
     /**
-     * A tag, delaring his content as an request to remove a friend from FG-list.
+     * A tag, delaring his content as an request to remove a friend from
+     * FG-list.
      */
     public static final String U_REM_FRIEND = "RFFFG";
     /**
@@ -134,9 +135,5 @@ public interface ChatTags {
      * A tag, declaring his content as the errorcode.
      */
     public static final String ERR_KEY = "jerrorkey";
-    /**
-     * A tag, declaring an error while log in.
-     */
-    public static final String LOG_FAIL = "LOGF";
 
 }

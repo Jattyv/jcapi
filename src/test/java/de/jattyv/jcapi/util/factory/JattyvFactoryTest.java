@@ -8,6 +8,7 @@ package de.jattyv.jcapi.util.factory;
 import de.jattyv.jcapi.client.gui.cell.FG;
 import de.jattyv.jcapi.data.jobject.Container;
 import de.jattyv.jcapi.util.ChatTags;
+import de.jattyv.jcapi.util.KeyTags;
 import java.util.LinkedList;
 import java.util.List;
 import org.junit.Assert;
@@ -18,7 +19,7 @@ import org.junit.Test;
  *
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
-public class JattyvFactoryTest implements ChatTags {
+public class JattyvFactoryTest implements ChatTags, KeyTags{
 
     String userName = "Josef";
     String userPassword = "Cookie";

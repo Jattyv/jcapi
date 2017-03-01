@@ -16,9 +16,11 @@
  */
 package de.jattyv.jcapi.client.network;
 
+import de.jattyv.jcapi.client.gui.JGui;
 import de.jattyv.jcapi.data.jfc.data.Settings;
 import de.jattyv.jcapi.data.jobject.Base;
 import de.jattyv.jcapi.data.jobject.Container;
+import de.jattyv.jcapi.util.KeyTags;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -30,7 +32,7 @@ import java.util.logging.Logger;
  *
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
-public class Client extends JClient {
+public class Client extends JClient implements KeyTags {
 
     private Socket socket;
     private DataOutputStream out;
@@ -57,7 +59,8 @@ public class Client extends JClient {
             reload = new Reload(this);
             reload.start();
         } catch (IOException ie) {
-            System.out.println(ie);
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ie);
+            close();
         }
 
     }
@@ -68,6 +71,7 @@ public class Client extends JClient {
             out.writeUTF(gson.toJson(c));
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+            close();
         }
     }
 
@@ -77,6 +81,7 @@ public class Client extends JClient {
             out.writeUTF(s);
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+            close();
         }
     }
 
@@ -87,6 +92,7 @@ public class Client extends JClient {
             input = in.readUTF();
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+            close();
         }
         return input;
     }
@@ -99,6 +105,7 @@ public class Client extends JClient {
             handler.handle(b);
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+            close();
         }
     }
 
@@ -106,6 +113,7 @@ public class Client extends JClient {
     public void close() {
         try {
             socket.close();
+            handler.getWindow().alert(CON_FAIL, JGui.ALERT_TYPE_INFO);
             reload.stop();
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);

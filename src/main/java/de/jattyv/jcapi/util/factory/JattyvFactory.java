@@ -20,6 +20,7 @@ import de.jattyv.jcapi.client.gui.cell.FG;
 import de.jattyv.jcapi.data.jobject.Container;
 import de.jattyv.jcapi.data.jobject.Element;
 import de.jattyv.jcapi.util.ChatTags;
+import de.jattyv.jcapi.util.KeyTags;
 import de.jattyv.jcapi.util.crypt.LKeyGenerator;
 import java.util.List;
 
@@ -27,7 +28,7 @@ import java.util.List;
  *
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
-public class JattyvFactory implements ChatTags {
+public class JattyvFactory implements ChatTags, KeyTags {
 
     /**
      * Creates a logincontainer, that will contain the loginkey.

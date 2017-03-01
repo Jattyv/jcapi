@@ -17,12 +17,13 @@
 package de.jattyv.jcapi.client.handler;
 
 import de.jattyv.jcapi.data.jobject.Container;
+import de.jattyv.jcapi.util.KeyTags;
 
 /**
  *
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
-public class ErrorHandler extends JattyvHandler {
+public class ErrorHandler extends JattyvHandler implements KeyTags{
 
     public ErrorHandler(Handler handler) {
         super(handler);
