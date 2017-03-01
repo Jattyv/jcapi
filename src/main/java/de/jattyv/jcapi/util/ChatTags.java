@@ -87,6 +87,10 @@ public interface ChatTags {
      */
     public static final String U_AGREE_GROUP = "UATG";
     /**
+     * A tag, delaring his content as an request to remove a group from FG-list.
+     */
+    public static final String U_REM_GROUP = "URGFFG";
+    /**
      * A tag, declaring his content as an groupmessage.
      */
     public static final String NEW_GROUP_MESSAGE = "NGMSG";
@@ -102,6 +106,10 @@ public interface ChatTags {
      * A tag, declaring his cotent as an accept for an friendrequest.
      */
     public static final String U_AGREE_FRIEND = "AFR";
+    /**
+     * A tag, delaring his content as an request to remove a friend from FG-list.
+     */
+    public static final String U_REM_FRIEND = "RFFFG";
     /**
      * A tag, declaring his content as a friend/group list.
      */

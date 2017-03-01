@@ -98,5 +98,21 @@ public class Packer implements ChatTags {
         c.addE(GROUP_ID, gid);
         return c;
     }
+    
+    public static Container packRemoveGroupRequest(String ulkey, String gid){
+        Container c = new Container();
+        c.setSuperTag(U_REM_GROUP);
+        c.addE(FROM_USER, ulkey);
+        c.addE(FG_ID, gid);
+        return c;
+    }
+    
+    public static Container packRemoveFriendRequest(String ulkey, String fname){
+        Container c = new Container();
+        c.setSuperTag(U_REM_FRIEND);
+        c.addE(FROM_USER, ulkey);
+        c.addE(FG_ID, fname);
+        return c;
+    }
 
 }

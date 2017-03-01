@@ -136,5 +136,26 @@ public class OutputHandler extends JattyvHandler {
             handler.send(Packer.packOkayToFriendRequest(handler.getUser().getLogKey(), fname));
         }
     }
+    
+    /** Sends an request to the server to remove a friend from the friend/group-list.
+     * 
+     * @param fname The name of the friend.
+     */
+    public void sendRemoveFriendRequest(String fname){
+        if(!fname.isEmpty()){
+            handler.send(Packer.packRemoveFriendRequest(handler.getUser().getLogKey(), fname));
+        }
+    }
+    
+    /**
+     * Sends an request to the server to remove a group from the friend/group-list.
+     * 
+     * @param gid The id of the group.
+     */
+    public void sendRemoveGroupRequest(String gid){
+        if(!gid.isEmpty()){
+            handler.send(Packer.packRemoveGroupRequest(handler.getUser().getLogKey(), gid));
+        }
+    }
 
 }
