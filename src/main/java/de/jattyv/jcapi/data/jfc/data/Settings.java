@@ -32,7 +32,6 @@ public class Settings {
     private int port;
     private boolean autoStartServer;
     private String uName;
-    private ClientSettings clientSettings;
     private String serverSettingsPath;
 
     private boolean ipAvailable;
@@ -82,11 +81,6 @@ public class Settings {
         this.uName = uName;
         uNameAvailable = true;
     }
-
-    public ClientSettings getClientSettings() {
-        return clientSettings;
-    }
-
 
     public boolean isIpAvailable() {
         return ipAvailable;

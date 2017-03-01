@@ -19,7 +19,6 @@ package de.jattyv.jcapi.data.jfc;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import de.jattyv.jcapi.client.gui.cell.FG;
-import de.jattyv.jcapi.data.jfc.data.ClientSettings;
 import de.jattyv.jcapi.data.jfc.data.Settings;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -101,14 +100,8 @@ public class JattyvFileController {
         return writer.getBuffer().toString();
     }
 
-    public static String getFGAsJson(List<FG> fgs) {
-        ClientSettings cs = new ClientSettings();
-        cs.setFriends(fgs);
-        return gson.toJson(cs);
-    }
-
     public void writeFriends(String userName, List<FG> fgs) {
-        String fgsAsString = getFGAsJson(fgs);
+        String fgsAsString = gson.toJson(fgs);
         fileHandler.write(J_USER_DIR + File.separator + userName + J_FG_EXTENSION, fgsAsString);
     }
 
