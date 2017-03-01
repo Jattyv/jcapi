@@ -22,6 +22,7 @@ import de.jattyv.jcapi.client.gui.cell.FG;
 import de.jattyv.jcapi.data.jfc.data.ClientSettings;
 import de.jattyv.jcapi.data.jfc.data.Settings;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -43,10 +44,12 @@ public class JattyvFileController {
 
     public final static String J_PROP_FILE = "jattyv.properties";
     public final static String J_FG_EXTENSION = ".json";
-    
+
+    public final static String J_USER_DIR = "Users";
+
     JattyvFileHandler fileHandler;
-    
-    public JattyvFileController(JattyvFileHandler fileHandler){
+
+    public JattyvFileController(JattyvFileHandler fileHandler) {
         this.fileHandler = fileHandler;
     }
 
@@ -79,8 +82,8 @@ public class JattyvFileController {
         }
         return null;
     }
-    
-    public void writeSettings(Settings settings){
+
+    public void writeSettings(Settings settings) {
         String settingsAsString = getSettingsAsString(settings);
         fileHandler.write(J_PROP_FILE, settingsAsString);
     }
@@ -103,15 +106,16 @@ public class JattyvFileController {
         cs.setFriends(fgs);
         return gson.toJson(cs);
     }
-    
-    public void writeFriends(String dataName, List<FG> fgs){
+
+    public void writeFriends(String userName, List<FG> fgs) {
         String fgsAsString = getFGAsJson(fgs);
-        fileHandler.write(dataName+ J_FG_EXTENSION, fgsAsString);
+        fileHandler.write(J_USER_DIR + File.separator + userName + J_FG_EXTENSION, fgsAsString);
     }
-    
-    public List<FG> readFriends(String dataName){
-        String fgsAsJson = fileHandler.readFile(dataName+ J_FG_EXTENSION);
-        Type fgsType = new TypeToken<List<FG>>(){}.getType();
+
+    public List<FG> readFriends(String userName) {
+        String fgsAsJson = fileHandler.readFile(J_USER_DIR + File.separator + userName + J_FG_EXTENSION);
+        Type fgsType = new TypeToken<List<FG>>() {
+        }.getType();
         List<FG> fgs = gson.fromJson(fgsAsJson, fgsType);
         return fgs;
     }
