@@ -38,7 +38,7 @@ public final class SSLSocket {
     private final SDataInputStream in;
     private final SDataOutputStream out;
     private KeyPair keys;
-    
+
     private JClient cl;
 
     private final String SSL_SUCCESS = "HandshakeSucessfull";
@@ -50,7 +50,7 @@ public final class SSLSocket {
         out = new SDataOutputStream(socket.getOutputStream());
         handshakeC();
     }
-    
+
     public SSLSocket(String ip, int port, JClient cl) throws IOException {
         socket = new Socket(ip, port);
         in = new SDataInputStream(socket.getInputStream());
@@ -69,12 +69,12 @@ public final class SSLSocket {
     protected void handshakeC() {
         try {
             String pubAsString = in.receiveUTF();
-            if(cl != null){
-                if(!cl.checkCert(Hasher.generateMD5(pubAsString))){
+            PublicKey pub = CryptUtils.StringToPublicKey(pubAsString);
+            if (cl != null) {
+                if (!cl.checkCert(pub)) {
                     close();
                 }
             }
-            PublicKey pub = CryptUtils.StringToPublicKey(pubAsString);
             keys = CryptUtils.generateKeyPair();
             out.setPub(pub);
             SecretKey key = CryptUtils.generateAESKey();

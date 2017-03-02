@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import de.jattyv.jcapi.client.gui.cell.FG;
 import de.jattyv.jcapi.data.jfc.data.Settings;
+import de.jattyv.jcapi.util.crypt.CryptUtils;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
@@ -28,6 +29,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
+import java.security.PublicKey;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -45,6 +47,8 @@ public class JattyvFileController {
     public final static String J_FG_EXTENSION = ".json";
 
     public final static String J_USER_DIR = "Users";
+    public final static String J_SERVER_DIR = "Server";
+    public final static String J_CERT_DIR = "Certs";
 
     JattyvFileHandler fileHandler;
 
@@ -111,6 +115,19 @@ public class JattyvFileController {
         }.getType();
         List<FG> fgs = gson.fromJson(fgsAsJson, fgsType);
         return fgs;
+    }
+
+    public void writeCert(String serverName, PublicKey pub) {
+        String pubAsString = CryptUtils.PublicKeyToString(pub);
+        fileHandler.write(J_CERT_DIR + File.separator + serverName, pubAsString);
+    }
+
+    public PublicKey readCert(String serverName) {
+        String pubAsString = fileHandler.readFile(J_CERT_DIR + File.separator + serverName);
+        if (pubAsString != null) {
+            return CryptUtils.StringToPublicKey(pubAsString);
+        }
+        return null;
     }
 
 }

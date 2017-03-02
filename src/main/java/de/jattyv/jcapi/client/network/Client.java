@@ -16,15 +16,19 @@
  */
 package de.jattyv.jcapi.client.network;
 
+import de.jattyv.jcapi.client.Chat;
 import de.jattyv.jcapi.client.gui.JGui;
 import de.jattyv.jcapi.data.jfc.data.Settings;
 import de.jattyv.jcapi.data.jobject.Base;
 import de.jattyv.jcapi.data.jobject.Container;
 import de.jattyv.jcapi.util.KeyTags;
+import de.jattyv.jcapi.util.crypt.CryptUtils;
+import de.jattyv.jcapi.util.crypt.Hasher;
 import de.jattyv.jcapi.util.crypt.network.SDataInputStream;
 import de.jattyv.jcapi.util.crypt.network.SDataOutputStream;
 import de.jattyv.jcapi.util.crypt.network.SSLSocket;
 import java.io.IOException;
+import java.security.PublicKey;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -52,7 +56,7 @@ public class Client extends JClient implements KeyTags {
     @Override
     public void start(Container c) {
         try {
-            socket = new SSLSocket(host, port,this);
+            socket = new SSLSocket(host, port, this);
             in = socket.getIn();
             out = socket.getOut();
             write(c);
@@ -119,10 +123,22 @@ public class Client extends JClient implements KeyTags {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     @Override
-    public boolean checkCert(String fingerprint){
-        return handler.getWindow().alert(fingerprint, JGui.ALERT_TYPE_CERT);
+    public boolean checkCert(PublicKey pub) {
+        String pubAsString = CryptUtils.PublicKeyToString(pub);
+        PublicKey SavedKey = Chat.jfc.readCert(host);
+        if (SavedKey != null) {
+            String skeyAsString = CryptUtils.PublicKeyToString(SavedKey);
+            if (skeyAsString != null && pubAsString.equals(skeyAsString)) {
+                return true;
+            }
+        }
+        if (handler.getWindow().alert(Hasher.generateMD5(pubAsString), JGui.ALERT_TYPE_CERT)) {
+            Chat.jfc.writeCert(host, pub);
+            return true;
+        }
+        return false;
     }
 
 }

@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 import de.jattyv.jcapi.client.handler.Handler;
 import de.jattyv.jcapi.data.jfc.data.Settings;
 import de.jattyv.jcapi.data.jobject.Container;
+import java.security.PublicKey;
 
 /**
  *
@@ -66,7 +67,7 @@ public class JClient {
 
     }
     
-    public boolean checkCert(String fingerprint){
+    public boolean checkCert(PublicKey pub){
         return false;
     }
 
