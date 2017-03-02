@@ -180,6 +180,26 @@ public class CryptUtils {
         }
         return pair;
     }
+    
+        /**
+     * Generates an RSA keypair from an bytearray.
+     * 
+     * @param secret The seed for the key.
+     * @return An RSA keypair.
+     */
+    public static KeyPair generateKeyPair(byte[] secret) {
+        KeyPair pair = null;
+        try {
+            KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
+            SecureRandom rand = SecureRandom.getInstance("SHA1PRNG", "SUN");
+            rand.setSeed(secret);
+            keyGen.initialize(1024, rand);
+            pair = keyGen.genKeyPair();
+        } catch (NoSuchAlgorithmException | NoSuchProviderException ex) {
+            Logger.getLogger(CryptUtils.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return pair;
+    }
 
     /**
      * Converts an Array of bytes into an key.

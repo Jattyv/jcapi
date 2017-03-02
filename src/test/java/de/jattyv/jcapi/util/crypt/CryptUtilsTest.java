@@ -67,5 +67,15 @@ public class CryptUtilsTest {
         String toTestString = CryptUtils.PublicKeyToString(StringAsPub);
         assertEquals(pubAsString, toTestString);
     }
+    
+    @Test
+    public void SameRSAPairTest(){
+        SecretKey key = CryptUtils.generateAESKey();
+        KeyPair keys1 = CryptUtils.generateKeyPair(key.getEncoded());
+        String encText = CryptUtils.encrypt(text, keys1.getPublic());
+        KeyPair keys2 = CryptUtils.generateKeyPair(key.getEncoded());
+        String decText = CryptUtils.decrypt(encText, keys2.getPrivate());
+        assertEquals(text, decText);
+    }
 
 }

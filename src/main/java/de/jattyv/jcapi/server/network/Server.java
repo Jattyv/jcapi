@@ -18,9 +18,11 @@ package de.jattyv.jcapi.server.network;
 
 import de.jattyv.jcapi.data.jfc.data.Settings;
 import de.jattyv.jcapi.server.network.data.Connection;
+import de.jattyv.jcapi.util.crypt.CryptUtils;
+import de.jattyv.jcapi.util.crypt.network.SSLServer;
+import de.jattyv.jcapi.util.crypt.network.SSLSocket;
 import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.security.KeyPair;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,7 +32,8 @@ import java.util.logging.Logger;
  */
 public class Server extends JServer {
 
-    private ServerSocket listener;
+    private SSLServer listener;
+    private KeyPair keys;
 
     public Server(int port) {
         super(port);
@@ -42,11 +45,14 @@ public class Server extends JServer {
 
     @Override
     public void listen() {
+        keys = CryptUtils.generateKeyPair();
         try {
-            listener = new ServerSocket(port);
+            listener = new SSLServer(port, keys);
             while (running) {
-                Socket s = listener.accept();
-                ServerThread st = new ServerThread(s, dc);
+                SSLSocket s = listener.accept();
+                ServerThread st = new ServerThread(dc);
+                Connection c = new Connection(st, s);
+                st.setCon(c);
                 Client cl = new Client(st);
                 cl.start();
             }

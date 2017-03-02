@@ -21,10 +21,10 @@ import de.jattyv.jcapi.data.jfc.data.Settings;
 import de.jattyv.jcapi.data.jobject.Base;
 import de.jattyv.jcapi.data.jobject.Container;
 import de.jattyv.jcapi.util.KeyTags;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
+import de.jattyv.jcapi.util.crypt.network.SDataInputStream;
+import de.jattyv.jcapi.util.crypt.network.SDataOutputStream;
+import de.jattyv.jcapi.util.crypt.network.SSLSocket;
 import java.io.IOException;
-import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -34,9 +34,9 @@ import java.util.logging.Logger;
  */
 public class Client extends JClient implements KeyTags {
 
-    private Socket socket;
-    private DataOutputStream out;
-    private DataInputStream in;
+    private SSLSocket socket;
+    private SDataOutputStream out;
+    private SDataInputStream in;
 
     protected Reload reload;
 
@@ -52,9 +52,9 @@ public class Client extends JClient implements KeyTags {
     @Override
     public void start(Container c) {
         try {
-            socket = new Socket(host, port);
-            in = new DataInputStream(socket.getInputStream());
-            out = new DataOutputStream(socket.getOutputStream());
+            socket = new SSLSocket(host, port);
+            in = socket.getIn();
+            out = socket.getOut();
             write(c);
             reload = new Reload(this);
             reload.start();
@@ -68,7 +68,7 @@ public class Client extends JClient implements KeyTags {
     @Override
     public void write(Container c) {
         try {
-            out.writeUTF(gson.toJson(c));
+            out.send(gson.toJson(c));
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
             close();
@@ -78,7 +78,7 @@ public class Client extends JClient implements KeyTags {
     @Override
     public void write(String s) {
         try {
-            out.writeUTF(s);
+            out.send(s);
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
             close();
@@ -89,7 +89,7 @@ public class Client extends JClient implements KeyTags {
     public String read() {
         String input = "";
         try {
-            input = in.readUTF();
+            input = in.receiveUTF();
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
             close();
@@ -100,7 +100,7 @@ public class Client extends JClient implements KeyTags {
     @Override
     public void reload() {
         try {
-            String input = in.readUTF();
+            String input = in.receiveUTF();
             Base b = gson.fromJson(input, Base.class);
             handler.handle(b);
         } catch (IOException ex) {

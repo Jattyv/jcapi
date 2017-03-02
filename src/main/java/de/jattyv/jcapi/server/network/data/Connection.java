@@ -16,12 +16,11 @@
  */
 package de.jattyv.jcapi.server.network.data;
 
-import de.jattyv.jcapi.server.network.JServer;
 import de.jattyv.jcapi.server.network.ServerThread;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
+import de.jattyv.jcapi.util.crypt.network.SDataInputStream;
+import de.jattyv.jcapi.util.crypt.network.SDataOutputStream;
+import de.jattyv.jcapi.util.crypt.network.SSLSocket;
 import java.io.IOException;
-import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,49 +29,44 @@ import java.util.logging.Logger;
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
 public class Connection implements JConnection {
-
+    
     private ServerThread st;
-    private Socket socket;
-
-    private DataOutputStream out;
-    private DataInputStream in;
-
-    public Connection(ServerThread st, Socket socket) {
-        this.st = st;
+    private SSLSocket socket;
+    
+    private SDataOutputStream out;
+    private SDataInputStream in;
+    
+    public Connection(ServerThread st, SSLSocket socket) {
         this.socket = socket;
-        try {
-            out = new DataOutputStream(socket.getOutputStream());
-            in = new DataInputStream(socket.getInputStream());
-        } catch (IOException ex) {
-            Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.st = st;
+        out = socket.getOut();
+        in = socket.getIn();
     }
-
+    
     @Override
     public void writeMsg(String msg) {
         try {
-            out.writeUTF(msg);
+            out.send(msg);
         } catch (IOException ex) {
             Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
-            close();
         }
+        
     }
-
+    
     @Override
     public String readMsg() {
         try {
-            return in.readUTF();
+            return in.receiveUTF();
         } catch (IOException ex) {
             Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
-            close();
         }
         return null;
     }
-
+    
     public void close() {
         st.close();
     }
-
+    
     @Override
     public void closeCon() {
         try {
@@ -81,5 +75,5 @@ public class Connection implements JConnection {
             Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
 }
