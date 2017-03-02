@@ -53,17 +53,21 @@ public class JClient {
     public void write(Container c) {
 
     }
-    
-    public void write(String s){
-        
+
+    public void write(String s) {
+
     }
-    
-    public String read(){
+
+    public String read() {
         return "";
     }
 
     public void reload() {
 
+    }
+    
+    public boolean checkCert(String fingerprint){
+        return false;
     }
 
     public void setHandler(Handler handler) {

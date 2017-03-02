@@ -17,6 +17,7 @@
 package de.jattyv.jcapi.util.crypt;
 
 import java.math.BigInteger;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.logging.Level;
@@ -28,7 +29,7 @@ import javax.crypto.spec.PBEKeySpec;
  *
  * @author Dimitrios Diamantidis &lt;Dimitri.dia@ledimi.com&gt;
  */
-public class PasswordHasher {
+public class Hasher {
 
     /**
      * Rounds for the hashing.
@@ -47,7 +48,7 @@ public class PasswordHasher {
      * @param uPassword The needed user password.
      * @return The hashed logkey.
      */
-    public static String generateLKey(String uName, String uPassword) {
+    public static String hashPassword(String uName, String uPassword) {
         char[] passwordChars = uPassword.toCharArray();
         byte[] saltBytes = uName.getBytes();
         byte[] hashedPassword = null;
@@ -64,4 +65,14 @@ public class PasswordHasher {
         return String.format("%x", new BigInteger(hashedPassword));
     }
 
+    public static String generateMD5(String s) {
+        try {
+            MessageDigest m = MessageDigest.getInstance("MD5");
+            m.update(s.getBytes(), 0, s.length());
+            return new BigInteger(1, m.digest()).toString(16);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Hasher.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

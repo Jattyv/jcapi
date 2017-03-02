@@ -17,7 +17,7 @@
 package de.jattyv.jcapi.client.handler;
 
 import de.jattyv.jcapi.util.Packer;
-import de.jattyv.jcapi.util.crypt.PasswordHasher;
+import de.jattyv.jcapi.util.crypt.Hasher;
 
 /**
  *
@@ -53,7 +53,7 @@ public class OutputHandler extends JattyvHandler {
      */
     public void sendLogin(String uname, String upassword) {
         if (!uname.isEmpty() && !upassword.isEmpty()) {
-            handler.start(Packer.packLogin(uname, PasswordHasher.generateLKey(uname, upassword)));
+            handler.start(Packer.packLogin(uname, Hasher.hashPassword(uname, upassword)));
         }
     }
 
@@ -65,7 +65,7 @@ public class OutputHandler extends JattyvHandler {
      */
     public void sendRegist(String uname, String upassword) {
         if (!uname.isEmpty() && !upassword.isEmpty()) {
-            handler.start(Packer.packRegistration(uname, PasswordHasher.generateLKey(uname, upassword)));
+            handler.start(Packer.packRegistration(uname, Hasher.hashPassword(uname, upassword)));
         }
     }
 

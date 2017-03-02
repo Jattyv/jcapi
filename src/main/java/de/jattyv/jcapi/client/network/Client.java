@@ -52,7 +52,7 @@ public class Client extends JClient implements KeyTags {
     @Override
     public void start(Container c) {
         try {
-            socket = new SSLSocket(host, port);
+            socket = new SSLSocket(host, port,this);
             in = socket.getIn();
             out = socket.getOut();
             write(c);
@@ -113,11 +113,16 @@ public class Client extends JClient implements KeyTags {
     public void close() {
         try {
             socket.close();
-            handler.getWindow().alert(CON_FAIL, JGui.ALERT_TYPE_INFO);
+            handler.getWindow().showError(CON_FAIL);
             reload.stop();
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    @Override
+    public boolean checkCert(String fingerprint){
+        return handler.getWindow().alert(fingerprint, JGui.ALERT_TYPE_CERT);
     }
 
 }

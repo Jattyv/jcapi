@@ -16,7 +16,10 @@
  */
 package de.jattyv.jcapi.util.crypt.network;
 
+import de.jattyv.jcapi.client.gui.JGui;
+import de.jattyv.jcapi.client.network.JClient;
 import de.jattyv.jcapi.util.crypt.CryptUtils;
+import de.jattyv.jcapi.util.crypt.Hasher;
 import java.io.IOException;
 import java.net.Socket;
 import java.security.KeyPair;
@@ -35,6 +38,8 @@ public final class SSLSocket {
     private final SDataInputStream in;
     private final SDataOutputStream out;
     private KeyPair keys;
+    
+    private JClient cl;
 
     private final String SSL_SUCCESS = "HandshakeSucessfull";
     private final String SSL_CERT_RENEW = "RenewCert";
@@ -43,6 +48,14 @@ public final class SSLSocket {
         socket = new Socket(ip, port);
         in = new SDataInputStream(socket.getInputStream());
         out = new SDataOutputStream(socket.getOutputStream());
+        handshakeC();
+    }
+    
+    public SSLSocket(String ip, int port, JClient cl) throws IOException {
+        socket = new Socket(ip, port);
+        in = new SDataInputStream(socket.getInputStream());
+        out = new SDataOutputStream(socket.getOutputStream());
+        this.cl = cl;
         handshakeC();
     }
 
@@ -56,6 +69,11 @@ public final class SSLSocket {
     protected void handshakeC() {
         try {
             String pubAsString = in.receiveUTF();
+            if(cl != null){
+                if(!cl.checkCert(Hasher.generateMD5(pubAsString))){
+                    close();
+                }
+            }
             PublicKey pub = CryptUtils.StringToPublicKey(pubAsString);
             keys = CryptUtils.generateKeyPair();
             out.setPub(pub);
