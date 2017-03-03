@@ -7,6 +7,7 @@ package de.jattyv.jcapi.server.virtual.dataController.controller;
 
 import de.jattyv.jcapi.server.virtual.dataController.data.Group;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
@@ -14,9 +15,9 @@ import java.util.LinkedList;
  */
 public class GroupController {
 
-    private final LinkedList<Group> groups;
+    private final List<Group> groups;
 
-    public GroupController(LinkedList<Group> groups) {
+    public GroupController(List<Group> groups) {
         this.groups = groups;
     }
 

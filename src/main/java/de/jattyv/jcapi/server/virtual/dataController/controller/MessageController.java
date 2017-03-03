@@ -18,6 +18,7 @@ package de.jattyv.jcapi.server.virtual.dataController.controller;
 
 import de.jattyv.jcapi.server.virtual.dataController.data.Message;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
@@ -25,9 +26,9 @@ import java.util.LinkedList;
  */
 public class MessageController {
 
-    private LinkedList<Message> messages;
+    private List<Message> messages;
 
-    public MessageController(LinkedList<Message> messages) {
+    public MessageController(List<Message> messages) {
         this.messages = messages;
     }
 

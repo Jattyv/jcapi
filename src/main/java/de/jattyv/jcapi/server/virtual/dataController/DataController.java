@@ -29,6 +29,7 @@ import de.jattyv.jcapi.server.virtual.dataController.data.GroupRequest;
 import de.jattyv.jcapi.server.virtual.dataController.data.Message;
 import de.jattyv.jcapi.server.virtual.dataController.data.User;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
@@ -36,12 +37,12 @@ import java.util.LinkedList;
  */
 public class DataController {
 
-    private final LinkedList<User> users;
-    private final LinkedList<Message> messages;
-    private final LinkedList<Group> groups;
-    private final LinkedList<GroupMessage> groupMessages;
-    private final LinkedList<GroupRequest> groupRequests;
-    private final LinkedList<FriendRequest> friendRequests;
+    private final List<User> users;
+    private final List<Message> messages;
+    private final List<Group> groups;
+    private final List<GroupMessage> groupMessages;
+    private final List<GroupRequest> groupRequests;
+    private final List<FriendRequest> friendRequests;
 
     private final UserController userC;
     private final MessageController msgC;
@@ -49,11 +50,18 @@ public class DataController {
     private final GroupMessageController groupMsgC;
     private final GroupRequestController groupReqC;
     private final FriendRequestController friendReqC;
-
+    
     public DataController() {
-        users = new LinkedList<>();
+        LocalDataController.readDC();
+        if (!LocalDataController.isEmpty()) {
+            users = LocalDataController.getUsers();
+            groups = LocalDataController.getGroups();
+        } else {
+            users = new LinkedList<>();
+            groups = new LinkedList<>();
+        }
+        LocalDataController.setLists(users, groups);
         messages = new LinkedList<>();
-        groups = new LinkedList<>();
         groupMessages = new LinkedList<>();
         groupRequests = new LinkedList<>();
         friendRequests = new LinkedList<>();
@@ -88,5 +96,4 @@ public class DataController {
     public FriendRequestController getFriendReqC() {
         return friendReqC;
     }
-
 }

@@ -20,6 +20,9 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import de.jattyv.jcapi.client.gui.cell.FG;
 import de.jattyv.jcapi.data.jfc.data.Settings;
+import de.jattyv.jcapi.data.jobject.Container;
+import de.jattyv.jcapi.server.virtual.dataController.DataController;
+import de.jattyv.jcapi.server.virtual.dataController.LocalDataController;
 import de.jattyv.jcapi.util.crypt.CryptUtils;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -46,7 +49,8 @@ public class JattyvFileController {
     private static final Gson gson = new Gson();
 
     public final static String J_PROP_FILE = "jattyv.properties";
-    public final static String J_FG_EXTENSION = ".json";
+    
+    public final static String J_JSON_EXTENSION = ".json";
 
     public final static String J_USER_DIR = "Users";
     public final static String J_SERVER_DIR = "Server";
@@ -55,6 +59,8 @@ public class JattyvFileController {
     public final static String J_PRIV_EXTENSION = ".priv";
     public final static String J_PUB_EXTENSION = ".pub";
     public final static String J_SERVER_CERT_FILE = "servercert";
+    
+    public final static String J_SERVER_DC_FILE = "data";
 
     public final static String J_CERT_EXTENSION = ".jcert";
 
@@ -114,11 +120,11 @@ public class JattyvFileController {
 
     public void writeFriends(String userName, List<FG> fgs) {
         String fgsAsString = gson.toJson(fgs);
-        fileHandler.write(J_USER_DIR + File.separator + userName + J_FG_EXTENSION, fgsAsString);
+        fileHandler.write(J_USER_DIR + File.separator + userName + J_JSON_EXTENSION, fgsAsString);
     }
 
     public List<FG> readFriends(String userName) {
-        String fgsAsJson = fileHandler.readFile(J_USER_DIR + File.separator + userName + J_FG_EXTENSION);
+        String fgsAsJson = fileHandler.readFile(J_USER_DIR + File.separator + userName + J_JSON_EXTENSION);
         Type fgsType = new TypeToken<List<FG>>() {
         }.getType();
         List<FG> fgs = gson.fromJson(fgsAsJson, fgsType);
@@ -156,6 +162,16 @@ public class JattyvFileController {
             }
         }
         return null;
+    }
+    
+    public void writeDC(Container c){
+        String dcAsJson = gson.toJson(c);
+        fileHandler.write(J_SERVER_DIR + File.separator + J_SERVER_DC_FILE + J_JSON_EXTENSION, dcAsJson);
+    }
+    
+    public Container readDC(){
+        String dcAsJson = fileHandler.readFile(J_SERVER_DIR + File.separator + J_SERVER_DC_FILE + J_JSON_EXTENSION);
+        return gson.fromJson(dcAsJson, Container.class);
     }
 
 }

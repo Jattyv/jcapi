@@ -15,9 +15,9 @@ import java.util.List;
  */
 public class GroupMessageController {
 
-    private LinkedList<GroupMessage> groupMessages;
+    private List<GroupMessage> groupMessages;
 
-    public GroupMessageController(LinkedList<GroupMessage> groupMessages) {
+    public GroupMessageController(List<GroupMessage> groupMessages) {
         this.groupMessages = groupMessages;
     }
 

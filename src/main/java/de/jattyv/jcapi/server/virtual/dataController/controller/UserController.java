@@ -27,9 +27,9 @@ import java.util.List;
  */
 public class UserController {
 
-    private LinkedList<User> users;
+    private List<User> users;
 
-    public UserController(LinkedList<User> users) {
+    public UserController(List<User> users) {
         this.users = users;
     }
 

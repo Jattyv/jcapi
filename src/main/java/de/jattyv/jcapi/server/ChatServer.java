@@ -20,6 +20,7 @@ import de.jattyv.jcapi.data.jfc.JattyvFileController;
 import de.jattyv.jcapi.data.jfc.JattyvFileHandler;
 import de.jattyv.jcapi.data.jfc.data.Settings;
 import de.jattyv.jcapi.server.network.Server;
+import de.jattyv.jcapi.server.virtual.dataController.LocalDataController;
 
 /**
  *
@@ -51,6 +52,10 @@ public class ChatServer {
 
     public void start() {
         jServer.start();
+    }
+    
+    public void shutdown(){
+        LocalDataController.writeDC();
     }
 
 }
