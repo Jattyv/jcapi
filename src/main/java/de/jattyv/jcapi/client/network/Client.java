@@ -126,10 +126,10 @@ public class Client extends JClient implements KeyTags {
 
     @Override
     public boolean checkCert(PublicKey pub) {
-        String pubAsString = CryptUtils.PublicKeyToString(pub);
+        String pubAsString = CryptUtils.KeyToString(pub);
         PublicKey SavedKey = Chat.jfc.readCert(host);
         if (SavedKey != null) {
-            String skeyAsString = CryptUtils.PublicKeyToString(SavedKey);
+            String skeyAsString = CryptUtils.KeyToString(SavedKey);
             if (skeyAsString != null && pubAsString.equals(skeyAsString)) {
                 return true;
             }

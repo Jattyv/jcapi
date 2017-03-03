@@ -17,6 +17,7 @@
 package de.jattyv.jcapi.util.crypt;
 
 import java.security.InvalidKeyException;
+import java.security.Key;
 import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -26,6 +27,7 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
+import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 import java.util.logging.Level;
@@ -206,7 +208,7 @@ public class CryptUtils {
      * @param key The key to convert.
      * @return The key.
      */
-    public static SecretKey toKey(byte[] key) {
+    public static SecretKey toSecretKey(byte[] key) {
         return new SecretKeySpec(key, 0, key.length, "AES");
     }
     
@@ -216,7 +218,7 @@ public class CryptUtils {
      * @param key The key to convert.
      * @return A string that contains the keyinformation.
      */
-    public static String KeyToString(SecretKey key){
+    public static String KeyToString(Key key){
         return Base64.getEncoder().encodeToString(key.getEncoded());
     }
     
@@ -226,9 +228,9 @@ public class CryptUtils {
      * @param key The key to convert.
      * @return The key.
      */
-    public static SecretKey StringToKey(String key){
+    public static SecretKey StringToSecretKey(String key){
         byte[] decKey = Base64.getDecoder().decode(key);
-        return toKey(decKey);
+        return toSecretKey(decKey);
     }
     
     /**
@@ -243,15 +245,16 @@ public class CryptUtils {
     }
     
     /**
-     * Converts an public key into a string.
+     * Converts a string into a private key.
      * 
-     * @param key The needed key to convert.
+     * @param key The needed private key.
      * @return The converted key.
      */
-    public static String PublicKeyToString(PublicKey key){
-        return Base64.getEncoder().encodeToString(key.getEncoded());
+    public static PrivateKey StringToPrivateKey(String key){
+        byte[] decKey = Base64.getDecoder().decode(key);
+        return toPrivateKey(decKey);
     }
-
+    
     /**
      * Converts an array of bytes into a key.
      * 
@@ -263,6 +266,25 @@ public class CryptUtils {
         try {
             kf = KeyFactory.getInstance("RSA");
             return kf.generatePublic(new X509EncodedKeySpec(key));
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(CryptUtils.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidKeySpecException ex) {
+            Logger.getLogger(CryptUtils.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    /**
+     * Converts an array of bytes into a key.
+     * 
+     * @param key The needed key to convert.
+     * @return The converted key.
+     */
+    public static PrivateKey toPrivateKey(byte[] key) {
+        KeyFactory kf;
+        try {
+            kf = KeyFactory.getInstance("RSA");
+            return kf.generatePrivate(new PKCS8EncodedKeySpec(key));
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(CryptUtils.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InvalidKeySpecException ex) {

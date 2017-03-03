@@ -42,7 +42,7 @@ public class SDataInputStream {
         } else {
             String tmp = in.readUTF();
             String keyAsString = CryptUtils.decrypt(in.readUTF(), priv);
-            SecretKey key = CryptUtils.StringToKey(keyAsString);
+            SecretKey key = CryptUtils.StringToSecretKey(keyAsString);
             return CryptUtils.decrypt(tmp, key);
         }
     }

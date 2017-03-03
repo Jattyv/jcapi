@@ -95,9 +95,9 @@ public final class SSLSocket {
 
     protected void handshakeS(KeyPair pair) {
         try {
-            out.send(CryptUtils.PublicKeyToString(pair.getPublic()));
+            out.send(CryptUtils.KeyToString(pair.getPublic()));
             in.setPriv(pair.getPrivate());
-            SecretKey key = CryptUtils.StringToKey(in.receiveUTF());
+            SecretKey key = CryptUtils.StringToSecretKey(in.receiveUTF());
             keys = CryptUtils.generateKeyPair(key.getEncoded());
             out.setPub(keys.getPublic());
             in.setPriv(keys.getPrivate());

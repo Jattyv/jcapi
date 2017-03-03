@@ -29,6 +29,8 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
+import java.security.KeyPair;
+import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.List;
 import java.util.Properties;
@@ -49,6 +51,11 @@ public class JattyvFileController {
     public final static String J_USER_DIR = "Users";
     public final static String J_SERVER_DIR = "Server";
     public final static String J_CERT_DIR = "Certs";
+
+    public final static String J_PRIV_EXTENSION = ".priv";
+    public final static String J_PUB_EXTENSION = ".pub";
+    public final static String J_SERVER_CERT_FILE = "servercert";
+
     public final static String J_CERT_EXTENSION = ".jcert";
 
     JattyvFileHandler fileHandler;
@@ -119,7 +126,7 @@ public class JattyvFileController {
     }
 
     public void writeCert(String serverName, PublicKey pub) {
-        String pubAsString = CryptUtils.PublicKeyToString(pub);
+        String pubAsString = CryptUtils.KeyToString(pub);
         fileHandler.write(J_CERT_DIR + File.separator + serverName + J_CERT_EXTENSION, pubAsString);
     }
 
@@ -127,6 +134,26 @@ public class JattyvFileController {
         String pubAsString = fileHandler.readFile(J_CERT_DIR + File.separator + serverName + J_CERT_EXTENSION);
         if (pubAsString != null) {
             return CryptUtils.StringToPublicKey(pubAsString);
+        }
+        return null;
+    }
+
+    public void writeServerKeyPair(KeyPair keys) {
+        String priv = CryptUtils.KeyToString(keys.getPrivate());
+        String pub = CryptUtils.KeyToString(keys.getPublic());
+        fileHandler.write(J_SERVER_DIR + File.separator + J_SERVER_CERT_FILE + J_PUB_EXTENSION, pub);
+        fileHandler.write(J_SERVER_DIR + File.separator + J_SERVER_CERT_FILE + J_PRIV_EXTENSION, priv);
+    }
+
+    public KeyPair readServerKeyPair() {
+        String priv = fileHandler.readFile(J_SERVER_DIR + File.separator + J_SERVER_CERT_FILE + J_PRIV_EXTENSION);
+        String pub = fileHandler.readFile(J_SERVER_DIR + File.separator + J_SERVER_CERT_FILE + J_PUB_EXTENSION);
+        if (priv != null && pub != null) {
+            PublicKey pubKey = CryptUtils.StringToPublicKey(pub);
+            PrivateKey privKey = CryptUtils.StringToPrivateKey(priv);
+            if (privKey != null && pubKey != null) {
+                return new KeyPair(pubKey, privKey);
+            }
         }
         return null;
     }

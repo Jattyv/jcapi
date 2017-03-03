@@ -16,9 +16,13 @@
  */
 package de.jattyv.jcapi.server.network;
 
+import de.jattyv.jcapi.client.Chat;
 import de.jattyv.jcapi.data.jfc.data.Settings;
+import de.jattyv.jcapi.server.ChatServer;
 import de.jattyv.jcapi.server.handler.MReloadHandler;
 import de.jattyv.jcapi.server.virtual.dataController.DataController;
+import de.jattyv.jcapi.util.crypt.CryptUtils;
+import java.security.KeyPair;
 
 /**
  *
@@ -30,6 +34,7 @@ public class JServer {
     protected boolean running;
     protected MReloadHandler reloadHandler;
     protected DataController dc;
+    protected KeyPair keys;
 
     public JServer(Settings settings) {
         init(settings);
@@ -47,6 +52,11 @@ public class JServer {
         running = true;
         dc = new DataController();
         reloadHandler = new MReloadHandler(dc);
+        keys = ChatServer.jfc.readServerKeyPair();
+        if(keys == null){
+            keys = CryptUtils.generateKeyPair();
+            ChatServer.jfc.writeServerKeyPair(keys);
+        }
     }
 
     public void listen() {

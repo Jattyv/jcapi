@@ -33,7 +33,6 @@ import java.util.logging.Logger;
 public class Server extends JServer {
 
     private SSLServer listener;
-    private KeyPair keys;
 
     public Server(int port) {
         super(port);
@@ -45,7 +44,6 @@ public class Server extends JServer {
 
     @Override
     public void listen() {
-        keys = CryptUtils.generateKeyPair();
         try {
             listener = new SSLServer(port, keys);
             while (running) {

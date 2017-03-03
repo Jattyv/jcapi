@@ -52,7 +52,7 @@ public class CryptUtilsTest {
         SecretKey key = CryptUtils.generateAESKey();
         KeyPair keys = CryptUtils.generateKeyPair();
         String cipherText = CryptUtils.encrypt(CryptUtils.KeyToString(key), keys.getPublic());
-        SecretKey decKey = CryptUtils.StringToKey(CryptUtils.decrypt(cipherText, keys.getPrivate()));
+        SecretKey decKey = CryptUtils.StringToSecretKey(CryptUtils.decrypt(cipherText, keys.getPrivate()));
         String decKeyText = CryptUtils.encrypt(CryptUtils.KeyToString(decKey), keys.getPublic());
         String t1 = CryptUtils.encrypt(text, key);
         String t2 = CryptUtils.encrypt(text, decKey);
@@ -62,9 +62,9 @@ public class CryptUtilsTest {
     @Test
     public void RSATransformingTest(){
         KeyPair keys = CryptUtils.generateKeyPair();
-        String pubAsString = CryptUtils.PublicKeyToString(keys.getPublic());
+        String pubAsString = CryptUtils.KeyToString(keys.getPublic());
         PublicKey StringAsPub = CryptUtils.StringToPublicKey(pubAsString);
-        String toTestString = CryptUtils.PublicKeyToString(StringAsPub);
+        String toTestString = CryptUtils.KeyToString(StringAsPub);
         assertEquals(pubAsString, toTestString);
     }
     
