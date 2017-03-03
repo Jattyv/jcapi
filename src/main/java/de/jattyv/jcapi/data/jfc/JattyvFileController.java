@@ -49,6 +49,7 @@ public class JattyvFileController {
     public final static String J_USER_DIR = "Users";
     public final static String J_SERVER_DIR = "Server";
     public final static String J_CERT_DIR = "Certs";
+    public final static String J_CERT_EXTENSION = ".jcert";
 
     JattyvFileHandler fileHandler;
 
@@ -119,11 +120,11 @@ public class JattyvFileController {
 
     public void writeCert(String serverName, PublicKey pub) {
         String pubAsString = CryptUtils.PublicKeyToString(pub);
-        fileHandler.write(J_CERT_DIR + File.separator + serverName, pubAsString);
+        fileHandler.write(J_CERT_DIR + File.separator + serverName + J_CERT_EXTENSION, pubAsString);
     }
 
     public PublicKey readCert(String serverName) {
-        String pubAsString = fileHandler.readFile(J_CERT_DIR + File.separator + serverName);
+        String pubAsString = fileHandler.readFile(J_CERT_DIR + File.separator + serverName + J_CERT_EXTENSION);
         if (pubAsString != null) {
             return CryptUtils.StringToPublicKey(pubAsString);
         }
