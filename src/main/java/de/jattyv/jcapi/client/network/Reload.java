@@ -45,5 +45,9 @@ public class Reload extends Thread {
         }
 
     }
+    
+    public void close(){
+        connected = false;
+    }
 
 }

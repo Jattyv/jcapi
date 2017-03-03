@@ -117,8 +117,8 @@ public class Client extends JClient implements KeyTags {
     public void close() {
         try {
             socket.close();
+            reload.close();
             handler.getWindow().showError(CON_FAIL);
-            reload.stop();
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
