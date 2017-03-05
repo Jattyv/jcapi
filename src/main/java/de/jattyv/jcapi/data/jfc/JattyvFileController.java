@@ -21,8 +21,6 @@ import com.google.gson.reflect.TypeToken;
 import de.jattyv.jcapi.client.gui.cell.FG;
 import de.jattyv.jcapi.data.jfc.data.Settings;
 import de.jattyv.jcapi.data.jobject.Container;
-import de.jattyv.jcapi.server.virtual.dataController.DataController;
-import de.jattyv.jcapi.server.virtual.dataController.LocalDataController;
 import de.jattyv.jcapi.util.crypt.CryptUtils;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -98,6 +96,13 @@ public class JattyvFileController {
             Logger.getLogger(JattyvFileController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    public void writeSettings(String ip, int port) {
+        Settings settings = new Settings();
+        settings.setIp(ip);
+        settings.setPort(port);
+        writeSettings(settings);
     }
 
     public void writeSettings(Settings settings) {
